@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="House.html" class="Genre" >House & Garage</a></li>
+     <li><a href="House-DeepH.html" class="SubGenre" >Deep House</a></li>
+	<li class="aka-item"><a class="aka">AKA: Soulful House, Jazz House  // Fines 80´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>El deep house surgió en Chicago, donde <a href="https://www.discogs.com/artist/1104-Marshall-Jefferson" target="_blank" draggable="false" rel="noopener" class="linkshisto">Marshall Jefferson</a> y <a href="https://www.discogs.com/artist/148-Larry-Heard" target="_blank" draggable="false" rel="noopener" class="linkshisto">Larry Heard</a> introdujeron una versión menos rimbombante y más sobria del house que atrajo a un público selecto. Como todo lo demás en el Medio Oeste a finales de los 80, se exportó a Europa con entusiasmo, y pronto Europa empezó a crear su propio deep house con resultados muy prometedores.</p> <img src="images/History/House/Deep/nakedmusic.webp" class=photo1 />
+		  <p>En los 90, algunos seguidores del deep house de Chicago como <a href="https://www.discogs.com/artist/4710-Mark-Farina" target="_blank" draggable="false" rel="noopener" class="linkshisto">Mark Farina</a> se mudaron a San Francisco, trayendo consigo sus sonidos conmovedores y convirtiendo la ciudad en la segunda cuna del deep house. A finales de los 90, el deep house de San Francisco alcanzó su máximo apogeo, liderado por el sello discográfico <a href="https://www.discogs.com/label/10-Naked-Music-Recordings" target="_blank" draggable="false" rel="noopener" class="linkshisto">Naked Music</a>.</p><br>
+		  <p>Mientras que el US Deep House se inspiró en el soul, el blues y el jazz estadounidenses, el Euro Deep House encontró un modelo de inspiración similar, pero diferente: el ambiente relajado de la música balear. También es un poco más lento y considerablemente menos funky. Esto hace que el Euro Deep House no sea necesariamente profundo, sino más relajante y tranquilo, porque ambos géneros encontraron su forma en los tranquilos días de playa de verano.</p><br>
+		  <p>Las diferencias superficiales entre los dos: el arreglo ligeramente más minimalista del Euro Deep House, un mayor uso de pads Korg (y órgano), una menor dependencia de líneas de bajo orgánicas y pequeñas cosas como una percusión tribal más ocupada, guitarra española, flautas de pan, por supuesto ese glockenspiel, y cosas como los llamados de los mamíferos marinos y las olas rompiendo y las gaviotas mirando boquiabiertas que indican vibraciones dulces y conmovedoras del Mediterráneo en oposición a las vibraciones dulces y conmovedoras de San Francisco.</p><br>
+		  <p>Y mientras que el Deep House estadounidense tiene un aire más de R&amp;B urbano, con toques de cuarteto de jazz y cantantes sensuales en clubes nocturnos sórdidos, el Deep House europeo es más abierto y cinematográfico: vistas musicales, terrazas blancas y patios en ricas islas griegas, colinas abiertas donde la música tiene espacio para respirar.</p>
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

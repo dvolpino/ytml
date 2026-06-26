@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YTML | Techno</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="splide-4.1.3/dist/css/splide.min.css">
+  <script src="splide-4.1.3/dist/js/splide.min.js"></script>
+</head>
+<body>
+
+ <div class="page-wrapper">
+
+<!--/// LOGO ///-->
+<header class="site-header"> <a href="index.html" class="logo-link"> <img src="images/logo.webp" alt="Logo" class="logo-img" /> </a> </header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+	  	<li><a href="Techno.html" class="Genre active" >Techno</a></li>
+		<li><a href="Techno-Detroit.html" class="SubGenre" >Detroit Techno</a></li>
+		<li><a href="Techno-Euro.html" class="SubGenre" >Euro Techno</a></li>
+		<li><a href="Techno-Acid.html" class="SubGenre" >Acid Techno</a></li>
+		<li><a href="Techno-MT.html" class="SubGenre" >Minimal Techno</a></li>
+		<li><a href="Techno-AmbientTechno.html" class="SubGenre" >Ambient Techno</a></li>
+		<li><a href="Techno-DT.html" class="SubGenre" >Dub Techno</a></li>
+		<li><a href="Techno-HT.html" class="SubGenre" >Hypnotic Techno</a></li>
+		<li><a href="Techno-Albums.html" class="Playlists" >Albums</a></li>
+		<li><a href="Techno-Art.html" class="Artists active" >Artists</a></li>
+	 
+<!-- Albums --> 
+<li>	
+<section id="image-carousel" class="splide" aria-label="Beautiful Images" >
+ <div class="splide__track" align="right">
+  <ul class="splide__list">
+	<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UC8GpGuM_mxH6dukEiepsJBg"><image src="images/Covers/Techno/Artists/Richie Hawtin.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UC089BQQ4lBHhkFIcLWRJYbw"><image src="images/Covers/Techno/Artists/Anfisa Letyago.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UCmHFONxjmLurj_zTW4bq50g"><image src="images/Covers/Techno/Artists/Dominik Eulberg.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UC_fkya3ogeefj4G8eWio8sw"><image src="images/Covers/Techno/Artists/Extrawelt.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UCW820aCaM_0XC-yoV7ttRhQ"><image src="images/Covers/Techno/Artists/Marek Hemmann.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UC5M_jqrDXITVS5tbh4Woo1Q"><image src="images/Covers/Techno/Artists/Minilogue.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UC_qi8RUJGu0PVd9S7eJsD_Q"><image src="images/Covers/Techno/Artists/Sebastian Mullaert.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UCrBo5XcpoSWeH4UjViQj0cQ"><image src="images/Covers/Techno/Artists/Popof.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UC3ay7Eo31B9rLsadCNTQQPw"><image src="images/Covers/Techno/Artists/Michael Mayer.webp" alt=""></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="https://music.youtube.com/channel/UCSJveZFb3fGFLArm6eVGr0A"><image src="images/Covers/Techno/Artists//Ricardo Villalobos.webp" alt=""></image></a>
+	</li>
+   </ul>
+  </div>
+ </section>
+ </li>
+<!-- Fin Albums -->
+		
+		<li><a href="MPlayer.html?list=PLV5aIGkszfb8KFjByqThjh4jO0YhAMBgz&name=Techno%20Live%20Sets&color=%2302FF00&labelcolor=%2302FF00" class="LiveSets" >Live Sets</a>
+	</li>
+  </ul>
+ </nav>
+</div>
+ 
+	<!-- Script para Albums Carrousel --> 
+<script>
+  new Splide( '#image-carousel'	, {	 } ).mount(); </script>  <!-- width/height removed — CSS .splide max-width now controls sizing responsively  --> 
+	
+<script src="background-manager.js"></script>
+</body>
+</html>

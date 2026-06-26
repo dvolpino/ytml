@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="Trance.html" class="Genre" >Trance</a><a class="SubGenre">/</a><a href="Trance-EuroT.html" class="scene" >Eurotrance</a></li>
+		<li><a href="Trance-EuroT-ET.html" class="SubGenre" >Eurotrance</a></li>
+		<li class="aka-item"><a class="aka">AKA: Anthem Trance, Stadium Trance,  Epic Trance, Angelic Trance, Dutch Trance  // Mediados 90´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>El euro trance es una fusión de trance y eurodance que surgió a finales de los 90. Si bien el término se usaba con mayor ligereza, a veces como un término general, ahora se reconoce con mayor frecuencia como un género diferenciado con características específicas. Sus elementos trance se inspiraron principalmente en el hard trance, con sus pegadizas secciones melódicas, así como en el dream trance, influenciado de forma similar por el eurodance. El género también recibió, en menor medida, influencias del happy hardcore alemán y está emparentado con el italo dance, que surgió en la misma época. </p><br>
+		  <p>El euro trance mantiene un tempo rápido de alrededor de 140-160 BPM, con un groove vibrante y muy bailable. Los patrones de bajo pueden variar desde ritmos simples y poco convencionales hasta otros más rodantes y sincopados. La producción suele ser bastante sencilla, con baterías TR-909 o similares con un procesamiento mínimo, y melodías pegadizas con leads de sintetizador de sierra simples. El euro trance tiene una estructura más segmentada que el trance temprano, pero las rupturas y los desarrollos son mucho más cortos y sutiles en comparación con el uplifting trance, que surgió casi al mismo tiempo como un género relacionado. Las voces se incluyen comúnmente, pero no son esenciales. Tienden a ser más animadas y juguetonas en comparación con las interpretaciones vocales más maduras que se encuentran en el vocal trance (que también está más estrechamente vinculado al uplifting y al progressive trance), aunque los límites entre ambos a veces eran difusos.</p><br>
+		  	
+		  El euro trance surgió principalmente en Alemania, con artistas de eurodance como Sash!, E-Rotic y U96 que impulsaron el género hacia una nueva dirección. Se definiría aún más por artistas como Alice Deejay y Rollergirl, donde "Better Off Alone" alcanzó su máximo auge. Los artistas belgas Sylver y Lasgo también contribuyeron al éxito del género. A mediados de la década de 2000, el euro trance evolucionó en gran medida hacia Hands Up, que incluía baterías y solos más potentes, pero también con una sensibilidad aún más dance-pop. El euro trance mantuvo su popularidad e influencia durante la década de 2000, pero, al igual que el trance en general, decayó considerablemente en la década de 2010, siendo reemplazado por varios nuevos estilos de EDM.
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

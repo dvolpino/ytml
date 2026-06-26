@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YTML | EuroT</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
+  <!-- Splide -->
+  <link rel="stylesheet" href="splide-4.1.3/dist/css/splide.min.css">
+  <script src="splide-4.1.3/dist/js/splide.min.js"></script>
+</head>
+	
+<body>
+<div class="page-wrapper">
+<!-- LOGO -->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!-- NAVIGATION -->
+<nav class="site-nav">
+  <ul class="nav-list">
+	  	<li><a href="Techno.html" class="Genre" >Techno</a></li>
+		<li><a href="Techno-Detroit.html" class="SubGenre" >Detroit Techno</a></li>
+		<li><a href="H-Techno-Euro.html" class="SubGenre  active" >Euro Techno</a></li>
+		
+	<!-- Playlists por decada --> 
+	<li>
+	<div class="tape-counter-outer">
+	<div class="tape-counter-wrap">
+		<div class="tc-top"><img src="images/counter/borde_superior.webp" alt="" /></div>
+		<div class="tc-left"><img src="images/counter/borde_izquierdo.webp" alt="" /></div>
+		<div class="tc-window">
+			<section id="counter" class="splide" aria-label="Beautiful Images" data-splide='{"pagination":false,"arrows":false,"direction":"ttb","paginationDirection":"ttb"}' >
+			  <div class="splide__track" align="right">	<ul class="splide__list"  >
+				<li class="splide__slide" >
+				<a href="MPlayer.html?list=PLV5aIGkszfb_kmWAuSt4eleyVGmzMoOvY&name=Euro%20Techno%2090%27s&color=%230691FF&labelcolor=%230691FF"><image src="images/counter/90sb2.webp" alt="" class="decada2"></image></a>
+			</li>
+			<li class="splide__slide">
+				<a href="MPlayer.html?list=PLV5aIGkszfb8_Jv_e2q6NNDuJbJ9rdoY_&name=Euro%20Techno%2000%27s&color=%230691FF&labelcolor=%230691FF"><image src="images/counter/00sb2.webp" alt="" class="decada2"></image></a>
+					</li>
+				</ul>
+			  </div>
+			</section>
+		</div>
+		<div class="tc-right"><img src="images/counter/borde_derecho.webp" alt="" /></div>
+		<div class="tc-bottom"><img src="images/counter/borde_inferior.webp" alt="" /></div>
+	</div>
+	</div>
+	</li>
+	<!-- Fin Playlists por decada --> 
+			
+		<li><a href="Techno-Acid.html" class="SubGenre" >Acid Techno</a></li>
+		<li><a href="Techno-MT.html" class="SubGenre" >Minimal Techno</a></li>
+		<li><a href="Techno-AmbientTechno.html" class="SubGenre" >Ambient Techno</a></li>
+		<li><a href="Techno-DT.html" class="SubGenre" >Dub Techno</a></li>
+		<li><a href="Techno-HT.html" class="SubGenre" >Hypnotic Techno</a></li>
+		<li><a href="Techno-Albums.html" class="Playlists" >Albums</a></li>
+		<li><a href="Techno-Art.html" class="Artists" >Artists</a></li>
+		<li><a href="MPlayer.html?list=PLV5aIGkszfb8KFjByqThjh4jO0YhAMBgz&name=Techno%20Live%20Sets&color=%2302FF00&labelcolor=%2302FF00" class="LiveSets" >Live Sets</a></li>
+</ul>
+</nav>
+</div>
+  
+<!-- Script para Playlists por decada --> 
+<script>
+  new Splide( '#counter', { height: '100%', /* .tc-window now has a real pixel height via CSS Grid, so this measures correctly and drag/swipe distances match visual size */ } ).mount();</script>
+
+<!-- Sync tape counter size — safe no-op on this page since there's no #image-carousel here; kept for consistency with other pages in case one is added later -->
+<script>
+  function ytSyncTapeCounterWidth() {
+    var carousel = document.getElementById('image-carousel');
+    var outer = document.querySelector('.tape-counter-outer');
+    var wrap = document.querySelector('.tape-counter-wrap');
+    if (!carousel || !outer || !wrap) return;
+
+    var targetWidth = carousel.getBoundingClientRect().width;
+    if (!targetWidth || targetWidth < 10) return;
+
+    var scale = targetWidth / 686;
+    var height       = Math.round(383 * scale);
+    var leftCol      = Math.round(82  * scale);
+    var rightCol     = Math.round(251 * scale);
+    var topBottomRow = Math.round(66  * scale);
+
+    outer.style.width  = targetWidth + 'px';
+    outer.style.height = height + 'px';
+    wrap.style.width   = targetWidth + 'px';
+    wrap.style.height  = height + 'px';
+    wrap.style.gridTemplateColumns = leftCol + 'px 1fr ' + rightCol + 'px';
+    wrap.style.gridTemplateRows    = topBottomRow + 'px 1fr ' + topBottomRow + 'px';
+  }
+  window.addEventListener('load', function () { setTimeout(ytSyncTapeCounterWidth, 150); });
+  window.addEventListener('resize', function () { setTimeout(ytSyncTapeCounterWidth, 150); });
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncTapeCounterWidth, 200);
+    setTimeout(ytSyncTapeCounterWidth, 500);
+  });
+</script>
+
+<script src="background-manager.js"></script>
+</body>
+</html>

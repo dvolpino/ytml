@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+	  	<li><a href="House.html" class="Genre" >House & Garage</a></li>
+		<li><a href="House_and_Garage.html" class="scene" >House</a></li>
+		<li><a href="House-Lo-Fi House.html" class="SubGenre" >Lo-Fi House</a></li>
+		<li class="aka-item"><a class="aka">  AKA: Outsider House // Mediados 2010´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+	  
+		  The term "Lo-Fi house" was coined in 2015 to describe the wave of young producers who'd had viral success with a type of house music that was heavy on distortion and unashamedly retro. It is essentially a rebranding of the music that some were calling “Outsider House” a few years ago. Musicians like Delroy Edwards, Huerco S. and Anthony Naples stripped back dance music to the gritty necessity of kick drum and moody futuristic atmosphere. Many of these musicians had backgrounds in scenes like noise, ambient or punk, bringing a focus on stripped-back rawness from those genres. Appropriately, their music was rough, distorted, experimental, and about as serious as noise and punk scenes tend to be.</p> <br>
+
+<p>Vaporwave, by contrast, is known for trading in irony and postmodernism. Age-old feelings of disconnection, loneliness and existential nausea are appealed to in a semi-ironic manner. Unlike outsider house, vaporwave is a music that is dense with a symbolism as important as the music itself. Combining these two cultures leaves lo-fi house resembling melancholic 90s Deep House recorded to cassette and packaged with a veneer of internet-age irony. It’s sad, but knowingly so.</p>
+ 	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

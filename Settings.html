@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YTML | Settings</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+	
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
+</head>
+	
+<body>
+<div class="page-wrapper">
+<!-- LOGO -->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+	<!-- Place this menu only on your settings/selector page -->
+<div  class="SubGenre">
+    <p class="SubGenre">Choose Background</p>
+    <select id="bgSelector" onchange="updateBackground()">
+		<option value="none">No Background</option>
+        <option value="images/Backgrounds/background YTML.webp">Panal</option>
+        <option value="images/Backgrounds/background2.webp">Mackie CR4 Monitor</option>
+		<option value="images/Backgrounds/background3.webp">Bronce Dark</option>
+		<option value="images/Backgrounds/background4.webp">Panal Dark</option>
+		<option value="images/Backgrounds/background5.webp">Chapon</option>
+		<option value="images/Backgrounds/background6.webp">Black Paint</option>
+		<option value="images/Backgrounds/background7.webp">Speaker Panal</option>
+        <option value="images/Backgrounds/background8.webp">Bronce</option>
+		<option value="images/Backgrounds/background9.webp">Speaker Panal 2</option>
+		<option value="images/Backgrounds/background10.webp">Golden</option>
+		<option value="images/Backgrounds/background11.webp">Obra Marce</option>
+        
+    </select>
+</div>
+	</div>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+<div class="history">
+<div>
+<p>Android:</p>
+<p>Habilitar notificaciones para las fuentes de YTML (YoutubeMusic y Youtube). Abrir el menú de Notificaciones arrastrando la pantalla hacia abajo desde el tope superior izquierdo, y hacer click en "Ajustes notificaciones". Ir a YoutubeMusic y a Youtube y habilitarlas. Haciendo click sobre el nombre de la App se puede configurar para habilitarlas o no en caso de "Bloqueo", "Alerta de icono de aplicaciones" y "Ventana emergente de aplicaciones". Se puede dejar deshabilitadas las notificaciones en iconos ("Alerta de icono de aplicaciones") para que no aparezcan los números (cantidad de notificaciones) sobre los mismos. Habilitar notificaciones en "Bloqueo" y en "Ventana emergente de aplicaciones".</p><br>
+<p>Uso:</p>
+<p>Luego de abrir el PWA de la YTML, para reproducir en segundo plano luego de hacer click en "Home" o "Recent", hacer click en el minireproductor que aparece en el tope de la pantalla y hacer click en play para que reinicie la reproducción y se mantenga en segundo plano.</p>
+</div>
+</div>
+</main>	
+<script src="background-manager.js"></script>
+</body>
+</html>

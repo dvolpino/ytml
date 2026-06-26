@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="House.html" class="Genre" >House & Garage</a></li>
+     <li><a href="House-AH.html" class="SubGenre" >Acid House</a></li>
+	<li class="aka-item"><a class="aka">AKA: Acid  // Mediados 80´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>El acid house es música house con una línea de sintetizador producida por una pequeña caja plateada llamada Roland TB-303 Bassline. Lanzado en 1981, el propósito original del 303 era servir como secuenciador de líneas de bajo para guitarristas (TB significa &quot;Transistor Bass&quot;). Se fabricaron 10.000 unidades. No se vendió bien y 18 meses después, el 303 fue retirado del mercado.  Cinco años después, los productores de house en el sur de Chicago adquirieron algunos 303 baratos y comenzaron a experimentar con ellos.</p><img src="images/History/House/Acid/tb-303.webp" class=photo3 />
+		  <p>Si bien el uso correcto del 303 consistía en escribir la melodía, ajustar los controles al volumen deseado y luego pulsar el botón de reproducción, nadie en Chicago a mediados de los 80 lo hacía. En cambio, pulsaban el botón de reproducción y giraban los controles mientras funcionaba (algo que los diseñadores originales no pretendían). El sonido resultante fue lo más extraño que le ha pasado a la música desde que Elvis escapó del Área 51.</p><br>
+		  <p>Hay varias historias legendarias sobre cómo este extraño sonido obtuvo su nombre y quién le dio ese nombre (posiblemente <a class="linkshisto"  href="https://www.discogs.com/artist/2686-Ron-Hardy" target="_blank" draggable="false" rel="noopener">Ron Hardy</a> ), pero era una descripción perfecta: Ácido . No había mejor palabra para describirlo. Era Ácido. Podría ser una referencia a las drogas, pero era más acertada para el sonido que producía. </p><br>
+		  <p>Acid no tiene por qué usar un 303. Puedes crear Acid con cualquier dispositivo que tenga los controles de filtro necesarios para lograr el sonido característico, vibrante, rítmico y atemporal de Acid, y existen varios modelos que no son 303 que pueden lograrlo, como el SH-101, el MC-202, el Juno 106, el Jupiter 8, el FR-777, el Korg Prophecy o cualquier otro clon de un 303, como Devilfish, Rebirth y Reason. La música ácida no se define por el dispositivo, sino por el sonido. </p><br>
+		  <p>Para hablar de Acid House, debemos empezar por el principio, y el principio es <a href="https://www.discogs.com/Phuture-Acid-Tracks/master/5108" target="_blank" draggable="false" rel="noopener" class="linkshisto">Phuture - Acid Tracks</a> , un temazo de 12 minutos compuesto solo por un beat y una sola línea 303 en bucle, y alguien que simplemente le da caña a esos controles. Es el giro de los controles lo que hace que el acid sea Acid.</p><br>
+		  <p>El Acid House fue el primer género de música electrónica en tener un tipo de fiesta que lleva su nombre: la fiesta Acid House. Fue un éxito en Chicago y el Medio Oeste, y se volvió aún más popular en el Reino Unido en el verano del 88 (el llamado Segundo Verano del Amor), donde los fiesteros de vacaciones lo escucharon en Ibiza por primera vez mientras consumían éxtasis por primera vez.</p>
+		  <p>Trajeron la experiencia al Reino Unido y un año después nacieron las raves. </p>
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

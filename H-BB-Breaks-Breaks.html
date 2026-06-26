@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="BB.html" class="Genre " >Breakbeat</a></li>
+	 <li><a href="BB-Breaks-Breaks.html" class="scene" >Breaks</a></li>
+     <li><a href="BB-Breaks-Breaks.html" class="SubGenre" >Breaks</a></li>
+	<li class="aka-item"><a class="aka">AKA: Breakbeat, Funky Breaks, Breakbeat House  // Fines 80´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+   
+<p>No toda la música electrónica tiene un ritmo de 4 por 4.
+
+También existe el breakbeat o breaks, la escena (y género principal de esa escena) que especifica en su nombre que no tiene ritmo de 4 por 4.
+La palabra "breaks" proviene literalmente de los antiguos breaks de batería de las canciones de funk, soul, disco y R&B de los años 60 y 70, en los que la música se detenía y el baterista continuaba sin acompañamiento durante uno o dos compases, lo que lo hacía perfecto para el sampleo.
+Los primeros breaks eran precisamente eso: breaks de batería en bucle, que surgieron en una época en la que el sampleo era la norma y los ejecutivos no podían hacer nada al respecto.
+Al igual que el Hip Hop, los primeros discos de Breakbeat sampleaban muchísimos discos de vinilo viejos, en algunos casos exactamente los mismos ritmos y breaks que sampleaba el Hip Hop (y ya los conoces y los has escuchado en miles de temas: <a class="linkshisto" href="https://music.youtube.com/watch?v=PIUIzE0NfVg">Funky Drummer</a>, <a class="linkshisto" href="https://music.youtube.com/watch?v=GxZuq57_bYM">Amen, Brother</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Scorpio+by+Dennis+Coffey+and+The+Detroit+Guitar+Band">Scorpio</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Take+Me+to+the+Mardi+Gras+by+Bob+James">Take Me To The Mardi Gras</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Ashley%27s+Roachclip+by+The+Soul+Searchers">Ashley's Roachclip</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Think+(About+It)+by+Lyn+Collins">Think</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=The+Champ+by+The+Mohawks">The Champ</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Apache+by+Incredible+Bongo+Band">Apache</a>, etc.), haciendo de los Breaks básicamente una forma instrumental acelerada de Hip Hop.</p><br>
+	   
+<p>Pero como la mayoría de los géneros que dependían del sampling (especialmente el new beat y el collage), la expresión musical creativa de canibalizar canciones antiguas como forma de arte popular y comercial fue reprimida por la legislación de los 90. Tras la época de 'samplear un break de batería desnuda de un éxito de R&B de los 70', que prácticamente había terminado a finales de los 90, el break se convirtió en algo fresco, funky e inventivo. Divorciado del ritmo de 4x4, era libre de hacer lo que quisiera, lo que quisiera. Pero, como ocurre con muchos nuevos géneros de música electrónica, tras el período inicial del 'salvaje oeste', donde se prueban diferentes cosas con distintos grados de éxito y fracaso, todo se asienta en uno o dos formatos definidos, generalmente encabezados por una o dos canciones muy populares. Esto es lo que crea géneros y subgéneros."</p><br>
+	   
+<p>Para Breaks, se decidió que James Brown <a class="linkshisto" href="https://www.discogs.com/master/187413-James-Brown-Funky-Drummer">Clyde Stubblefield - Funky Drummer</a> es el mejor break de batería de todos los tiempos. Jungle tiene el Amen, pero Breaks tiene el Funky Drummer.
+	     		     		     
+Varios otros géneros en esta escena usan el break como telón de fondo para algo más: acid para <a class="linkshisto" href="H - Breaks-ChB.html">Chemical Breaks</a>, línea de bajo para Nu Skool Breaks, rock para <a class="linkshisto"  href="H - Breaks-BB.html">Big Beat</a>. Pero el break, en esencia, gira en torno al breakbeat y no debería ser más que eso. </p>
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

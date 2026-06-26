@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="Trance.html" class="Genre" >Trance</a>&nbsp;&nbsp;<a class="SubGenre">/</a><a href="Trance.html" class="scene" >&nbsp;&nbsp;Trance</a></li>
+     <li><a href="Trance-Trance-BT.html" class="SubGenre" >Balearic Trance</a></li>
+	<li class="aka-item"><a class="aka">AKA: Belearic House, Balearic Beat, Ibiza Trance  // Inicios 90´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>Balearic Trance (no es un género) proviene de Balearic Beat (tampoco es un género), ya que era simplemente un término para la música que se tocaba en Ibiza a finales de los 80 y principios de los 90 por DJs como <a href="https://www.discogs.com/artist/470196-Jos%C3%A9-Padilla" target="_blank" draggable="false" rel="noopener" class="linkshisto">José Padilla</a> en <a href="http://cafedelmar.com" target="_blank" draggable="false" rel="noopener" class="linkshisto">Café Del Mar</a> y Alfredo Fiorito en <a href="https://www.amnesia.es/inicio/en" target="_blank" draggable="false" rel="noopener" class="linkshisto">Amnesia</a> .</p><br>
+		  <p>Así que, si bien la música balear no tenía un sonido definido, sí tenía una personalidad definida. Conservaba un ambiente relajado y playero. Los DJ seleccionaban deliberadamente canciones tranquilas y ensoñadoras de una amplia gama de géneros existentes para capturar mejor esa atmósfera esquiva, con algunos guiños a la cultura e historia ibéricas para darle sabor.</p><br>
+		  <p>Un rasgo clave de la música balear es la instrumentación orgánica, como guitarras españolas, mandolinas, congas, flautas de pan, pianos, instrumentos de cuerda orquestales, y también los sonidos naturales de las Islas Baleares, como el romper de las olas, el graznido de las gaviotas y la suave brisa marina. Estos instrumentos se pueden incorporar a cualquier sonido (no necesariamente trance), pero los más comunes son el trance, el house, el downtempo y, más recientemente, el tropical house. Mientras tenga esos toques mediterráneos, todo es balear y todo vale.</p>
+ 	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>
+

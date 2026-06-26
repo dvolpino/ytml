@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="House.html" class="Genre" >House & Garage</a></li>
+	 <li><a href="Progressive.html" class="scene" >Progressive</a></li>
+     <li><a href="Progressive-PH.html" class="SubGenre" >Progressive House</a></li>
+	<li class="aka-item"><a class="aka">AKA: Prog House, Leftfield// Inicios 90´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+	  <p>El House Progresivo surgió cuando el House británico empezó a sonar como algo propio y cohesivo, y no como un intento a medias de productores británicos por crear un House con un sonido propio de Chicago.    Probablemente fue acuñado por Genesis Breyer P-Orridge, de la entonces Psychic TV, para referirse a grupos como Leftfield, que hacían algo con la música House que no encajaba en el molde del House (Leftfield fue uno de los primeros nombres del House Progresivo, nombrado específicamente en honor a la banda. El término sigue vigente, pero ahora prácticamente no tiene sentido). </p><br>
+		  
+		<p>El House Progresivo se ganó su nombre en sus inicios. Era una extensión del house que utilizaba ideas y conceptos muy alejados de sus orígenes gays y negros en Chicago. Breakbeats tribales con bongós y tambores africanos, congas y maracas, punteos de guitarra española, samples de lamentos y vítores étnicos, flautas de pan, panderetas y maracas, arpas y punteos de sintetizador, voces de indie rock y riffs de guitarra eléctrica, y pads exuberantes y atmósferas corales. Casi ningún sonido o instrumento no le parecía una buena idea al House Progresivo. </p><br>
+			<p>Si hubiera una mezcla que definiera el sonido clásico del Progressive House sería <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a>. </p><br>
+		<p>Fiel al estilo Progressive House, <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a> fue una emocionante mezcla de Breaks, Techno, Chill Out, Downtempo, Ambient, Balearic, Trance y muy poco Progressive House propiamente dicho. </p><br>
+		<p>Probablemente lo más importante que introdujo el Progressive House fueron los arpegios (esas líneas de sintetizador en bucle que hacen &quot;doodly doodly doodly&quot;, de arpegio, la técnica musical de tocar las notas de un acorde en rápida sucesión en lugar de todas a la vez). Los arpegios no eran nuevos en la música electrónica (Hi-NRG los introdujo en 1977), pero no se conocían como propios del House.</p>
+		<p>Al principio, no tuvieron mucho impacto, pero sí lo tendrían más adelante, cuando el Trance se impuso y los británicos, con esa típica forma británica suya, decidieron que si dominaban la vertiente progresiva del House, también podrían dominar la vertiente progresiva del Trance. O tal vez simplemente fusionar ambas y llamarlo Prog.</p>
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

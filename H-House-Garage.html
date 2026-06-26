@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="House.html" class="Genre" >House & Garage</a></li>
+     <li><a href="House-G.html" class="SubGenre" >Garage</a></li>
+	<li class="aka-item"><a class="aka">AKA: New York Garage, Garage House, Post Disco  // Fines 70´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>El Garage es el verdadero sucesor del Disco, sin mucha desviación en forma, contenido o estilo.</p>
+		  <p>Disco era el término usado por el público del rock fraternal blanco para referirse a toda música gay y negra los cuales estaban angustiados porque a finales de los 70, la música disco estaba en todas partes, era popular, y no había ni una sola emisora ​​de radio que no lo pusiera.</p><img src="images/History/House/Garage/disco_demolition.webp" class=photo1 />
+		  <p>Toda esta animosidad culminó en la infame Noche de Demolición de Disco en el Comisky Park de Chicago en julio de 1979. Fue más que un grupo de aficionados a la música descontentos que se revelaban contra una moda sobresaturada. Fue una guerra cultural. Esa noche, destruyeron más que solo discos de disco. Muchos discos selectos de soul, gospel, R&amp;B, Quiet Storm, jazz, pop, funk, e incluso de Motown y Beach Boys, encontraron su destino en esa pira. Si el house y el techno hubieran existido, probablemente también los habrían destruido. El disco era todo lo que no fuera rock de mierda y, por lo tanto, merecía morir. La promoción ofrecía entradas a 99 centavos para aquellos que trajeran un disco de vinilo de música disco. El evento se convirtió en un disturbio debido a la gran cantidad de personas que asistieron y a la quema de los discos, lo que provocó una invasión al campo por parte de los espectadores. </p><br>
+		  <p>Este evento es conocido como &quot;La Noche en que Murió la Disco&quot; y se considera un punto crucial en el declive de la popularidad de la música disco.</p>
+		  <p>Así que Disco dejó de ser Disco. Empezó a ser Garage.</p><img src="images/History/House/Garage/LarryLevan.webp" class=photo2 />
+		  <p>La palabra Garage no tiene ningún significado relevante, salvo que su nombre proviene del legendario club nocturno Paradise Garage de Nueva York, donde el DJ <a href="https://www.discogs.com/artist/3483-Larry-Levan" target="_blank" draggable="false" rel="noopener" class="linkshisto">Larry Levan</a> pinchaba lo que le daba la gana. La música Garage simplemente significaba la música que Larry tocaba; la que se escuchaba en su club. Tocaba Disco, por supuesto, pero una versión simplificada, sin las cuerdas sentimentales ni las fanfarrias de viento.</p><br>
+		  <p>Empleando nueva instrumentación electrónica A veces, un teclado y un bajo eran el único acompañamiento, junto con una voz sensual para guiar el ritmo. Garage es Disco con Soul.</p>
+		  <p>El sonido Garage de Nueva York suele contrastarse con el <a href="House-ChH.html" target="_blank" draggable="false" rel="noopener"  class="linkshisto">Chicago House</a> . Es pura coincidencia que ambos lleven el nombre de viviendas residenciales.</p><br>
+		  <p>El garage no adquirió oficialmente su estereotipo de sonido &quot;garage&quot; hasta los 90. Hasta entonces, técnicamente, seguía siendo un sonido derivado de la música disco. A principios de los 90, adoptó un shuffle distintivo que desde entonces se ha convertido en el patrón rítmico habitual de casi toda la música garage. Así que, si alguna vez intentas distinguir entre garage y house, simplemente escucha ese shuffle.</p>
+		  <p>A diferencia del Chicago House, el New York Garage casi nunca es instrumental. Le encantan las divas, los ligeros toques de teclado y, por supuesto, el shuffle. Es el jazz suave de la música dance, inofensivo y familiar.</p><br>
+		  <p>Existe una escena llamada UK Garage que, a pesar de su nombre, tiene muy poco que ver con el Garage propiamente dicho. Se puede oír el shuffle en Speed ​​Garage y 2-Step, pero los demás derivados son tan ajenos que resulta casi ofensivo llamarlos Garage. Hoy en día, lo que la mayoría de la gente cree que es música house es, en realidad, garage. Y lo que la mayoría de la gente cree que es garage es UK Garage.</p>
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="Industrial.html" class="Genre" >Industrial / Goth&nbsp;</a></li>
+     <li><a href="Industrial_NB.html" class="SubGenre" >EBM</a></li>
+	<li class="aka-item"><a class="aka">AKA: Techno-Industrial //&nbsp; Inicios 80´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>EBM stands for Electronic Body Music. It has no relation to that other acroynm that poseurs have been chewing like used bubblegum for the past decade. The name is allegedly attributed to <a  class="linkshisto" href="https://www.discogs.com/artist/4654-Kraftwerk" >Kraftwerk</a> for reasons unknown as Kraftwerk did not make any.</p><br>
+		  <p>EBM (sometimes just called Body music) is named for the electric body buzz sensation of the genre's high energy percolating machine percussions and arpeggiating bassline rhythms. While Industrial was about finding interesting sounds and making them musical, EBM was about finding interesting sounds and making them danceable.</p><br>
+		  <p>While EBM did not invent arps, it gave them a gravelly dark grain, like the menacing buzz of an electrical transformer or low frequency feedback hum. More electric than electronic, EBM uses synthesizers to create harsh, muscular basslines and rhythms.</p><br>
+		  <p>And then there are the vocals, full of politically charged lyrics about totalitarian systems, oppressive social conformity, the execution of five year plans, or the decrepid machinery of post-industrial living, not sung but bellowed out like a drill sergent barking orders at fresh recruits on the first day of bootcamp.</p><br>
+		  <p>EBM is obsessed with the masculine projection of power, strength, force, brutality, aggression, and military-grade efficiency and productivity. It also has an obsession with wartime propaganda art and iconography.</p>
+		  <p>While EBM got its start in the early 80s in (where else) Germany, healthy scenes also sprung up in the UK, Sweden, Belgium, and Vancouver British Columbia of all places (dreary pacific northwest weather makes a good backdrop for a bleak music scene).</p><br>
+		  <p>This is where Belgium really comes into its own as the #1 European powerhouse of electronic music. Because Belgian EBM is best EBM. They would later parlay their EBM infamy into New Beat and Rave.</p>
+		  <p>Later in the decade EBM split into several sub-genres. like Electro-Industrial or Dark Electro. But of all the EBM subgenres that emerged in the late 80s, none were as massive as.... Trance.</p>
+		  <p>Originally a stripped down form of EBM with no vocals, chord progressions or breaks, and just simple looping synth lines over and over with the odd movie sample or two, Trance came.</p>
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

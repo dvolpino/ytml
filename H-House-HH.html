@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="House.html" class="Genre" >House & Garage</a></li>
+     <li><a href="House-HH.html" class="SubGenre" >Hip House</a></li>
+	<li class="aka-item"><a class="aka">AKA: Techno Dance  // Fines 80´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>El Hip House es música house con rap. Surgió bastante rápido después de que el house se expandiera por todo el mundo a finales de los ochenta.</p>
+		  <p>El hip house fue el primer género house enormemente popular.</p>
+		  <p>En la música electrónica es habitual que los productores y DJs nunca tengan éxito en sus ciudades natales o que los géneros que crean nunca se popularicen más allá de sus ciudades natales.</p>
+		  <p>El Hip House es uno de esos géneros que, a pesar de haber sido creado, controlado, producido, distribuido y difundido por los mismos expertos del House de Chicago que inventaron toda la escena... nunca recibió el reconocimiento que se merecía.</p><br>
+		  <p>En cambio, como todo lo que surgió en Detroit y Chicago a finales de los 80, el Hip House encontró un público cautivo en el extranjero (específicamente en Bélgica) que decidió crear su propia marca casera de Hip House, y cuando eso sucedió, todo se acabó. Chicago quedó completamente aislada de toda regalías y reconocimiento.</p>
+		  <p>Para agravar aún más la injusticia, muchos artistas europeos de música electrónica eran &quot;falsos&quot;, ya que los artistas y los intérpretes eran personas distintas. Por ejemplo, Technotronic utilizó originalmente a la modelo Felly Kalingi como líder en videos musicales y material promocional, a pesar de que no tenía nada que ver con la música. Tras el incidente <a href="https://www.discogs.com/artist/22193-Milli-Vanilli" target="_blank" draggable="false" rel="noopener" class="minilink">de Milli Vanilli</a> , la descartaron y utilizaron al artista original de la grabación, <a href="https://www.discogs.com/artist/14473-Ya-Kid-K" target="_blank" draggable="false" rel="noopener" class="minilink">Ya Kid K,</a> quien era igual de atractivo, lo que convirtió la decisión de marketing de usar una modelo en una decisión de alto riesgo y cero beneficio.</p><br>
+		  <p>Es por eso que hoy en día todo el mundo todavía recuerda a<a href="https://www.discogs.com/Snap-The-Power/master/70506" target="_blank" draggable="false" rel="noopener" class="minilink"> Snap!,</a><a href="https://www.discogs.com/Technotronic-Featuring-Felly-Pump-Up-The-Jam/master/64933" target="_blank" draggable="false" rel="noopener" class="minilink">Technotronic</a> y <a href="https://www.discogs.com/C-C-Music-Factory-Gonna-Make-You-Sweat/master/78062" target="_blank" draggable="false" rel="noopener" class="minilink">C &amp; C Music Factory</a> (y no sólo porque todavía suenan regularmente en los partidos de baloncesto de la NBA) y nadie recuerda a <a href="https://www.discogs.com/artist/2967-Tyree-Cooper" target="_blank" draggable="false" rel="noopener" class="minilink">Tyree</a> o <a href="https://www.discogs.com/artist/7028-Doug-Lazy" target="_blank" draggable="false" rel="noopener" class="minilink">Doug Lazy</a> (a menos que en aquella época fueras fan del underground de Chicago).</p><br>
+		  <p>El hip house no duró mucho, principalmente porque para 1992 la fórmula se volvió un poco obsoleta y los interminables videos musicales y montajes deportivos contribuyeron a la sobresaturación. Para entonces, el género apenas se parecía al sonido original de Chicago, y era producido casi exclusivamente por europeos. Armados con himnos rave y nuevos y vibrantes bombos, evolucionaron el sonido hacia algo aún más cursi: el eurodance.</p>
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

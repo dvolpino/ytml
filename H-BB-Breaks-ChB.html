@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="BB.html" class="Genre " >Breakbeat</a></li>
+     <li><a href="BB-Breaks.html" class="scene" >Breaks</a></li>
+	  <li><a href="BB-Breaks-ChB.html" class="SubGenre" >Chemical Breaks</a></li>
+	<li class="aka-item"><a class="aka">AKA: Acid Breaks  // Inicios 90´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+	  	  	
+	 <p>Los Chemical Breaks surgieron antes de que los Breaks se convirtieran en Breaks. Simplemente no los llamaban Chemical Breaks. Los primeros Breaks provenían del <a class="linkshisto" href="H-House-AH.html">Acid House</a>, generalmente como simples líneas de acid con viejos samples de batería en lugar de un bombo de 808 en bucle, o como remezclas de Acid House (o mezclas de Chill Out o Industrial; eso ocurría a veces, por ejemplo, en <a class="linkshisto" href="https://www.discogs.com/artist/659-Meat-Beat-Manifesto">Meat Beat Manifesto</a>. La introducción de breakbeats en el Acid le dio cierta variedad, pero aún se llamaba Acid House en aquella época. </p><br>
+     <p>Las nuevas escenas y géneros no suelen surgir de las existentes de inmediato. Existe un período de solapamiento, una era de diagramas de Venn donde un nuevo sonido puede considerarse parte de uno antiguo hasta que lo adopta una segunda generación de observadores imparciales, con la ayuda de un marketing atractivo. Esto puede tardar entre uno y tres años, dependiendo de la popularidad del sonido (los géneros más populares se fragmentan más rápidamente, debido al volumen).
+		    
+		    Así que decidir cuándo el Acid House se convirtió en Breaks con Acid, que finalmente se convirtió en Acid Breaks, es un argumento académico que a nadie le importó en aquel momento y nadie tiene una respuesta definitiva. 
+		    
+		    Cuando Acid Breaks surgió como algo propio, ya no se usaba solo acid, sino cualquier sintetizador que pudiera ofrecer el sonido líquido y gomoso del Roland TB-303, y cuando no podían encontrar uno, usaban arpegiación o puertas para aproximarse a los efectos psicodélicos, funky, skippety, skip-hop y zumbantes del Acid sin mucha desviación.
+		    
+  &nbsp;</p><br>
+	    <p>Esta fue una característica tan distintiva que llegó a conocerse como Chemical Breaks (porque no era estrictamente ácido sino sintético), y debe mencionarse que el nombre no proviene de los <a class="linkshisto" href="https://www.discogs.com/artist/2290-The-Chemical-Brothers">Chemical Brothers</a> porque en ese momento se llamaban <a class="linkshisto" href="https://www.discogs.com/artist/36647-The-Dust-Brothers">Dust Brothers</a> (tuvieron que cambiar su nombre cuando los verdaderos Dust Brothers, de Beastie Boys y Fight Club, se opusieron) y fue una invención decididamente estadounidense, específicamente el colectivo <a class="linkshisto" href="https://www.moontribe.org/">Moontribe</a> de las legendarias raves funky del desierto de California que coincidieron con el auge de los neohippies, el contraculturalismo, las declaraciones radicales de acrobacias artísticas y el primer Burning Man.
+	</p><br>
+	    <p>El Chemical Breaks explotó con todo el rave a finales de los 90, y grupos como <a class="linkshisto" href="https://www.discogs.com/artist/3141-The-Crystal-Method">The Crystal Method</a>, <a class="linkshisto" href="https://www.discogs.com/artist/1598-Propellerheads">Propellerheads</a>, <a class="linkshisto" href="https://www.discogs.com/artist/2290-The-Chemical-Brothers">Chemical Brothers</a> y <a class="linkshisto" href="https://www.discogs.com/artist/7716-%C3%9Cberzone">Uberzone</a> se convirtieron en nombres conocidos, ya sea a través de recopilaciones de Mortal Kombat o de bandas sonoras de películas de acción. Esto convierte a Chemical Breaks en uno de los géneros que acompañan a la "electrónica". Pero no fue el breakbeat el género con mayor éxito comercial; ese éxito se lo llevaría su sucesor, el Big Beat.
+        </p>	  
+    </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>

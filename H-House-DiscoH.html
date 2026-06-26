@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="House.html" class="Genre" >House & Garage</a></li>
+     <li><a href="House-DiscoH.html" class="SubGenre" >Disco House</a></li>
+	<li class="aka-item"><a class="aka">AKA: Funky House  // Inicios 90´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>Disco House es música House con Disco. No hay mucha música disco, normalmente solo un sample o frase corta, suficiente para caber en un compás y luego repetirse sin parar. De todas formas, la música house ya era post-disco, así que el Disco House simplemente consiste en recuperar las trompetas, las cuerdas y los bajos móviles (a menudo, los trompetas, las cuerdas y los bajos móviles originales de las canciones disco originales).</p>
+		  <p>El Disco House marcó el inicio de una nueva era en la música house tras la gran ofensiva contra los derechos de autor sobre la música sampleada. El house siempre había tomado prestados samples de todas partes, hasta tal punto que parecía competir con el hip hop en cuanto a la cantidad de artistas de los 70 que podía incluir en una canción (en algunos casos incluso creando un tema enteramente a partir de samples como es el caso de<a href="https://www.discogs.com/MARRS-Pump-Up-The-Volume/release/1720826" target="_blank" draggable="false" rel="noopener" class="linkshisto"> M.A.R.R.S.* – Pump Up The Volume</a> ).</p>
+		  <p>El Chicago House , Italo House , New Beat , Hip House y Disco House saquearon el pasado en busca de todo lo que querían, desde ritmos en bucle hasta gruñidos de James Brown (o gruñidos de James Brown como ritmos en bucle).</p><br>
+		  <p>Todo esto se detuvo cuando la industria musical empezó a preocuparse y las demandas por violación de derechos de autor se acumularon. </p>
+		  <p>La nueva estrategia consistía en liberar las muestras de los artistas originales: pedirles permiso, pagarles por usarlas (lo que suele ocurrir) o dejarles compartir las regalías. Para muchas bandas de los 70 que no habían tenido un éxito en décadas, esta era una nueva fuente de ingresos, así que casi nunca se negaban y el precio era modesto.</p><br>
+		  <p>Pero esto puso un freno a los productores de House conscientes del presupuesto que no podían darse el lujo de limpiar docenas de muestras en cada pista que hacían, por lo que con el tiempo la producción de House se simplificó a solo una o dos muestras por pista (lo mismo sucedió en el Rap).</p>
+		  <p>Como la ley de derechos de autor no distingue entre duración o propósito (una muestra microcortada de un golpe de batería es tan infractora como un coro entero), a mediados de los 90 la música House se había recortado, deshaciéndose de los gritos vocales únicos y los rellenos de cuarto compás y los efectos de sonido aleatorios y el desorden de fondo colorido que permearon los discos de House de segunda generación (léase: no de Chicago).</p><br>
+		  <p>Todo se suavizó en esto: un solo gancho sampleado de un éxito disco (o R&amp; B , o soul, o funk , o Quiet Storm/Northern Soul, o una canción pop de los 80), que se repite y destaca como la pieza central de la canción. Nada más importa. El sample disco es lo que estás escuchando. Una y otra vez.</p>
+		  <p>Eso no significa que el género sea malo ni desagradable en absoluto. Al contrario, el Disco House es lo más divertido que jamás hayas escuchado al escuchar música House.</p>
+	
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>
