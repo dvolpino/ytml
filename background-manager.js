@@ -1,6 +1,6 @@
 // JavaScript Document
 
-const BASE_URL = 'https://dvolpino.github.io/';
+const BASE_URL = location.origin + location.pathname.substring(0, location.pathname.lastIndexOf('/') + 1); // computed dynamically from wherever this page actually lives, instead of a hardcoded domain — this broke when the site moved from the repo root to /ytml/, since the old hardcoded value pointed at the wrong folder. Uses location.pathname (not location.href) so it stays correct even on pages whose query string itself contains slashes (e.g. MPlayer.html's NAS playlist URLs)
 const NONE_VALUE = 'none'; // sentinel stored in localStorage + used as the <option value="none"> in the dropdown
 
 // 0. RUN THIS IMMEDIATELY: measure the REAL visible viewport height via JS and
@@ -29,9 +29,26 @@ function toAbsolute(path) {
     return BASE_URL + path;
 }
 
+/* If a background was saved as an absolute URL before the site moved to a
+   new location (e.g. from the repo root to /ytml/), that old URL no longer
+   matches BASE_URL and would otherwise stay broken forever — toAbsolute()
+   treats anything starting with 'http' as already-correct and never
+   recomputes it. Recover the relative portion (everything from "images/"
+   onward, which is how every background path is structured) and rebuild it
+   against the current, correct BASE_URL. */
+function migrateStaleAbsoluteUrl(saved) {
+    if (!saved || saved === NONE_VALUE || !saved.startsWith('http')) return saved;
+    if (saved.startsWith(BASE_URL)) return saved; // already matches the current location, fine as-is
+    const marker = 'images/';
+    const idx = saved.indexOf(marker);
+    if (idx === -1) return saved; // unexpected format, leave it alone rather than guess wrong
+    return BASE_URL + saved.substring(idx);
+}
+
 // 1. RUN THIS IMMEDIATELY: Apply background before the page even finishes drawing
 (function applySavedBackground() {
-    const savedBg = localStorage.getItem('userBackground');
+    let savedBg = localStorage.getItem('userBackground');
+    savedBg = migrateStaleAbsoluteUrl(savedBg);
 
     if (savedBg === NONE_VALUE) {
         document.body.style.backgroundImage = 'none';
@@ -40,8 +57,8 @@ function toAbsolute(path) {
 
     if (savedBg) {
         const absolute = toAbsolute(savedBg);
-        // Fix and re-save if it was stored as a relative path
-        if (!savedBg.startsWith('http')) {
+        // Fix and re-save if it was stored as a relative path, OR if it just got migrated above
+        if (absolute !== localStorage.getItem('userBackground')) {
             localStorage.setItem('userBackground', absolute);
         }
         document.body.style.backgroundImage = "url('" + absolute + "')";
@@ -69,7 +86,7 @@ function updateBackground() {
 
 // 3. Sync the dropdown UI menu state once the HTML is ready
 window.addEventListener('DOMContentLoaded', () => {
-    const savedBg = localStorage.getItem('userBackground');
+    const savedBg = migrateStaleAbsoluteUrl(localStorage.getItem('userBackground'));
     const selector = document.getElementById('bgSelector');
 
     if (savedBg && selector) {
