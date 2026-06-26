@@ -61,7 +61,7 @@ body { background-image: url(background%20YTML.jpg); background-size: cover; bac
    class below, so they're declared once instead of repeated 8+ times.
    Each individual class then only needs its unique color (and any other
    property that differs from this shared baseline). */
-.scene, .Genre, .SubGenre, .SubGenre2, .Artists, .Playlists, .Playlists2, .Resto, .LiveSets, .LiveSetsM, .PlaylistsM, .scene2, .SubGenre3, .SubGenre4, .Artists2 {
+.scene, .Genre, .SubGenre, .SubGenre2, .Artists, .Playlists, .Playlists2, .Resto, .LiveSets, .LiveSetsM, .PlaylistsM, .scene2, .SubGenre3, .SubGenre4, .Artists2, .Artists3 {
   font-family: Inter;
   text-decoration: none;
   letter-spacing: 0.03em;
@@ -106,6 +106,10 @@ body { background-image: url(background%20YTML.jpg); background-size: cover; bac
 .Artists2 { color: #FF0000; } /* "Siouxsie & The Banshees" / "The Psychedelic Furs" / "Echo & The Bunnymen" — texto largo, igual patron que SubGenre2/3/4 */
 .Artists2:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
 .Artists2.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
+
+.Artists3 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FF0000; } /* "The Housemartins" — mas corto que Artists2; en landscape/tablet/desktop el techo real de wrap (33.7-40px) ya supera el tamaño normal de .Artists, asi que no necesita override ahi, solo en ≤360px y portrait */
+.Artists3:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
+.Artists3.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
 
 .Playlists { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #0691FF; } /* Tamaño general menor — ver nota en .Genre */
 .Playlists:hover {  color: #0691FF; border-left-color: #0691FF; background-color: rgba(168, 216, 255, 0.07); }
@@ -408,6 +412,7 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .Playlists { font-size: clamp(1.5rem, 6.5vw, 2.8rem); } /* "Playlists & Albums" necesita un coeficiente vw propio (no solo un maximo) porque este breakpoint va de 361 a 600px de ancho y a 361px ni 2.4rem entra, mientras que a 480px+ entra hasta 2.8rem. Techo REAL medido con Inter: 6.6vw hace wrap a 361px, 6.5vw es el maximo seguro (nota: la version anterior de este comentario decia erroneamente que 6.5vw rompia — era 6.6vw) */
   .SubGenre4 { font-size: clamp(1.3rem, 4.6vw, 2.029rem); } /* "Psychedelic & Progressive" — CORREGIDO: la medicion anterior (5.5vw, max 2.4rem) se hizo antes de agregar .SubGenre4 a la lista de selectores compartida (linea 64), sin el padding real aplicado. Techo REAL con el archivo completo: 16.72px(361px) hasta 20.29px(430px+, plano). No supera .Genre (2.8rem en este breakpoint) */
   .Artists2 { font-size: clamp(1.3rem, 4.7vw, 2.08rem); } /* "Siouxsie & The Banshees" — techo REAL con Inter: 17.15px(361px) hasta 20.85px(430px+, plano), redondeado hacia abajo a 2.08rem en el maximo. Confirmado sin wrap en grilla fina 361-600px. No supera .Artists (2.8rem en este breakpoint) */
+  .Artists3 { font-size: clamp(1.3rem, 6.4vw, 2.8rem); } /* "The Housemartins" — techo REAL con Inter: 23.43px(361px) hasta 28.45px(430px+, plano, ya supera a .Artists) — clampeado a 2.8rem como maximo para no superar a .Artists. Confirmado sin wrap en grilla fina 361-600px */
   .SubGenre2 { font-size: clamp(1.5rem, 5.95vw, 2.608rem); } /* "Atmospheric Jungle" — sin margen de prudencia, ajustado contra una grilla fina de anchos (361 a 600px) con la fuente Inter real. El techo sube de 21.5px a 26.08px en este rango (.nav-list crece de 252 a 300px hasta los ~428px, despues queda plano), por eso necesita vw real y no solo un maximo fijo. No supera a .Genre (2.8rem) en ningun punto */
 }
 
@@ -422,4 +427,5 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
  .SubGenre2 { font-size: 2.03rem; } /* "Atmospheric Jungle" — sin margen de prudencia (techo exacto medido con Inter a 344px: 20.35px = 2.03rem en html=10px). No supera a .Genre (2.8rem) en este breakpoint */
  .SubGenre4 { font-size: 1.58rem; } /* "Psychedelic & Progressive" — CORREGIDO: la medicion anterior (1.9rem) se hizo antes de agregar .SubGenre4 a la lista de selectores compartida (linea 64), sin el padding real aplicado. Techo REAL con el archivo completo a 344px: 15.82px = 1.582rem en html=10px. No supera a .Genre (2.8rem) */
  .Artists2 { font-size: 1.62rem; } /* "Siouxsie & The Banshees" — techo REAL con Inter a 344px: 16.25px = 1.625rem en html=10px, redondeado hacia abajo a 1.62rem. No supera a .Artists (2.8rem) */
+ .Artists3 { font-size: 2.21rem; } /* "The Housemartins" — techo REAL con Inter a 344px: 22.18px = 2.218rem en html=10px, redondeado hacia abajo a 2.21rem. No supera a .Artists (2.8rem) */
 } 
