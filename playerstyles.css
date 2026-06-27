@@ -245,7 +245,7 @@
   .yt-track-num { writing-mode: vertical-lr; } /* vertical-lr / horizontal-tb */
   .yt-track-thumb { width: 57px; height: 57px; }
   .yt-track-name { font-size: 1.5rem; }    /* tamaño del nombre de la canción en el PLAYLIST */
-  .yt-track-ch { font-size: 1rem; } /* ontrols the artist/channel name text — the smaller line shown below each song title in the playlist */
+  .yt-track-ch { font-size: 1rem; } /* Controls the artist/channel name text — the smaller line shown below each song title in the playlist */
   .yt-track-duration { font-size: 1.5rem; }
 	
 }
