@@ -232,7 +232,7 @@
     max-height: 40vh;
   }
 	
-	 /* Playlist settings */
+	 /* Playlist settings */ /* ELLARGO DEL PLAYLIST PARA TELEFONO PORTRAIT SE AJUSTA CON EL VALOR var PORTRAIT_PLAYLIST_EXTRA_PX = 20; QUE SE ENCUENTRA EN Source Code */
   .yt-playlist-header { padding: 0.4rem 0.8rem; }
   #yt-playlist-name { font-size: 1.7rem; }    /* tamaño del nombre del PLAYLIST */
   #yt-playlist-count { font-size: 1.15rem; }  /* tamaño de "XX tracks · X hrs, 29 min" */
