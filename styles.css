@@ -241,7 +241,7 @@ body {
 /* =============================================
    MAIN CONTENT AREA GENERAL SETTINGS
    ============================================= */
-.site-main {  width: 100%;  max-width: 700px;  text-align:justify; }
+.site-main {  width: 100%;    text-align:justify; }
 .history { font-size: clamp(0.9rem, 2vw, 1.1rem);  margin-top: 12px; overflow-y: auto; box-sizing: border-box; padding: 16px 24px 16px 16px; /* CSS fallback height in case JS hasn't run yet (e.g. JS disabled) — JS below overrides this with a precise live-measured value */ height: 60vh;
   /* Semi-transparent background matching the player's .yt-playlist panel,
      so the scrolling text area reads clearly against the page's background image */
