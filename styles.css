@@ -150,8 +150,8 @@ body {
 /* No longer needs align-self:stretch now that .nav-list has a fixed width —
    the <li> sits at the container's left edge like its siblings by default,
    and .aka's width:100% lets it fill that same fixed width for wrapping. */
-.photo1 {width: 500px; float:left; margin-right: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
-.photo2 {width: 500px; float:right; margin-left: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
+.photo1 {width: 50%; float:left; margin-right: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
+.photo2 {width: 50%; float:right; margin-left: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
 .photo3 {width: 100%; float:left; margin-right: 1rem; } /* Fotos que quiero ocupen el 100% del ancho del celular */
 
 .minidiv { height: 110px; display: flex; } 
