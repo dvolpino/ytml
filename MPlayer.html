@@ -308,7 +308,7 @@
           nasLoadTrack(0, false);
         })
         .catch(function(err) {
-          document.getElementById('yt-playlist-loading').textContent = 'Error loading playlist.';
+          document.getElementById('yt-playlist-loading').textContent = 'No se pudo cargar la playlist del NAS. ¿Tenés Tailscale conectado en este dispositivo?';
           console.error('NAS playlist load error:', err);
         });
     } else {
