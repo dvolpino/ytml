@@ -3,23 +3,38 @@
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 14px; scrollbar-gutter: stable; /* Always reserve space for the vertical scrollbar, even on pages short enough not to need one. Without this, pages with more content (and therefore a real scrollbar) had a slightly narrower viewport than shorter pages, shifting centered content (logo, nav-list) by the scrollbar's width between pages. */  }
-body { background-image: url(background%20YTML.jpg); background-size: cover; background-attachment: fixed; background-position: top;
+body {
   min-height: 100vh; /* fallback for very old browsers */
   min-height: 100svh; /* fallback for browsers with JS disabled, or before background-manager.js's measurement runs */
   min-height: var(--real-vh, 100svh); /* set by background-manager.js via window.innerHeight — the only source that's proven reliable across regular browser tabs AND the installed PWA (standalone mode), where pure CSS vh/dvh/svh all measured incorrectly */
   background-color: #1a1a2e; color: #e8e8e8; font-family: "Inter", "Inter VariableFont opsz", 'Segoe UI', Arial, sans-serif;
   display: flex; justify-content: center; }
 
-/* background-attachment:fixed has long-standing, well-documented bugs on
-   mobile browsers (mainly iOS Safari, but also some Android Chrome cases) —
-   it can cause exactly this kind of phantom extra-scroll/overscroll behavior,
-   independent of the dvh fix above (which only addresses the address-bar-
-   height gap, not this). pointer:coarse targets touch-primary devices
-   (phones, tablets) specifically, regardless of their pixel width, so this
-   doesn't accidentally affect desktop monitors that happen to share a width
-   with a tablet. */
-@media (pointer: coarse) {
-  body { background-attachment: scroll; }
+/* The actual background image lives on a separate element instead of on
+   body directly — injected by background-manager.js on every page. This
+   avoids two separate bugs we hit with background-image directly on body:
+   1) background-attachment:fixed has long-standing bugs on mobile browsers
+      (mainly iOS Safari, some Android Chrome) causing scroll/overscroll
+      glitches.
+   2) Switching to background-attachment:scroll to dodge that bug introduced
+      a NEW one: background-size:cover then sizes against the full
+      DOCUMENT height (including content below the fold), not just the
+      viewport — so on pages where the menu is taller than the screen, the
+      image visibly grows/zooms to "cover" that extra height.
+   A position:fixed div sidesteps both: percentage width/height on a
+   position:fixed element always resolves against the viewport itself,
+   never the document's actual content height, regardless of how tall the
+   page's content is — and position:fixed doesn't carry any of
+   background-attachment:fixed's mobile-browser baggage. */
+.bg-fixed {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url(background%20YTML.jpg); /* default, shown for first-time visitors before background-manager.js applies any saved preference (or if JS fails to run at all) */
+  background-size: cover;
+  background-position: top;
+  z-index: -1;
+  pointer-events: none; /* never intercepts clicks/taps meant for real content */
 }
 
 /* =============================================

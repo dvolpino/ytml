@@ -23,6 +23,21 @@ const NONE_VALUE = 'none'; // sentinel stored in localStorage + used as the <opt
     });
 })();
 
+/* The background image lives on a separate, JS-injected element instead of
+   on body directly (see .bg-fixed in styles.css for why) — this finds it,
+   creating it on first use so no HTML file needs to be edited by hand to
+   add it. Runs on every page automatically since this script already loads
+   everywhere. */
+function getOrCreateBgDiv() {
+    var div = document.querySelector('.bg-fixed');
+    if (!div) {
+        div = document.createElement('div');
+        div.className = 'bg-fixed';
+        document.body.insertBefore(div, document.body.firstChild);
+    }
+    return div;
+}
+
 function toAbsolute(path) {
     if (!path || path === NONE_VALUE) return '';
     if (path.startsWith('http')) return path;
@@ -47,11 +62,13 @@ function migrateStaleAbsoluteUrl(saved) {
 
 // 1. RUN THIS IMMEDIATELY: Apply background before the page even finishes drawing
 (function applySavedBackground() {
+    getOrCreateBgDiv(); /* always create it — even with no saved preference, the div must exist for styles.css's default background-image to show at all */
+
     let savedBg = localStorage.getItem('userBackground');
     savedBg = migrateStaleAbsoluteUrl(savedBg);
 
     if (savedBg === NONE_VALUE) {
-        document.body.style.backgroundImage = 'none';
+        getOrCreateBgDiv().style.backgroundImage = 'none';
         return;
     }
 
@@ -61,7 +78,7 @@ function migrateStaleAbsoluteUrl(saved) {
         if (absolute !== localStorage.getItem('userBackground')) {
             localStorage.setItem('userBackground', absolute);
         }
-        document.body.style.backgroundImage = "url('" + absolute + "')";
+        getOrCreateBgDiv().style.backgroundImage = "url('" + absolute + "')";
     }
 })();
 
@@ -73,13 +90,13 @@ function updateBackground() {
 
         // "No background" option selected
         if (selectedValue === NONE_VALUE || selectedValue === '') {
-            document.body.style.backgroundImage = 'none';
+            getOrCreateBgDiv().style.backgroundImage = 'none';
             localStorage.setItem('userBackground', NONE_VALUE);
             return;
         }
 
         const selectedImage = toAbsolute(selectedValue);
-        document.body.style.backgroundImage = "url('" + selectedImage + "')";
+        getOrCreateBgDiv().style.backgroundImage = "url('" + selectedImage + "')";
         localStorage.setItem('userBackground', selectedImage);
     }
 }
