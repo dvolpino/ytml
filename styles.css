@@ -76,7 +76,7 @@ body {
    class below, so they're declared once instead of repeated 8+ times.
    Each individual class then only needs its unique color (and any other
    property that differs from this shared baseline). */
-.scene, .Genre, .SubGenre, .SubGenre2, .Artists, .Playlists, .Playlists2, .Resto, .LiveSets, .LiveSetsM, .PlaylistsM, .scene2, .SubGenre3, .SubGenre4, .Artists2, .Artists3 {
+.scene, .Genre, .SubGenre, .SubGenre2, .Artists, .Playlists, .Playlists2, .Resto, .LiveSets, .LiveSetsM, .PlaylistsM, .scene2, .SubGenre3, .SubGenre4, .Artists2, .Artists3, .linkshisto {
   font-family: Inter;
   text-decoration: none;
   letter-spacing: 0.03em;
@@ -144,6 +144,7 @@ body {
 .LiveSets:hover {  color: #02FF00; border-left-color: #02FF00; background-color: rgba(168, 216, 255, 0.07); }
 
 .history{ font-family: Inter; color: #FFFCFC; font-size: 14px; /* margin-left: auto; margin-right: auto; position: relative;*/	} 
+.linkshisto { font-family: Inter; color: #0691FF; font-size: 14px; }
 .aka{ display: block; text-align: left; width: 100%; padding: 0 14px; font-family: Inter; color: #FFFCFC; font: bold; font-size: 20px;		} /* padding matches .Genre/.SubGenre's 14px left padding as a base fallback; overridden to 18px in each breakpoint below since AKA's font is smaller and needs slightly more padding to look visually balanced */
 
 /* No longer needs align-self:stretch now that .nav-list has a fixed width —
