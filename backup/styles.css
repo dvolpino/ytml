@@ -40,7 +40,7 @@ body {
 /* =============================================
    PAGE WRAPPER  – centers all content
    ============================================= */
-.page-wrapper { width: 100%; max-width: 960px; padding: 1% 24px 4px; /* top, left/right, bottom — bottom reducido de 60px por el mismo motivo que el margin-bottom de .site-nav */ display: flex; flex-direction: column; align-items: center; }
+.page-wrapper { width: 100%; max-width: 960px; padding: 1% 24px 60px; /* top, left/right, bottom */ display: flex; flex-direction: column; align-items: center; }
 
 /* =============================================
    HEADER / LOGO
@@ -62,7 +62,7 @@ body {
 /* =============================================
    NAVIGATION
    ============================================= */
-.site-nav { display: flex; justify-content: center; font-size: clamp(2.8rem, 20vw, 2.8rem); margin-bottom: 4px; /* reducido de 48px: ese espacio vacio despues del ultimo link causaba scroll vertical innecesario en pantallas de ~870-900px de alto disponible (ej. monitores ultrawide con la barra de marcadores activa) */ }
+.site-nav { display: flex; justify-content: center; font-size: clamp(2.8rem, 20vw, 2.8rem); margin-bottom: 48px;  }
 .nav-list { list-style: none; display: flex; flex-direction: column; align-items: flex-start; /* left-aligned text within the column */ gap: 10px; width: 420px; /* Fixed width so logo+links never shift position between pages with different link lengths */ }
 /* NAV LINK ES EL GENERICO YA NO SE USA
 .nav-link { text-decoration: none; color: #ffffff; font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 500; letter-spacing: 0.03em; padding: 6px 14px; border-left: 3px solid transparent; border-radius: 2px; transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;  }
