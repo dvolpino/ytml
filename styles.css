@@ -29,7 +29,7 @@ body {
 .bg-fixed {
   position: fixed;
   top: 0; left: 0;
-  width: 100%; height: 100%;
+  width: 100vw; height: 100%; /* 100vw en vez de 100%: para un elemento position:fixed, "100%" se calcula contra el viewport YA REDUCIDO por scrollbar-gutter:stable (en html), dejando sin cubrir una franja del ancho exacto de ese gutter (tipicamente ~15px) en el borde derecho. "vw" siempre mide el viewport completo, sin esa reduccion, así que cierra ese hueco. */
   background-image: url(background%20YTML.jpg); /* default, shown for first-time visitors before background-manager.js applies any saved preference (or if JS fails to run at all) */
   background-size: cover;
   background-position: top;
