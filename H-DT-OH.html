@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YTML | History</title>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="page-wrapper">
+<!--/// LOGO ///-->
+<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+
+<!--/// NAVIGATION ///-->
+ <nav class="site-nav">
+   <ul class="nav-list">
+     <li><a href="DT.html" class="Genre " >Downtempo</a></li>
+     <li><a href="DT-OH.html" class="SubGenre" >Organic House</a></li>
+	<li class="aka-item"><a class="aka">AKA: Organica, Playa Tech, Spiritual House  // Fines 10´s</a></li>
+   </ul>   
+ </nav>
+<!-- MAIN CONTENT -->
+<main class="site-main">
+   
+   <div class="history">
+
+		  <p>Organic house is a House subgenre that emerged in the late 2010s. It is mainly linked to Deep House and Downtempo, as it is similarly a slower, more introspective, relaxed and organic form of Electronic Dance Music. Progressive House was influential as well, as can be heard in organic house's delicate production and long, gradual song structures, sometimes sharing traits with Melodic House. While it usually has a tempo of around 120 BPM, it can be sometimes as slow as 100 BPM. The drums are subtle, attentive and aim for hypnotic rhythms, which are often influenced by Afro House. Nonetheless, organic house's instrumentation and samples are typically borrowed from West Asian Music and South Asian Music, instead of Southern African Music. The melodies often use or emulate acoustic instruments such as marimbas, violins, vibraphones, and various other traditional instruments. This further draws similarities to Tropical House, but the genre aims for a much more spiritual, mature atmosphere compared to the joyful sound of tropical house. Additionally, sounds like foley noises, vinyl crackles, and Field Recordings further help to embrace its natural character.</p><br>
+		  <p>Organic house gradually arose from the 2010s deep house and Tech House/Minimal Techno scenes, with DJs like Sébastien Léger, Lee Burridge, and Oliver Koletzki developing the sound. That being said, many of the pioneers would be rather new artists such as Elfenberg, Volen Sentir and Roy Rosenfeld. Labels like All Day I Dream, Melody of the Soul, Sol Selectas, TRYBESof and Anjunadeep became the main hubs of the genre. Organic house has found particular popularity in desert-located festivals like Burning Man, as well as club scenes of Mediterranean resort spots. In the early 2020s, the genre established its sound and "organic house" as its name.</p>
+
+   </div>
+</main>
+   
+<script src="background-manager.js"></script>
+
+<!-- Makes .history fill the remaining viewport space below it (so the page
+     itself never needs a vertical scrollbar) — but ONLY when the text is
+     actually long enough to need that much room. Short descriptions (like
+     this Jazzstep one) instead size to their own content, so the box ends
+     right below where the text finishes instead of leaving empty space
+     down to the bottom of the screen. Measures live since the space
+     available depends on the logo, nav links, and AKA line's actual
+     rendered height, all of which vary slightly by breakpoint/content. -->
+<script>
+  function ytSyncHistoryHeight() {
+    var history = document.querySelector('.history');
+    var wrapper = document.querySelector('.page-wrapper');
+    if (!history) return;
+
+    var top = history.getBoundingClientRect().top;
+    /* .page-wrapper has bottom padding that sits below .history but isn't
+       part of .history's own box — without subtracting it, the page ends up
+       slightly taller than the screen even though .history itself fits
+       exactly, triggering an unwanted outer page scrollbar. Reading it live
+       (instead of hardcoding 60px) keeps this correct even if that padding
+       value changes later. */
+    var bottomPad = wrapper ? parseFloat(getComputedStyle(wrapper).paddingBottom) || 0 : 0;
+
+    var available = window.innerHeight - top - bottomPad;
+    if (available < 80) available = 80; /* sane minimum so it never collapses to nothing */
+
+    /* Measure how tall the text actually wants to be by letting it size
+       naturally first, then decide which mode applies. */
+    history.style.height = 'auto';
+    var natural = history.scrollHeight;
+
+    if (natural > available) {
+      /* Long text — fill the available space and let .history's own
+         overflow-y:auto scroll it internally, same as before. */
+      history.style.height = available + 'px';
+    } else {
+      /* Short text — leave it at its natural height instead of stretching
+         it down to the bottom of the screen. */
+      history.style.height = 'auto';
+    }
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(ytSyncHistoryHeight, 100);
+  });
+  window.addEventListener('resize', ytSyncHistoryHeight);
+  window.addEventListener('orientationchange', function () {
+    setTimeout(ytSyncHistoryHeight, 200);
+    setTimeout(ytSyncHistoryHeight, 500);
+  });
+</script>
+</div>
+</body>
+</html>
