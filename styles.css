@@ -2,7 +2,7 @@
    RESET & BASE
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 14px; scrollbar-gutter: stable; /* Always reserve space for the vertical scrollbar, even on pages short enough not to need one. Without this, pages with more content (and therefore a real scrollbar) had a slightly narrower viewport than shorter pages, shifting centered content (logo, nav-list) by the scrollbar's width between pages. */  }
+html { font-size: 14px; scrollbar-gutter: stable; /* Always reserve space for the vertical scrollbar, even on pages short enough not to need one. Without this, pages with more content (and therefore a real scrollbar) had a slightly narrower viewport than shorter pages, shifting centered content (logo, nav-list) by the scrollbar's width between pages. */ background-color: #1a1a2e; /* el gutter reservado por scrollbar-gutter se pinta como extension del padding de ESTE elemento (html), no del de body ni de .bg-fixed -- sin esto, esa franja se veia con el fondo por defecto del navegador en vez del color del sitio. */ }
 body {
   min-height: 100vh; /* fallback for very old browsers */
   min-height: 100svh; /* fallback for browsers with JS disabled, or before background-manager.js's measurement runs */
@@ -29,7 +29,7 @@ body {
 .bg-fixed {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100%; /* 100vw en vez de 100%: para un elemento position:fixed, "100%" se calcula contra el viewport YA REDUCIDO por scrollbar-gutter:stable (en html), dejando sin cubrir una franja del ancho exacto de ese gutter (tipicamente ~15px) en el borde derecho. "vw" siempre mide el viewport completo, sin esa reduccion, así que cierra ese hueco. */
+  width: 100%; height: 100%;
   background-image: url(background%20YTML.jpg); /* default, shown for first-time visitors before background-manager.js applies any saved preference (or if JS fails to run at all) */
   background-size: cover;
   background-position: top;
