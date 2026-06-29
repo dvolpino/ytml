@@ -76,7 +76,7 @@ body {
    class below, so they're declared once instead of repeated 8+ times.
    Each individual class then only needs its unique color (and any other
    property that differs from this shared baseline). */
-.scene, .Genre, .SubGenre, .SubGenre2, .Artists, .Playlists, .Playlists2, .Resto, .LiveSets, .LiveSetsM, .PlaylistsM, .scene2, .SubGenre3, .SubGenre4, .Artists2, .Artists3, .linkshisto {
+.scene, .Genre, .SubGenre, .SubGenre2, .Artists, .Playlists, .Playlists2, .Resto, .LiveSets, .LiveSetsM, .PlaylistsM, .scene2, .SubGenre3, .SubGenre4, .Artists2, .Artists3, .linkshisto, .Genre2 {
   font-family: Inter;
   text-decoration: none;
   letter-spacing: 0.03em;
@@ -98,6 +98,10 @@ body {
 .Genre { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
 .Genre:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
 .Genre.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
+
+.Genre2 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
+.Genre2:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
+.Genre2.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
 
 .SubGenre { color: #FFFFFF; }
 .SubGenre:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
@@ -439,6 +443,7 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .site-nav {font-size:clamp(2rem, 20vw, 2.2rem)  } /* Font de columna de navegación clamp(the smallest the value is ever allowed to be, what it tries to be, usually based on something that changes (like viewport width, the largest the value is ever allowed to be ) */
  .aka { padding: 0 18px; } /* SELECCIONADOR DE PADDING DEL TEXTO AKA */
  .scene2 { font-size: clamp(1.5rem, 20vw, 2rem); }    /* Ajusta (achica) texto demasiado ancho a esta @media — techo REAL medido con la fuente Inter real (no la de reemplazo): 2.15rem hace wrap, 2rem es el maximo seguro con margen */
+  .Genre2 { font-size: clamp(1.5rem, 20vw, 2rem);}
  .SubGenre3 { font-size: clamp(1.5rem, 20vw, 2rem);}  /* Ajusta (achica) texto demasiado ancho a esta @media — techo REAL con Inter: 2.15rem hace wrap "Psy Dub & Psybient", 2rem es el maximo seguro con margen */
  .Playlists { font-size: clamp(1.5rem, 18vw, 2.1rem); } /* "Playlists & Albums" es mas largo que Trance/Artists y hace wrap al tamaño base de 2.8rem — techo REAL con Inter: 2.3rem hace wrap, 2.1rem deja margen de seguridad */
  .SubGenre2 { font-size: 2.03rem; } /* "Atmospheric Jungle" — sin margen de prudencia (techo exacto medido con Inter a 344px: 20.35px = 2.03rem en html=10px). No supera a .Genre (2.8rem) en este breakpoint */
