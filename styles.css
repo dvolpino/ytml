@@ -99,7 +99,7 @@ body {
 .Genre:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
 .Genre.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Genre2 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
+.Genre2 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; } /* Igual que .Genre — "House & Garage" entra sin wrap en todos los breakpoints salvo ≤360px, donde se ajusta mas abajo */
 .Genre2:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
 .Genre2.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
 
@@ -443,11 +443,12 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .site-nav {font-size:clamp(2rem, 20vw, 2.2rem)  } /* Font de columna de navegación clamp(the smallest the value is ever allowed to be, what it tries to be, usually based on something that changes (like viewport width, the largest the value is ever allowed to be ) */
  .aka { padding: 0 18px; } /* SELECCIONADOR DE PADDING DEL TEXTO AKA */
  .scene2 { font-size: clamp(1.5rem, 20vw, 2rem); }    /* Ajusta (achica) texto demasiado ancho a esta @media — techo REAL medido con la fuente Inter real (no la de reemplazo): 2.15rem hace wrap, 2rem es el maximo seguro con margen */
-  .Genre2 { font-size: clamp(1.5rem, 20vw, 2rem);}
  .SubGenre3 { font-size: clamp(1.5rem, 20vw, 2rem);}  /* Ajusta (achica) texto demasiado ancho a esta @media — techo REAL con Inter: 2.15rem hace wrap "Psy Dub & Psybient", 2rem es el maximo seguro con margen */
  .Playlists { font-size: clamp(1.5rem, 18vw, 2.1rem); } /* "Playlists & Albums" es mas largo que Trance/Artists y hace wrap al tamaño base de 2.8rem — techo REAL con Inter: 2.3rem hace wrap, 2.1rem deja margen de seguridad */
  .SubGenre2 { font-size: 2.03rem; } /* "Atmospheric Jungle" — sin margen de prudencia (techo exacto medido con Inter a 344px: 20.35px = 2.03rem en html=10px). No supera a .Genre (2.8rem) en este breakpoint */
  .SubGenre4 { font-size: 1.58rem; } /* "Psychedelic & Progressive" — CORREGIDO: la medicion anterior (1.9rem) se hizo antes de agregar .SubGenre4 a la lista de selectores compartida (linea 64), sin el padding real aplicado. Techo REAL con el archivo completo a 344px: 15.82px = 1.582rem en html=10px. No supera a .Genre (2.8rem) */
  .Artists2 { font-size: 1.62rem; } /* "Siouxsie & The Banshees" — techo REAL con Inter a 344px: 16.25px = 1.625rem en html=10px, redondeado hacia abajo a 1.62rem. No supera a .Artists (2.8rem) */
  .Artists3 { font-size: 2.21rem; } /* "The Housemartins" — techo REAL con Inter a 344px: 22.18px = 2.218rem en html=10px, redondeado hacia abajo a 2.21rem. No supera a .Artists (2.8rem) */
+ .Genre2 { font-size: 2.3rem; } /* "House & Garage" — techo REAL con Inter a 280px (viewport mas angosto del Z Fold cerrado): 195.2px entra en 196px disponibles; 2.4rem (202.4px) ya no entra. Sin clamp porque el rango ≤360px es demasiado angosto para que vw aporte precision util. No supera a .Genre (2.8rem) */
+	
 } 
