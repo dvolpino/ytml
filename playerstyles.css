@@ -99,7 +99,7 @@
 /* TABLETS (matches styles.css's @media max-width:1199px) */
 @media (max-width: 1199px) {
 	.yt-player-wrap { max-width: 720px;  }
-	#yt-player { aspect-ratio: 16 / 9;}
+	#yt-player { aspect-ratio: 1 / 1;}
 	.yt-track-info { font-size: 1rem;  }
     #yt-track-title { font-size: 1rem;  }
 	.yt-controls button { font-size: 1rem; }
