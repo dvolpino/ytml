@@ -116,16 +116,3 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-/* Nudge de reflow para el bug de Chromium con scrollbar-gutter +
-   position:fixed (hay un issue abierto en su rastreador especificamente
-   sobre esto: "Elements with position:fixed should respect
-   scrollbar-gutter"). En algunos casos, el gutter reservado no se pinta
-   con el color de html en el primer paint -- solo se corrige despues de
-   un resize real (confirmado: abrir DevTools lo arregla). Disparar un
-   resize sintetico apenas carga la pagina fuerza ese repintado sin que
-   el usuario tenga que hacer nada. */
-window.addEventListener('load', function () {
-    requestAnimationFrame(function () {
-        window.dispatchEvent(new Event('resize'));
-    });
-});
