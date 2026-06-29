@@ -62,6 +62,8 @@
    ============================================= */
 @media (min-width: 1200px) {
  .yt-playlist-list { max-height: 300px; }
+	.yt-player-wrap { 
+		--side-margin: 5%;  } /* << AJUSTÁ ESTE NÚMERO para mas/menos espacio a los costados, del reproductor */
 }
 /* SHORT DESKTOP/LAPTOP WINDOWS - PC MONITOR /// This needs to be BELOW GENERAL WIDE SCREENS breakpoint */
 @media (min-width: 933px) and (orientation: landscape) and (max-height: 1080px) {
@@ -71,7 +73,7 @@
     --avail-h: calc(100dvh - 106px - 1.4rem); /* Available height = 100dvh (the full screen height DO NOT CHANGE) - header logo (106px) - body padding // Reduce(Increase) a subtracted value → player gets taller(shorter)*/
     --controls-h: 2.8rem;
     --video-h: calc(var(--avail-h) - var(--controls-h));
-    --side-margin: 5%; /* << AJUSTÁ ESTE NÚMERO para mas/menos espacio a los costados, solo en pantallas anchas (PC/laptop) */
+    --side-margin: 0%; /* << AJUSTÁ ESTE NÚMERO para mas/menos espacio a los costados, solo en pantallas anchas (PC/laptop) */
     display: grid; grid-template-columns: var(--video-h) 1fr; grid-template-rows: var(--video-h) var(--controls-h); grid-template-areas: "video    playlist" "controls playlist"; max-width: calc(100% - (var(--side-margin) * 2)); height: var(--avail-h); overflow: hidden;  }
   .yt-video-wrapper { grid-area: video; width: var(--video-h); height: var(--video-h); overflow: hidden;  }
   #yt-player { aspect-ratio: 1 / 1; width: 100%; height: 100%;  }
