@@ -2,7 +2,7 @@
    RESET & BASE
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 14px; scrollbar-gutter: stable; /* Always reserve space for the vertical scrollbar, even on pages short enough not to need one. Without this, pages with more content (and therefore a real scrollbar) had a slightly narrower viewport than shorter pages, shifting centered content (logo, nav-list) by the scrollbar's width between pages. */  }
+html { font-size: 14px; /* scrollbar-gutter: stable retirado el 29/06/2026 -- causaba una franja sin cubrir por el fondo en monitores con scrollbars clasicas (bug conocido y abierto en Chromium: position:fixed no respeta bien scrollbar-gutter). El costo de sacarlo: el contenido puede correrse unos pocos pixeles de ancho entre paginas con scroll real y paginas sin scroll -- un problema mucho menor que la franja sin fondo. */  }
 body {
   min-height: 100vh; /* fallback for very old browsers */
   min-height: 100svh; /* fallback for browsers with JS disabled, or before background-manager.js's measurement runs */
