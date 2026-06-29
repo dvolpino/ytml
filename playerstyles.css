@@ -1,113 +1,53 @@
 @charset "utf-8";
 /* CSS Document */
-
-/*.head {
-  text-align: center;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}*/
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  /* styles.css sets body { display:flex } with no flex-direction (defaults to row),
-     which placed the header and footer side-by-side on this page since MPlayer.html
-     doesn't use the .page-wrapper column layout the rest of the site relies on.
-     This forces them to stack vertically instead.
-     justify-content:flex-start keeps content pinned to the top instead of
-     vertically centered in the viewport (styles.css's justify-content:center
-     controls the vertical axis once flex-direction is column).
-     !important needed because styles.css loads AFTER this file, so it would
-     otherwise win on equal specificity. */
   body {
     flex-direction: column !important;
     align-items: stretch !important;
     justify-content: flex-start !important;
   }
-
-  /* Flex children shrink-to-fit their content by default. Without this,
-     the player's width was being driven by the playlist's text content
-     (shorter track names = narrower player) instead of filling the screen. */
   .cuerpo {
     width: 100%;
   }
-
-  /* styles.css adds margin-bottom:2% under .site-header (the logo) which left
-     too much space above the player on this page specifically */
   .site-header {
     margin-bottom: 0 !important;
   }
-
-  body { font-family: inter; padding: 0 1rem 1.5rem 1rem; } /* El padding afecta la posicion del logo y todo el resto Se puede probar a eliminar ya que como está el logo sube un poco respecto al resto de las páginas */
-
+  body { font-family: inter; padding: 0 1rem 1.5rem 1rem; }
   .yt-player-wrap { border-color: rgba(255,255,255,0.1); width: 100%; max-width: 970px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.1);   } 
-
   .yt-video-wrapper { position: relative; } 
-
   #yt-player { width: 100%; aspect-ratio: 16 / 16; background: rgba(0,0,0,0.00); display: block;  } 
-
   #yt-player iframe { width: 100%; height: 100%; border: none; display: block; } 
-
-  /* No playlist selected */
-  .yt-empty { aspect-ratio: 16 / 9; background:rgba(0,0,0,0.68) ; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: #555; font-size: 0.875rem;  } /* background: #111 */
-
+  .yt-empty { aspect-ratio: 16 / 9; background:rgba(0,0,0,0.68) ; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: #555; font-size: 0.875rem;  }
   .yt-empty svg { opacity: 0.3; }
-
-  /* Controls */
   .yt-controls { background: #1a1a1a; border-color: rgba(255,255,255,0.07); display: flex; align-items: center; gap: 8px; padding: 0.6rem 1rem; border-top: 1px solid rgba(0,0,0,0.07);  }
-
   .yt-controls button { color: #ddd; background: none; border: none; cursor: pointer; font-size: 2.5rem; padding: 4px 8px; border-radius: 6px; transition: background 0.15s; line-height: 1;  }
-
   .yt-controls button:hover { background: rgba(255,255,255,0.1); }
-
-  /* Shuffle button: fully transparent background, no hover fill */
   #yt-shuffle { background: transparent !important; color: #ddd; }
   #yt-shuffle:hover { background: transparent !important; }
-
   .yt-track-info { flex: 1; overflow: hidden; margin-left: 4px; font-size: 2.2rem; font-weight: 600; }
-
-  #yt-track-title { font-size: 2.2rem; color: #bbb; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;  } /* font-size: 0.85rem */
-
+  #yt-track-title { font-size: 2.2rem; color: #bbb; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;  }
   #yt-time-display { font-size: 2.2rem; color: #bbb; white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums;  }
-
-  /* Playlist panel */
-  .yt-playlist { border-top: 1px solid rgba(0,0,0,0.07); background: rgba(0,0,0,0.66); border-color: rgba(255,255,255,0.07);}  /* background: #1a1a1a */
-
+  .yt-playlist { border-top: 1px solid rgba(0,0,0,0.07); background: rgba(0,0,0,0.66); border-color: rgba(255,255,255,0.07);}
   .yt-playlist-header { border-color: rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.07); font-family: inter;
-     font-weight: 600; letter-spacing: 0.05em;   }  /* Elimine text-transform: uppercase; */
-
-  #yt-playlist-name { font-size: 2.4rem; color: #aaa; } /* NOMBRE DEL PLAYLIST no especificaba font-size ni font-family: inter; */
-  #yt-playlist-count { font-size: 2.2rem; color: #aaa; }  /* CANTIDAD DE CANCIONES Y DURACION DEL PLAYLIST font-size: 0.72rem // agregué color: #aaa;*/
-
-  .yt-playlist-list { max-height: 750px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;  }  /*  max-height: 1130px; 753px */
-
+     font-weight: 600; letter-spacing: 0.05em;   }
+  #yt-playlist-name { font-size: 2.4rem; color: #aaa; }
+  #yt-playlist-count { font-size: 2.2rem; color: #aaa; }
+  .yt-playlist-list { max-height: 750px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;  }
   .yt-playlist-list::-webkit-scrollbar { width: 4px; }
   .yt-playlist-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
-
-  .yt-playlist-loading { padding: 1.5rem; text-align: center; font-size: 1rem;  color: #555;;  } /* font-size: 0.8rem */
-
+  .yt-playlist-loading { padding: 1.5rem; text-align: center; font-size: 1rem;  color: #555;;  }
   .yt-track-row { border-color: rgba(255,255,255,0.04); display: flex; align-items: center; gap: 10px; padding: 0.45rem 1rem; cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.04); transition: background 0.1s; position: relative;  }
-
   .yt-track-row:last-child { border-bottom: none; }
   .yt-track-row:hover { background: rgba(255,255,255,0.04); }
-  .yt-track-row.active { background: rgba(255,0,0,0.2); }  /* rgba(255,0,0,0.08) */
-
+  .yt-track-row.active { background: rgba(255,0,0,0.2); }
   .yt-track-row.active::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #ff0000; border-radius: 0 2px 2px 0;  }
-
-  .yt-track-num { font-size: 1.9rem; color:rgba(255,255,255,1.00) ;  width: 18px; text-align: right; flex-shrink: 0; writing-mode: vertical-lr; text-orientation: upright; } /* font-size: 0.7rem  agregue: writing-mode: vertical-lr; y text-orientation: upright; para que el track num lo ponga vertical en pantallas angostas (verticales)*/
+  .yt-track-num { font-size: 1.9rem; color:rgba(255,255,255,1.00) ;  width: 18px; text-align: right; flex-shrink: 0; writing-mode: vertical-lr; text-orientation: upright; }
   .yt-track-row.active .yt-track-num { color: #ff0000; }
-
   .yt-track-thumb { width: 110px; height: 110px; object-fit: cover; border-radius: 3px; background: #eee; flex-shrink: 0;  }  
-
   .yt-track-meta { flex: 1; min-width: 0; }
-
-  .yt-track-name { font-size: 2.2rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3;  } /* font-size: 0.82rem */
-
+  .yt-track-name { font-size: 2.2rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3;  }
   .yt-track-row.active .yt-track-name { font-weight: 600; color: #ff0000; }
-
-  .yt-track-row.active .yt-track-ch { font-weight: 600;  }  /* que se ilumine el nombre del autor tambien */
-
+  .yt-track-row.active .yt-track-ch { font-weight: 600;  }
   .yt-track-duration {
     font-size: 2rem;
     color: rgba(180,180,180,0.8);
@@ -116,20 +56,13 @@
     font-variant-numeric: tabular-nums;
     padding-left: 6px;
   }
-
-  .yt-track-ch { font-size: 1.9rem; color:rgba(223,223,223,1.00); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px;  } /* font-size: 0.7rem */
-
-
+  .yt-track-ch { font-size: 1.9rem; color:rgba(223,223,223,1.00); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px;  }
 /* =============================================
    RESPONSIVE BREAKPOINTS — aligned with styles.css
    ============================================= */
-
-/* GENERAL WIDE SCREENS (matches styles.css's @media min-width:1200px) Rare tall-wide fallback.
-   ⚠️ ORDER MATTERS: this block MUST stay BEFORE the "SHORT DESKTOP/LAPTOP WINDOWS" */
 @media (min-width: 1200px) {
- .yt-playlist-list { max-height: 300px; } /* <<largo del playlist */
+ .yt-playlist-list { max-height: 300px; }
 }
-
 /* SHORT DESKTOP/LAPTOP WINDOWS - PC MONITOR /// This needs to be BELOW GENERAL WIDE SCREENS breakpoint */
 @media (min-width: 933px) and (orientation: landscape) and (max-height: 1080px) {
   
@@ -138,15 +71,14 @@
     --avail-h: calc(100dvh - 106px - 1.4rem); /* Available height = 100dvh (the full screen height DO NOT CHANGE) - header logo (106px) - body padding // Reduce(Increase) a subtracted value → player gets taller(shorter)*/
     --controls-h: 2.8rem;
     --video-h: calc(var(--avail-h) - var(--controls-h));
-    display: grid; grid-template-columns: var(--video-h) 1fr; grid-template-rows: var(--video-h) var(--controls-h); grid-template-areas: "video    playlist" "controls playlist"; max-width: 100%; height: var(--avail-h); overflow: hidden;  }
-
+    --side-margin: 60px; /* << AJUSTÁ ESTE NÚMERO para mas/menos espacio a los costados, solo en pantallas anchas (PC/laptop) */
+    display: grid; grid-template-columns: var(--video-h) 1fr; grid-template-rows: var(--video-h) var(--controls-h); grid-template-areas: "video    playlist" "controls playlist"; max-width: calc(100% - (var(--side-margin) * 2)); height: var(--avail-h); overflow: hidden;  }
   .yt-video-wrapper { grid-area: video; width: var(--video-h); height: var(--video-h); overflow: hidden;  }
   #yt-player { aspect-ratio: 1 / 1; width: 100%; height: 100%;  }
   #nas-player { width: 100%; height: 100%;  }
-
   /* Video Control Bar Settings */
   .yt-controls { grid-area: controls; width: var(--video-h);  }
-  #yt-track-title { font-size: 1.5rem; } /* "Now Playing" title */
+  #yt-track-title { font-size: 1.5rem; }
   #yt-time-display { font-size: 1.5rem; }
 	
    /* Playlist settings */
@@ -158,13 +90,12 @@
   .yt-track-num { writing-mode: horizontal-tb; }
   .yt-track-row { padding: 0.4rem 0.9rem; gap: 9px; }
   .yt-track-thumb { width: 67px; height: 67px; }
-  .yt-track-name { font-size: 1.2rem; }    /* tamaño de nombre de la canción en el PLAYLIST */
+  .yt-track-name { font-size: 1.2rem; }
   .yt-track-ch { font-size: 1rem; }
   .yt-track-num { font-size: 1rem; width: 18px; }
   .yt-track-duration { font-size: 1.2rem; }
   .yt-playlist-header { padding: 0.4rem 0.8rem; }
 }
-
 /* TABLETS (matches styles.css's @media max-width:1199px) */
 @media (max-width: 1199px) {
 	.yt-player-wrap { max-width: 720px;  }
@@ -173,42 +104,32 @@
     #yt-track-title { font-size: 1rem;  }
 	.yt-controls button { font-size: 1rem; }
 	.yt-playlist-header { font-size: 1rem; }
-	#yt-playlist-name { font-size: 1rem;  } /* no especificaba font-size ni font-family: inter; */
-    #yt-playlist-count {  font-size: 1rem; }  /* font-size: 0.72rem */
-	.yt-playlist-list { max-height: 290px; } /* << largo del playlist */
+	#yt-playlist-name { font-size: 1rem;  }
+    #yt-playlist-count {  font-size: 1rem; }
+	.yt-playlist-list { max-height: 290px; }
 	.yt-track-name { font-size: 1rem; }
 	.yt-track-ch { font-size: 0.9rem; }
 	.yt-track-info { font-size: 1.8rem; }
 	.yt-track-num { font-size: 0.9rem; }
 	.yt-track-thumb { width: 60px; height: 60px; object-fit: cover; order-radius: 3px; background: #eee; flex-shrink: 0;  } 
-	.yt-track-duration { font-size: 0.8rem; } /* 0.8rem  */
+	.yt-track-duration { font-size: 0.8rem; }
 	#yt-time-display { font-size: 0.85rem; }
 }
-
 /* LANDSCAPE PHONES & SMALL TABLETS ONLY  */
 @media (max-width: 932px) and (orientation: landscape) {
   
-  .yt-player-wrap {                         /* << largo del playlist */
-    --avail-h: calc(100dvh - 106px - 0rem); /* Available height = 100dvh (the full screen height DO NOT CHANGE) - header logo (106px) - body padding (was 0.5rem, reduced to shrink the gap further) // Reduce(Increase) a subtracted value → player gets taller(shorter)*/
+  .yt-player-wrap {
+    --avail-h: calc(100dvh - 106px - 0rem);
     --controls-h: 2.8rem;
     --video-h: calc(var(--avail-h) - var(--controls-h));
-
     display:grid; grid-template-columns:var(--video-h) 1fr; grid-template-rows:var(--video-h) var(--controls-h); grid-template-areas:"video    playlist" "controls playlist"; max-width:100%; height:var(--avail-h); overflow:hidden; }
-
   .yt-video-wrapper { grid-area: video; width: var(--video-h); height: var(--video-h); overflow: hidden;  }
-
   #yt-player { aspect-ratio: 1 / 1; width: 100%; height: 100%;  }
-
   #nas-player { width: 100%; height: 100%; }
-
   .yt-controls { grid-area: controls; width: var(--video-h);  }
-
   .yt-playlist { grid-area: playlist; border-top: none; border-left: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; height: var(--avail-h); overflow: hidden;  }
-
   .yt-playlist-list { flex: 1; max-height: none; overflow-y: auto;  }
   .yt-track-num { writing-mode: horizontal-tb; }
-
-  /* Compact track rows for phone-sized landscape screens */
   .yt-track-row { padding: 0.4rem 0.9rem; gap: 9px; }
   .yt-track-thumb { width: 58px; height: 58px; }
   .yt-track-name { font-size: 1.15rem; }
@@ -219,33 +140,26 @@
   #yt-playlist-name { font-size: 1.1rem; }
   #yt-playlist-count { font-size: 0.95rem; }
 }
-
-
 /* PORTRAIT PHONES (matches styles.css's @media orientation:portrait + max-width:600px) */
 @media (orientation: portrait) and (max-width: 600px) {
 	#yt-player { aspect-ratio: 1 / 1;}
 	
-  /* << largo del playlist */	
-  /* Caps the playlist height so it fits within the actual screen height. Bigger/Smaller playlist (less/more gap) → increase/decrease the number:  */
-  /* SAme number needs to be replaced in MPlayer.html 	playlistList.style.maxHeight = (h * 0.40) + 'px';  */
   .yt-playlist-list {
     max-height: 40vh;
   }
 	
-	 /* Playlist settings */ /* ELLARGO DEL PLAYLIST PARA TELEFONO PORTRAIT SE AJUSTA CON EL VALOR var PORTRAIT_PLAYLIST_EXTRA_PX = 20; QUE SE ENCUENTRA EN Source Code */
   .yt-playlist-header { padding: 0.4rem 0.8rem; }
-  #yt-playlist-name { font-size: 1.7rem; }    /* tamaño del nombre del PLAYLIST */
-  #yt-playlist-count { font-size: 1.15rem; }  /* tamaño de "XX tracks · X hrs, 29 min" */
-  /*.yt-track-row { padding: 0.4rem 0.9rem; gap: 9px; } */
+  #yt-playlist-name { font-size: 1.7rem; }
+  #yt-playlist-count { font-size: 1.15rem; }
 	.yt-track-row {
-    padding-left: 0.3rem;  /* was 1rem (from the shorthand padding: 0.45rem 1rem) less space between the row's edge and the track number */
-    gap: 2px;              /* was 10px  less space between number → thumbnail → text */
+    padding-left: 0.3rem;
+    gap: 2px;
   }
-  .yt-track-num { font-size: 1.2rem; width: 18px; } /* width — narrower reserved column for the number itself */
-  .yt-track-num { writing-mode: vertical-lr; } /* vertical-lr / horizontal-tb */
+  .yt-track-num { font-size: 1.2rem; width: 18px; }
+  .yt-track-num { writing-mode: vertical-lr; }
   .yt-track-thumb { width: 55px; height: 55px; }
-  .yt-track-name { font-size: 1.5rem; }    /* tamaño del nombre de la canción en el PLAYLIST */
-  .yt-track-ch { font-size: 1rem; } /* Controls the artist/channel name text — the smaller line shown below each song title in the playlist */
+  .yt-track-name { font-size: 1.5rem; }
+  .yt-track-ch { font-size: 1rem; }
   .yt-track-duration { font-size: 1.5rem; }
 	
 }
