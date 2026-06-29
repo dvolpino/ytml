@@ -2,7 +2,7 @@
    RESET & BASE
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 14px; /* scrollbar-gutter: stable retirado el 29/06/2026 -- causaba una franja sin cubrir por el fondo en monitores con scrollbars clasicas (bug conocido y abierto en Chromium: position:fixed no respeta bien scrollbar-gutter). El costo de sacarlo: el contenido puede correrse unos pocos pixeles de ancho entre paginas con scroll real y paginas sin scroll -- un problema mucho menor que la franja sin fondo. */  }
+html { font-size: 14px; text-shadow: 1px 1px 1px black,  2px 2px 1px black;/* scrollbar-gutter: stable retirado el 29/06/2026 -- causaba una franja sin cubrir por el fondo en monitores con scrollbars clasicas (bug conocido y abierto en Chromium: position:fixed no respeta bien scrollbar-gutter). El costo de sacarlo: el contenido puede correrse unos pocos pixeles de ancho entre paginas con scroll real y paginas sin scroll -- un problema mucho menor que la franja sin fondo. */  }
 body {
   min-height: 100vh; /* fallback for very old browsers */
   min-height: 100svh; /* fallback for browsers with JS disabled, or before background-manager.js's measurement runs */
@@ -87,7 +87,7 @@ body {
  
 }
 
-.scene { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #00F5B4; margin: auto; text-shadow: 1px 1px 1px black,  2px 2px 1px black;} /* Mismo tamaño que .Genre — antes heredaba el font-size de .site-nav (mas chico), nunca tuvo el propio */
+.scene { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #00F5B4; margin: auto; } /* Mismo tamaño que .Genre — antes heredaba el font-size de .site-nav (mas chico), nunca tuvo el propio */
 .scene:hover {  color: #00F5B4; border-left-color: #00F5B4; background-color: rgba(168, 216, 255, 0.07); }
 .scene.active { border-left-color: #00F5B4;  background-color: rgba(255, 215, 0, 0.07); }
 
@@ -95,7 +95,7 @@ body {
 .scene2:hover {  color: #00F5B4; border-left-color: #00F5B4; background-color: rgba(168, 216, 255, 0.07); }
 .scene2.active { border-left-color: #00F5B4;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Genre { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; text-shadow: 1px 1px 1px black,  2px 2px 1px black; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
+.Genre { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
 .Genre:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
 .Genre.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
 
