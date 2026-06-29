@@ -9,15 +9,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <link href="playerstyles.css" rel="stylesheet" type="text/css">
 <link href="styles.css" rel="stylesheet" type="text/css">	
 <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
 <style>
-  /* Marks a track row as unavailable/skipped — applied by JS the moment a
-     track is confirmed dead (no manual flagging needed). Doubles as a
-     built-in "report": scroll the playlist and grey rows are the broken ones. */
   .yt-track-row.unavailable .yt-track-num,
   .yt-track-row.unavailable .yt-track-name,
   .yt-track-row.unavailable .yt-track-ch,
@@ -32,48 +28,14 @@
   }
 </style>
 </head>
-<!--
-  HOW TO LINK TO THE PLAYER FROM ANY PAGE
-  =========================================
-
-  YOUTUBE MODE:
-    MPlayer.html?list=PLAYLIST_ID&name=Playlist+Name&color=COLOR&labelcolor=COLOR
-
-  NAS MODE:
-    MPlayer.html?source=nas&playlist=URL_TO_PLAYLIST_JSON&name=Playlist+Name
-
-  NAS JSON FORMAT (save as a .json file on your NAS and link to it):
-  {
-    "name": "Album Name",
-    "tracks": [
-      { "title": "Song Title", "artist": "Artist Name",
-        "src": "http://NAS_IP/music/Artist/Album/01 - Song.mp3",
-        "folder": "http://NAS_IP/music/Artist/Album/" },
-      ...
-    ]
-  }
-  The "folder" field is used to load folder.jpg as album art.
-
-  AVAILABLE PARAMETERS (YouTube mode):
-  list        (required) YouTube playlist ID
-  name        (optional) Playlist label
-  color       (optional) Accent color (hex as %23rrggbb, or named)
-  labelcolor  (optional) Header label color
-  thumb       (optional) Cover image path
-
--->
 <body>
 	
-<!--/// LOGO ///-->
 <header class="site-header"> <a class="logo-link"> <img src="images/logo.webp" alt="Logo" class="logo-img" width="675" height="127" onclick="history.back()" /> </a> </header>
-
 <footer class="cuerpo">
   <nav>
   	
   <div class="yt-player-wrap">
-
   <div class="yt-video-wrapper">
-    <!-- YouTube player container -->
     <div id="yt-player">
       <div class="yt-empty" id="yt-empty">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -91,14 +53,10 @@
         </svg>
       </div>
     </div>
-
-    <!-- NAS mode: album art display + hidden audio element. Hidden in YouTube mode. -->
     <div id="nas-player" style="display:none; width:100%; background:#111; position:relative;">
       <img id="nas-album-art" src="" alt="Album Art"
            style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block;"/>
       <audio id="nas-audio" preload="auto"></audio>
-
-      <!-- Barra de progreso clickeable, superpuesta sobre la tapa, visible solo con hover -->
       <div id="nas-progress-wrap" style="position:absolute; left:0; right:0; bottom:0; padding:10px 10px 8px;
            background:linear-gradient(to top, rgba(0,0,0,0.65), transparent);">
         <input type="range" id="nas-progress" min="0" max="0" value="0" step="0.1"
@@ -109,19 +67,13 @@
       </div>
     </div>
   </div>
-
   <style>
-    /* opacity/pointer-events viven aca (no inline) para que la especificidad
-       de la regla :hover de abajo pueda ganarles correctamente — un estilo
-       inline jamas puede ser superado por una regla normal de hoja de
-       estilos, sin importar que tan especifica sea esa regla. */
     #nas-progress-wrap {
       opacity: 0;
       transition: opacity 0.2s ease;
       pointer-events: none;
     }
     #nas-player:hover #nas-progress-wrap { opacity: 1; pointer-events: auto; }
-
     #nas-progress {
       -webkit-appearance: none;
       appearance: none;
@@ -153,9 +105,7 @@
       cursor: pointer;
     }
   </style>
-
   <div class="yt-controls">
-    <!-- Shuffle toggle: SVG icon, transparent background, dims when off -->
     <button id="yt-shuffle" onclick="ytToggleShuffle()" title="Shuffle">
       <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="16 3 21 3 21 8"/>
@@ -164,8 +114,6 @@
         <line x1="15" y1="15" x2="21" y2="21"/>
       </svg>
     </button>
-
-    <!-- NAS mode prev/playpause/next — hidden in YouTube mode -->
     <button id="nas-prev" onclick="nasPrev()" title="Previous" style="display:none;">
       <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/>
@@ -181,13 +129,11 @@
         <polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/>
       </svg>
     </button>
-
     <div class="yt-track-info">
       <span id="yt-track-title"></span>
     </div>
     <span id="yt-time-display"></span>
   </div>
-
   <div class="yt-playlist">
     <div class="yt-playlist-header">
       <span id="yt-playlist-name">Playlist</span>
@@ -199,27 +145,18 @@
   </div>
   </div>
   </nav>
-
 <script src="background-manager.js"></script>
-
 <script>
-  /* ═══════════════════════════════════════════════════════
-     URL PARAMETERS
-     ═══════════════════════════════════════════════════════ */
   var params      = new URLSearchParams(window.location.search);
-  var NAS_MODE    = params.get('source') === 'nas';   /* true = NAS mode, false = YouTube mode */
+  var NAS_MODE    = params.get('source') === 'nas';
   var YT_LIST_ID  = params.get('list')   || '';
   var YT_NAME     = params.get('name')   || 'Playlist';
   var YT_COLOR    = params.get('color')  || '';
   var YT_LBLCOLOR = params.get('labelcolor') || '';
   var YT_THUMB    = params.get('thumb')  || '';
-  var NAS_PLAYLIST_URL = params.get('playlist') || '';  /* URL to NAS JSON or M3U playlist file */
-  var NAS_BASE_URL     = params.get('base')     || '';  /* Base folder URL for resolving relative M3U paths */
-
-  /* Set playlist header name */
+  var NAS_PLAYLIST_URL = params.get('playlist') || '';
+  var NAS_BASE_URL     = params.get('base')     || '';
   if (YT_NAME) document.getElementById('yt-playlist-name').textContent = decodeURIComponent(YT_NAME);
-
-  /* Apply accent color (YouTube mode) */
   if (YT_COLOR) {
     var styleEl = document.createElement('style');
     styleEl.textContent = [
@@ -230,84 +167,45 @@
     ].join('\n');
     document.head.appendChild(styleEl);
   }
-
-  /* Apply label color */
   if (YT_LBLCOLOR) {
     var lblEl = document.createElement('style');
     lblEl.textContent = '#yt-playlist-name { color: ' + YT_LBLCOLOR + ' !important; }';
     document.head.appendChild(lblEl);
   }
-
-  /* ═══════════════════════════════════════════════════════
-     SHARED STATE
-     ═══════════════════════════════════════════════════════ */
-  var ytTracks      = [];   /* track list used by both modes */
+  var ytTracks      = [];
   var ytCurrentIndex = 0;
   var ytShuffleOn   = false;
   var ytTimerInterval = null;
-
-  /* ═══════════════════════════════════════════════════════
-     SHUFFLE TOGGLE (shared between both modes)
-     ═══════════════════════════════════════════════════════ */
-  /* Toggles shuffle on/off. In YouTube mode calls the IFrame API.
-     In NAS mode shuffling is handled manually via nasShuffleOrder. */
   function ytToggleShuffle() {
     ytShuffleOn = !ytShuffleOn;
-    /* YouTube mode: delegate to the IFrame API */
     if (!NAS_MODE && typeof ytPlayer !== 'undefined' && ytPlayer) {
       ytPlayer.setShuffle(ytShuffleOn);
     }
-    /* NAS mode: rebuild the shuffle order */
     if (NAS_MODE) nasApplyShuffle();
     var btn = document.getElementById('yt-shuffle');
     btn.style.opacity = ytShuffleOn ? '1' : '0.35';
     btn.style.filter  = ytShuffleOn ? 'brightness(2)' : 'brightness(1)';
     btn.title = ytShuffleOn ? 'Shuffle: On' : 'Shuffle: Off';
   }
-
-  /* ═══════════════════════════════════════════════════════
-     NAS MODE
-     ═══════════════════════════════════════════════════════ */
-  var nasAudio       = null;   /* the <audio> element */
-  var nasOrder       = [];     /* playback order (sequential or shuffled indices) */
-  var nasOrderPos    = 0;      /* current position in nasOrder */
-  var nasSeeking     = false;  /* true while the user is dragging the progress bar, so timeupdate doesn't fight the drag */
-
-  /* Track failed-load recovery: whether playback was actually intended
-     (so a broken FIRST track doesn't force-start playback on page load),
-     and how many tracks in a row have failed (so a fully broken playlist
-     skips through once and stops instead of looping forever). */
+  var nasAudio       = null;
+  var nasOrder       = [];
+  var nasOrderPos    = 0;
+  var nasSeeking     = false;
   var nasAutoPlayIntent    = false;
   var nasConsecutiveErrors = 0;
-
   if (NAS_MODE) {
-    /* Hide YouTube-only elements, show NAS-only elements */
     document.getElementById('yt-player').style.display    = 'none';
     document.getElementById('nas-player').style.display   = 'block';
     document.getElementById('nas-prev').style.display     = 'inline-flex';
     document.getElementById('nas-playpause').style.display= 'inline-flex';
     document.getElementById('nas-next').style.display     = 'inline-flex';
-
     nasAudio = document.getElementById('nas-audio');
-
-    /* Auto-advance to next track when current one ends */
     nasAudio.addEventListener('ended', function() {
-      /* Last track of a non-shuffled playlist — stop here rather than
-         wrapping back around to track 1. When shuffle is on, keep
-         wrapping as before (nasOrder is just a shuffled sequence, there's
-         no well-defined "end" the same way). */
       if (!ytShuffleOn && nasOrderPos >= nasOrder.length - 1) return;
       nasNext();
     });
-
-    /* Track is unavailable (404, bad path, CORS, decode failure, etc.)
-       Skip to the next track in the current order — respects shuffle
-       automatically since nasOrder is already shuffled when shuffle is on.
-       Bail out instead of skipping once every track in the playlist has
-       failed back-to-back, so a fully broken NAS connection doesn't spin
-       through the list forever. */
     nasAudio.addEventListener('error', function() {
-      if (!nasAudio.src) return; /* ignore spurious errors before any track is loaded */
+      if (!nasAudio.src) return;
       nasConsecutiveErrors++;
       console.warn('NAS track unavailable, skipping:', ytTracks[ytCurrentIndex] && ytTracks[ytCurrentIndex].src);
       var deadRow = document.getElementById('yt-row-' + ytCurrentIndex);
@@ -318,19 +216,11 @@
       }
       nasSkipToNext(nasAutoPlayIntent);
     });
-
-    /* A track loaded successfully — reset the failure streak. Using
-       'canplay' rather than 'playing' so this fires even when a track is
-       loaded without autoplay (e.g. the very first track on page load). */
     nasAudio.addEventListener('canplay', function() {
       nasConsecutiveErrors = 0;
       var loadedRow = document.getElementById('yt-row-' + ytCurrentIndex);
-      if (loadedRow) loadedRow.classList.remove('unavailable'); /* it just loaded fine — wasn't actually dead */
+      if (loadedRow) loadedRow.classList.remove('unavailable');
     });
-
-    /* Update elapsed time display while playing, and the progress bar
-       (unless the user is actively dragging it — nasSeeking guards against
-       the bar fighting the user's drag). */
     nasAudio.addEventListener('timeupdate', function() {
       if (!nasAudio.duration) return;
       document.getElementById('yt-time-display').textContent =
@@ -340,33 +230,21 @@
         if (bar) bar.value = nasAudio.currentTime;
       }
     });
-
-    /* Set the progress bar's range to match this track's real duration,
-       as soon as it's known (duration isn't available until metadata
-       loads, can't just hardcode it). */
     nasAudio.addEventListener('loadedmetadata', function() {
       var bar = document.getElementById('nas-progress');
       if (bar) bar.max = nasAudio.duration || 0;
     });
-
-    /* Update play/pause icon */
     nasAudio.addEventListener('play',  function() { nasSetIcon(true);  });
     nasAudio.addEventListener('pause', function() { nasSetIcon(false); });
-
-    /* Load playlist from the NAS — supports both JSON and M3U/M3U8 formats.
-       Detection is based on the file extension of the playlist URL. */
     if (NAS_PLAYLIST_URL) {
       document.getElementById('yt-playlist-loading').textContent = 'Loading playlist…';
       var isM3U = NAS_PLAYLIST_URL.toLowerCase().match(/\.m3u8?(\?|$)/);
-
       fetch(NAS_PLAYLIST_URL)
         .then(function(r) { return r.text(); })
         .then(function(text) {
           if (isM3U) {
-            /* Parse extended M3U format (#EXTM3U / #EXTINF) */
             ytTracks = nasParseM3U(text, NAS_BASE_URL || nasBaseFromUrl(NAS_PLAYLIST_URL));
           } else {
-            /* Parse JSON format { name, tracks: [...] } */
             var data = JSON.parse(text);
             if (data.name) document.getElementById('yt-playlist-name').textContent = data.name;
             ytTracks = data.tracks || [];
@@ -384,31 +262,18 @@
       document.getElementById('yt-playlist-loading').textContent = 'No playlist URL provided.';
     }
   }
-
-  /* Extracts the folder URL from a playlist URL by stripping the filename.
-     e.g. "https://nas/Music/Album/playlist.m3u" -> "https://nas/Music/Album/" */
   function nasBaseFromUrl(url) {
     return url.substring(0, url.lastIndexOf('/') + 1);
   }
-
-  /* Parses an extended M3U file into the same track format used by JSON playlists.
-     Handles both #EXTINF lines (title/artist/duration) and plain path lines.
-     Relative paths are resolved against baseUrl (the folder containing the M3U file).
-     Album art (folder.jpg) is loaded from baseUrl for all tracks in the file. */
   function nasParseM3U(text, baseUrl) {
-    /* Ensure baseUrl ends with a slash */
     if (baseUrl && baseUrl.slice(-1) !== '/') baseUrl += '/';
-
     var lines   = text.split(/\r?\n/);
     var tracks  = [];
     var pending = { title: '', artist: '', duration: 0 };
-
     lines.forEach(function(line) {
       line = line.trim();
       if (!line || line === '#EXTM3U') return;
-
       if (line.startsWith('#EXTINF:')) {
-        /* Format: #EXTINF:duration,Artist - Title */
         var comma = line.indexOf(',');
         if (comma !== -1) {
           pending.duration = parseInt(line.substring(8, comma)) || 0;
@@ -423,9 +288,7 @@
           }
         }
       } else if (!line.startsWith('#')) {
-        /* This is a file path line */
         var src = line;
-        /* If it's a relative path (no protocol), prepend baseUrl */
         if (src && !src.match(/^https?:\/\//)) {
           src = baseUrl + src;
         }
@@ -433,33 +296,26 @@
           title:    pending.title  || src.split('/').pop(),
           artist:   pending.artist || '',
           src:      src,
-          folder:   baseUrl,   /* all tracks share the same folder.jpg */
+          folder:   baseUrl,
           duration: pending.duration
         });
-        /* Reset pending metadata for next track */
         pending = { title: '', artist: '', duration: 0 };
       }
     });
     return tracks;
   }
-
-  /* Builds nasOrder: sequential [0,1,2,...] or shuffled */
   function nasApplyShuffle() {
     nasOrder = ytTracks.map(function(_, i) { return i; });
     if (ytShuffleOn) {
-      /* Fisher-Yates shuffle */
       for (var i = nasOrder.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var tmp = nasOrder[i]; nasOrder[i] = nasOrder[j]; nasOrder[j] = tmp;
       }
     }
-    /* Try to keep current track at current position after reshuffle */
     var curTrackIdx = nasOrder[nasOrderPos] !== undefined ? nasOrder[nasOrderPos] : 0;
     nasOrderPos = nasOrder.indexOf(curTrackIdx);
     if (nasOrderPos === -1) nasOrderPos = 0;
   }
-
-  /* Renders the playlist rows for NAS mode */
   function nasRenderPlaylist() {
     var list = document.getElementById('yt-playlist-list');
     list.innerHTML = '';
@@ -469,7 +325,6 @@
       row.id = 'yt-row-' + i;
       row.onclick = (function(idx) {
         return function() {
-          /* Find this track index in nasOrder; if not found, put it first */
           nasOrderPos = nasOrder.indexOf(idx);
           if (nasOrderPos === -1) { nasOrder.unshift(idx); nasOrderPos = 0; }
           nasLoadTrack(nasOrderPos, true);
@@ -486,53 +341,31 @@
         '<span class="yt-track-duration" id="yt-dur-' + i + '"></span>';
       list.appendChild(row);
     });
-    /* Pre-load durations by creating temporary audio elements */
     nasLoadDurations();
   }
-
-  /* Loads a track by its position in nasOrder.
-     autoPlay = true to start playing immediately. */
   function nasLoadTrack(orderPos, autoPlay) {
     nasOrderPos   = orderPos;
     var trackIdx  = nasOrder[orderPos];
     var track     = ytTracks[trackIdx];
     if (!track) return;
-
     ytCurrentIndex = trackIdx;
     nasAutoPlayIntent = autoPlay;
-
-    /* Update album art */
     document.getElementById('nas-album-art').src = track.folder + 'folder.jpg';
-
-    /* Load audio */
     nasAudio.src = track.src;
     nasAudio.load();
     if (autoPlay) nasAudio.play();
-
-    /* Reset progress bar — otherwise it briefly shows the previous track's
-       position until the first timeupdate/loadedmetadata of the new one. */
     var progressBar = document.getElementById('nas-progress');
     if (progressBar) { progressBar.value = 0; progressBar.max = 0; }
-
-    /* Update title in controls bar */
     document.getElementById('yt-track-title').textContent =
       (track.artist ? track.artist + ' — ' : '') + (track.title || '');
-
-    /* Highlight active row */
     ytHighlightActive();
   }
-
-  /* Loads durations for all tracks.
-     If the track already has a duration from M3U #EXTINF, use it directly.
-     Otherwise probe the audio file metadata (used for JSON playlists). */
   function nasLoadDurations() {
     ytTracks.forEach(function(track, i) {
       if (track.duration && track.duration > 0) {
-        /* M3U already provided the duration in seconds — use it directly */
         var el = document.getElementById('yt-dur-' + i);
         if (el) el.textContent = ytFmtTime(track.duration);
       } else {
-        /* JSON mode: probe audio metadata to get duration */
         var a = new Audio();
         a.preload = 'metadata';
         a.src = track.src;
@@ -545,11 +378,8 @@
         })(i, a));
       }
     });
-    /* Update count now for M3U tracks (durations already known) */
     nasUpdateCount();
   }
-
-  /* Updates the "N tracks · X hrs Y min" header */
   function nasUpdateCount() {
     var total = 0;
     ytTracks.forEach(function(_, i) {
@@ -560,46 +390,30 @@
     if (total > 0) countText += ' · ' + ytFmtTotal(total);
     document.getElementById('yt-playlist-count').textContent = countText;
   }
-
   function nasPlayPause() {
     if (!nasAudio) return;
     nasAudio.paused ? nasAudio.play() : nasAudio.pause();
   }
-
-  /* Progress bar: 'input' fires continuously while dragging (and once on a
-     plain click) — just update the time label live, don't seek yet (seeking
-     on every single input event would fire a lot of network requests against
-     the NAS while dragging). 'change' fires once the value is committed
-     (mouse released, or immediately for a plain click) — that's when the
-     actual seek happens. */
   function nasSeekPreview(bar) {
     if (!nasAudio) return;
     document.getElementById('yt-time-display').textContent =
       ytFmtTime(parseFloat(bar.value)) + ' / ' + ytFmtTime(nasAudio.duration || 0);
   }
-
   function nasSeekCommit(bar) {
     if (!nasAudio) return;
     nasAudio.currentTime = parseFloat(bar.value);
     nasSeeking = false;
   }
-
   function nasPrev() {
     if (nasOrderPos > 0) {
       nasLoadTrack(nasOrderPos - 1, !nasAudio.paused);
     } else {
-      /* Wrap to end */
       nasLoadTrack(nasOrder.length - 1, !nasAudio.paused);
     }
   }
-
   function nasNext() {
-    nasSkipToNext(true); /* user pressed Next — always start playing */
+    nasSkipToNext(true);
   }
-
-  /* Shared by the Next button and the error-recovery handler.
-     Wraps to the start of nasOrder, so it works whether shuffle is on or off —
-     nasOrder is already in the correct (sequential or shuffled) order. */
   function nasSkipToNext(autoPlay) {
     if (nasOrderPos < nasOrder.length - 1) {
       nasLoadTrack(nasOrderPos + 1, autoPlay);
@@ -607,43 +421,23 @@
       nasLoadTrack(0, autoPlay);
     }
   }
-
-  /* Switches the play/pause button icon between play ▶ and pause ⏸ */
   function nasSetIcon(playing) {
     var icon = document.getElementById('nas-pp-icon');
     if (!icon) return;
     icon.innerHTML = playing
-      ? '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'  /* pause */
-      : '<polygon points="5 3 19 12 5 21 5 3"/>';  /* play */
+      ? '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'
+      : '<polygon points="5 3 19 12 5 21 5 3"/>';
   }
-
-  /* ═══════════════════════════════════════════════════════
-     YOUTUBE MODE
-     ═══════════════════════════════════════════════════════ */
   var ytPlayer, ytReady = false;
-  var ytConsecutiveErrors = 0; /* tracks repeated playback failures so a fully broken playlist stops instead of looping forever */
-  var ytStuckWatchdog  = null; /* pending timer, if any */
-  var ytStuckTrackId   = null; /* which video id the pending timer belongs to */
-
-  /* Human-readable state names for console logging only — doesn't affect logic. */
+  var ytConsecutiveErrors = 0;
+  var ytStuckWatchdog  = null;
+  var ytStuckTrackId   = null;
   var YT_STATE_NAMES = { '-1': 'UNSTARTED', 0: 'ENDED', 1: 'PLAYING', 2: 'PAUSED', 3: 'BUFFERING', 5: 'CUED' };
-
-  /* Greys out a track's row in the playlist list by its position in the
-     queue. Looking it up by video ID doesn't work here — a broken track
-     routinely never loads enough metadata to report its own ID (confirmed
-     in testing: video_id showed up as undefined right through the actual
-     error). getPlaylistIndex() is positional instead, so it holds up even
-     when the track itself never loaded at all. */
   function ytMarkUnavailable(idx) {
     if (idx == null || idx < 0 || idx >= ytTracks.length) return;
     var row = document.getElementById('yt-row-' + idx);
     if (row) row.classList.add('unavailable');
   }
-
-  /* Shared by onError and the stuck-watchdog below. Skips to the next track —
-     nextVideo() respects the playlist's current shuffle setting on its own,
-     so this works whether shuffle is on or off. Caps at one full pass through
-     the playlist so a fully broken playlist/connection doesn't loop forever. */
   function ytSkipDeadTrack(reason) {
     var deadIdx = null;
     try { deadIdx = ytPlayer.getPlaylistIndex(); } catch (err) {}
@@ -660,41 +454,27 @@
       console.error('[YT watchdog] nextVideo() threw:', err);
     }
   }
-
   function ytClearStuckWatchdog() {
     if (ytStuckWatchdog) { clearTimeout(ytStuckWatchdog); ytStuckWatchdog = null; }
     ytStuckTrackId = null;
   }
-
-  /* Some dead videos (region blocks, certain removed-from-playlist cases) never
-     fire onError — the player just sits there not playing, sometimes flickering
-     between BUFFERING/PAUSED. Detect that by comparing currentTime across a
-     5-second window instead of checking duration — duration is unreliable here
-     since YouTube often still knows a blocked video's length even though it
-     can't stream it. No measurable progress in 5 seconds while not PLAYING =
-     stuck. Crucially, this does NOT re-arm (and reset the clock) for repeated
-     state-change events on the SAME stuck video, since a flaky track can fire
-     onStateChange many times before the 5s mark would otherwise ever be reached. */
   function ytArmStuckWatchdog() {
     var id = null;
     try { id = ytPlayer.getVideoData().video_id; } catch (err) { console.error('[YT watchdog] getVideoData() threw in ytArmStuckWatchdog:', err); }
-
     if (ytStuckWatchdog && ytStuckTrackId === id) {
-      return; /* already watching this track — let the original timer run */
+      return;
     }
-
     ytClearStuckWatchdog();
     ytStuckTrackId = id;
     var startTime = 0;
     try { startTime = ytPlayer.getCurrentTime(); } catch (err) { console.error('[YT watchdog] getCurrentTime() threw in ytArmStuckWatchdog:', err); }
-
     ytStuckWatchdog = setTimeout(function () {
       ytStuckWatchdog = null;
       if (!ytPlayer) return;
       try {
         var state = ytPlayer.getPlayerState();
         var nowTime = ytPlayer.getCurrentTime();
-        if (state === YT.PlayerState.PLAYING) return; /* recovered on its own — not stuck */
+        if (state === YT.PlayerState.PLAYING) return;
         if (nowTime - startTime < 0.5) {
           ytSkipDeadTrack('stuck, no onError fired — state was ' + (YT_STATE_NAMES[state] || state));
         }
@@ -703,29 +483,13 @@
       }
     }, 5000);
   }
-
   var ytPollInterval = null;
   var ytPollTrack = { id: undefined, since: 0 };
-  var ytPlaybackIntended = false; /* true once playback has actually started at least once — guards against flagging the not-yet-pressed-play initial screen as "stuck" */
-
-  /* THE REAL FIX for the diagnosed bug: when the playlist's own internal
-     auto-advance (after a track ends) lands on an unavailable video, the
-     IFrame API can show its "Video unavailable" overlay without firing
-     ANY event — no onStateChange, no onError. Nothing event-driven can catch
-     that, so this polls getPlayerState()/getCurrentTime() directly on a timer,
-     independent of events, every 1.5s.
-
-     Only treats state -1 (UNSTARTED) / 5 (CUED) as suspicious — never state 2
-     (PAUSED), so a track the user deliberately paused mid-way is never touched
-     by this. Only runs once ytPlaybackIntended is true (i.e. playback has
-     already started once this session) — otherwise the very first track,
-     sitting unplayed on the cover/initial screen before the user presses
-     play, would itself look "stuck" and get skipped for no reason. */
+  var ytPlaybackIntended = false;
   function ytStartPolling() {
     if (ytPollInterval) return;
     ytPollInterval = setInterval(ytPollCheck, 1500);
   }
-
   function ytPollCheck() {
     if (!ytPlayer) return;
     var id, state, cur;
@@ -737,15 +501,12 @@
       console.error('[YT poll] query threw:', err);
       return;
     }
-
     if (id !== ytPollTrack.id) {
-      ytPollTrack = { id: id, since: Date.now() }; /* different track since last poll — fresh window */
+      ytPollTrack = { id: id, since: Date.now() };
       return;
     }
-
     var neverStarted = (state === -1 || state === 5);
     if (!ytPlaybackIntended || !neverStarted) return;
-
     var stuckMs = Date.now() - ytPollTrack.since;
     if (stuckMs >= 6000) {
       console.warn('[YT poll] track', id, 'stuck in', (YT_STATE_NAMES[state] || state), 'for', stuckMs, 'ms with no events firing — treating as a silently-failed auto-advance');
@@ -753,19 +514,14 @@
       ytSkipDeadTrack('silent auto-advance failure (poll-detected), stuck in ' + (YT_STATE_NAMES[state] || state));
     }
   }
-
-  /* Show cover image if thumb param provided */
   if (!NAS_MODE && YT_THUMB && YT_LIST_ID) {
     document.getElementById('yt-cover-img').src = decodeURIComponent(YT_THUMB);
     document.getElementById('yt-cover-wrap').style.display = 'block';
   }
-
   window.onYouTubeIframeAPIReady = function () {
     if (NAS_MODE || !YT_LIST_ID) return;
-
     document.getElementById('yt-empty').style.display = 'none';
     document.getElementById('yt-playlist-loading').textContent = 'Loading tracks…';
-
     ytPlayer = new YT.Player('yt-player', {
       height: '100%',
       width: '100%',
@@ -790,7 +546,7 @@
           if (e.data === YT.PlayerState.PLAYING) {
             document.getElementById('yt-cover-wrap').style.display = 'none';
             ytStartTimer();
-            ytConsecutiveErrors = 0; /* successful playback — reset the failure streak */
+            ytConsecutiveErrors = 0;
             ytClearStuckWatchdog();
             ytPlaybackIntended = true;
           } else {
@@ -804,42 +560,25 @@
               } catch (err) {}
             }
             if (e.data === YT.PlayerState.PAUSED || isLegitimateEnd) {
-              /* A deliberate pause is not a stuck track — currentTime stops
-                 advancing the instant you pause, by definition, so checking
-                 "no progress" here would misfire on every single pause.
-                 Likewise, finishing the last track of a non-shuffled
-                 playlist is a normal stop, not a stuck track — without this
-                 check the watchdog would see "ended, no progress for 5s,
-                 nothing next" and force a nextVideo() call, which wraps
-                 back around to track 1 instead of just staying stopped. */
               ytClearStuckWatchdog();
             } else {
-              /* BUFFERING, UNSTARTED, CUED, or an ENDED that isn't the
-                 legitimate end of the list could mean a track is silently
-                 stuck (no onError) instead of a normal transition — arm the
-                 watchdog to double-check in a few seconds. */
               ytArmStuckWatchdog();
             }
           }
           ytUpdateTitle();
           if (e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.PAUSED) {
             try {
-              /* Match by video ID — stays correct even when shuffle reorders the queue.
-                 If ID is not found we are in a transient between-tracks state — skip update. */
               var currentId = ytPlayer.getVideoData().video_id;
               var foundIndex = ytTracks.findIndex(function(t) { return t.id === currentId; });
               if (foundIndex !== -1) {
                 ytCurrentIndex = foundIndex;
                 ytHighlightActive();
                 var playedRow = document.getElementById('yt-row-' + foundIndex);
-                if (playedRow) playedRow.classList.remove('unavailable'); /* it just played fine — wasn't actually dead */
+                if (playedRow) playedRow.classList.remove('unavailable');
               }
             } catch(err) { console.error('[YT state] video-id match block threw:', err); }
           }
         },
-        /* Fires for unavailable videos: removed (100), embedding disabled by the
-           owner (101/150), or an invalid parameter (2)/HTML5 player error (5).
-           Not all dead tracks fire this — see ytArmStuckWatchdog for the rest. */
         onError: function (e) {
           console.warn('[YT onError] fired with code', e.data);
           ytClearStuckWatchdog();
@@ -848,19 +587,16 @@
       }
     });
   };
-
   function ytBuildPlaylist() {
     try {
       var ids = ytPlayer.getPlaylist();
       if (!ids || ids.length === 0) { setTimeout(ytBuildPlaylist, 1000); return; }
       ytTracks = ids.map(function(id, i) { return { id: id, title: 'Track ' + (i+1), channel: '' }; });
       ytRenderPlaylist();
-      /* Show track count immediately while durations load */
       document.getElementById('yt-playlist-count').textContent = ids.length + ' tracks';
       ytFetchTitles();
     } catch(e) { setTimeout(ytBuildPlaylist, 1000); }
   }
-
   function ytRenderPlaylist() {
     var list = document.getElementById('yt-playlist-list');
     list.innerHTML = '';
@@ -880,25 +616,19 @@
       list.appendChild(row);
     });
   }
-
   var YT_API_KEY = 'AIzaSyDS_LgpU7fBEpfG1tM3hMS9SO120aBlBwQ';
-
-  /* Accumulates total playlist duration in seconds across all batches */
   var ytTotalSeconds = 0;
-
   function ytFetchTitles() {
     var ids = ytTracks.map(function(t) { return t.id; });
     for (var i = 0; i < ids.length; i += 50) {
       ytFetchBatch(ids.slice(i, i + 50), i);
     }
   }
-
   function ytFetchBatch(batchIds, offset) {
     var url = 'https://www.googleapis.com/youtube/v3/videos'
       + '?part=snippet,contentDetails'
       + '&id=' + batchIds.join(',')
       + '&key=' + YT_API_KEY;
-
     fetch(url)
       .then(function(r) { return r.json(); })
       .then(function(data) {
@@ -912,7 +642,6 @@
           if (c) c.textContent = (item.snippet.channelTitle || '').replace(/ - Topic$/, '').trim();
           if (d) d.textContent = ytParseDuration(item.contentDetails.duration);
         });
-        /* Recount total after each batch lands */
         ytTotalSeconds = 0;
         ytTracks.forEach(function(t, i) {
           var d = document.getElementById('yt-dur-' + i);
@@ -923,7 +652,6 @@
       })
       .catch(function() {});
   }
-
   function ytParseDuration(iso) {
     if (!iso) return '';
     var m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
@@ -932,35 +660,23 @@
     if (h > 0) return h + ':' + ('0'+min).slice(-2) + ':' + ('0'+sec).slice(-2);
     return min + ':' + ('0'+sec).slice(-2);
   }
-
-  /* ═══════════════════════════════════════════════════════
-     SHARED UTILITIES
-     ═══════════════════════════════════════════════════════ */
-
-  /* Converts "m:ss" or "h:mm:ss" back to total seconds */
   function ytSecondsFromText(str) {
     var parts = str.split(':').map(Number);
     if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
     if (parts.length === 2) return parts[0] * 60 + parts[1];
     return 0;
   }
-
-  /* Formats seconds into "X hrs, Y min" or "Y min" */
   function ytFmtTotal(secs) {
     var h = Math.floor(secs / 3600), m = Math.floor((secs % 3600) / 60);
     if (h > 0) return h + ' hr' + (h > 1 ? 's' : '') + ', ' + m + ' min';
     return m + ' min';
   }
-
-  /* Formats seconds into "h:mm:ss" or "m:ss" */
   function ytFmtTime(s) {
     s = Math.floor(s);
     var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
     if (h > 0) return h + ':' + ('0'+m).slice(-2) + ':' + ('0'+sec).slice(-2);
     return m + ':' + ('0'+sec).slice(-2);
   }
-
-  /* Highlights the active row in the playlist and scrolls it into view */
   function ytHighlightActive() {
     document.querySelectorAll('.yt-track-row').forEach(function(el, i) {
       el.classList.toggle('active', i === ytCurrentIndex);
@@ -968,16 +684,12 @@
     var active = document.getElementById('yt-row-' + ytCurrentIndex);
     if (active) active.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
-
-  /* YouTube mode: update title from player data */
   function ytUpdateTitle() {
     try {
       var d = ytPlayer.getVideoData();
       document.getElementById('yt-track-title').textContent = d.title || '';
     } catch(e) {}
   }
-
-  /* YouTube mode: elapsed time timer */
   function ytStartTimer() {
     if (ytTimerInterval) clearInterval(ytTimerInterval);
     ytTimerInterval = setInterval(function() {
@@ -989,18 +701,15 @@
       } catch(e) {}
     }, 500);
   }
-
   function ytStopTimer() {
     if (ytTimerInterval) { clearInterval(ytTimerInterval); ytTimerInterval = null; }
     var el = document.getElementById('yt-time-display');
     if (el) el.textContent = '';
   }
-
   function ytStartFromCover() {
     document.getElementById('yt-cover-wrap').style.display = 'none';
     if (ytPlayer) ytPlayer.playVideo();
   }
-
   /* CONFIRMED BUG (tested across 5 states): after rotating in EITHER direction,
      the Grid layout sizing .yt-player-wrap keeps using the PREVIOUS
      orientation's dimensions until the page is refreshed. We confirmed this
@@ -1008,7 +717,6 @@
      is not CSS caching/parsing, but how the browser's Grid engine evaluates
      nested calc()/custom-property chains (--avail-h -> --video-h -> grid-
      template-rows/columns) specifically across an orientation change.
-
      Fix: bypass calc() and custom properties entirely at the point of
      application. JS computes the final pixel numbers directly from
      window.innerWidth/innerHeight (which DO update correctly and immediately
@@ -1018,21 +726,56 @@
   function ytApplyGridSizing() {
     var wrap = document.querySelector('.yt-player-wrap');
     if (!wrap) return;
-
     var w = window.innerWidth;
     var h = window.innerHeight;
     var isLandscapePhone = (w > h) && (w <= 932);
-    /* Desktop/laptop (min-width:933px landscape) intentionally NOT handled
-       here — left fully CSS-controlled via --avail-h in playerstyles.css.
-       Real PC browser windows are rarely rotated/live-resized the way
-       phones are, so the dvh-recalculation bug we fixed for phones is
-       unlikely to affect desktop in practice. If it ever does, re-add an
-       isLandscapeDesktop branch here following the same pattern as phones. */
-
+    /* Desktop/laptop landscape windows (>=933px wide). Originally left fully
+       CSS-controlled via --avail-h: calc(100dvh - ...) in playerstyles.css,
+       on the assumption that PC windows are rarely resized/rotated the way
+       phones are. In practice, Chrome has a known bug where a dvh-based
+       calc() chain (--avail-h -> --video-h -> grid-template-rows/columns)
+       can get stuck on a STALE value and only recomputes after something
+       forces a deeper reflow than a normal resize (confirmed: opening
+       DevTools "fixes" it, a plain window resize does not) — same root
+       cause as the orientation-change bug already fixed for phones above,
+       just triggered by different events. Handled here the same way:
+       compute plain pixel numbers from window.innerHeight directly, no
+       calc()/var() for the engine to ever get stuck on. */
+    var isLandscapeDesktop = (w > h) && (w >= 933) && (h <= 1080);
+    if (isLandscapeDesktop) {
+      var logoElD = document.querySelector('.site-header');
+      var logoHeightD = logoElD ? logoElD.getBoundingClientRect().height : 106;
+      /* NOT measured via getBoundingClientRect() on .yt-controls: it's a
+         grid item, and grid items stretch to fill their assigned row by
+         default — so its rendered height always just reflects whatever
+         row height we last assigned it, creating a feedback loop (wrong
+         height in -> same wrong height measured back out -> perpetuates
+         itself). The intended height is simply 2.8rem (matches the
+         original --controls-h custom property in playerstyles.css) —
+         read the page's actual root font-size and convert that rem value
+         to pixels directly, sidestepping the circular measurement. */
+      var rootFontPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 14;
+      var controlsHD = 2.8 * rootFontPx;
+      var bodyCSD = getComputedStyle(document.body);
+      var bodyVPadD = (parseFloat(bodyCSD.paddingTop) || 0) + (parseFloat(bodyCSD.paddingBottom) || 0);
+      var availHD = h - logoHeightD - bodyVPadD;
+      var videoHD = availHD - controlsHD;
+      wrap.style.display = 'grid';
+      wrap.style.gridTemplateColumns = videoHD + 'px 1fr';
+      wrap.style.gridTemplateRows = videoHD + 'px ' + controlsHD + 'px';
+      wrap.style.height = availHD + 'px';
+      var videoWrapD = document.querySelector('.yt-video-wrapper');
+      if (videoWrapD) {
+        videoWrapD.style.width = videoHD + 'px';
+        videoWrapD.style.height = videoHD + 'px';
+      }
+      var controlsElD = document.querySelector('.yt-controls');
+      if (controlsElD) controlsElD.style.width = videoHD + 'px';
+      var playlistD = document.querySelector('.yt-playlist');
+      if (playlistD) playlistD.style.height = availHD + 'px';
+      return;
+    }
     if (!isLandscapePhone) {
-      /* Portrait or anything outside the landscape Grid breakpoints —
-         clear our landscape-specific inline overrides so the CSS's own
-         (non-Grid) rules for this context apply normally. */
       wrap.style.removeProperty('grid-template-columns');
       wrap.style.removeProperty('grid-template-rows');
       wrap.style.removeProperty('height');
@@ -1046,64 +789,39 @@
       if (controlsClear) controlsClear.style.removeProperty('width');
       var playlistClear = document.querySelector('.yt-playlist');
       if (playlistClear) playlistClear.style.removeProperty('height');
-
-      /* Portrait phone's playlist height was a flat 40% of screen height,
-         which didn't account for how much space the logo + video + controls
-         already use. The video is roughly as tall as the screen is wide
-         (aspect-ratio 1/1), so logo + video + controls + a flat 40%
-         playlist could add up to more than 100% of the real screen height —
-         causing a small residual scroll (the page being a little taller
-         than the viewport, not a dramatic dvh-style bug). Compute the
-         actual remaining space instead, same "read everything live"
-         approach already used for landscape above. */
       var isPortraitPhone = (h >= w) && (w <= 600);
       var playlistList = document.querySelector('.yt-playlist-list');
       if (isPortraitPhone && playlistList) {
-        /* AJUSTA EL LARGO DEL PLAYLISTS PARA TELEFONO EN PORTRAIT Easy one-number knob: bumps the calculated height up (positive) or
-           down (negative) by this many pixels. Doesn't need to know anything about the rest of the calculation — just nudges the final result.
-           Currently +80px, enough to reveal a 5th track row on most phones(~one row's height: the 57px thumbnail plus its padding). Adjust
-           this single number for more/less; nothing else needs to change. */
         var PORTRAIT_PLAYLIST_EXTRA_PX = 0;
-
         var headerEl = document.querySelector('.site-header');
         var videoWrapEl = document.querySelector('.yt-video-wrapper');
         var controlsEl = document.querySelector('.yt-controls');
         var playlistHeaderEl = document.querySelector('.yt-playlist-header');
         var bodyCS = getComputedStyle(document.body);
         var bodyVPad = (parseFloat(bodyCS.paddingTop) || 0) + (parseFloat(bodyCS.paddingBottom) || 0);
-
         var usedHeight = bodyVPad;
         if (headerEl) usedHeight += headerEl.getBoundingClientRect().height;
         if (videoWrapEl) usedHeight += videoWrapEl.getBoundingClientRect().height;
         if (controlsEl) usedHeight += controlsEl.getBoundingClientRect().height;
         if (playlistHeaderEl) usedHeight += playlistHeaderEl.getBoundingClientRect().height;
-
         var remaining = h - usedHeight + PORTRAIT_PLAYLIST_EXTRA_PX;
-        if (remaining < 120) remaining = 120; /* sane minimum so the playlist never collapses to nothing */
+        if (remaining < 120) remaining = 120;
         playlistList.style.maxHeight = remaining + 'px';
       } else if (playlistList) {
         playlistList.style.removeProperty('max-height');
       }
       return;
     }
-
-    /* Read the ACTUAL logo height live instead of guessing a fixed number —
-       this was the real fix: the CSS assumed a fixed 106px, but the logo
-       actually renders at a different height depending on context
-       (~66px in landscape phone), which was the entire source of the gap. */
     var logoEl = document.querySelector('.site-header');
     var logoHeight = logoEl ? logoEl.getBoundingClientRect().height : 106;
-    var bottomPad = 0; /* always 0 for landscape phones — adjust this single number if you want extra bottom spacing on phones specifically */
-    var controlsH    = 45; /* 2.8rem at 16px root ≈ 44.8px */
-
+    var bottomPad = 0;
+    var controlsH    = 45;
     var availH = h - logoHeight - bottomPad;
     var videoH = availH - controlsH;
-
     wrap.style.display = 'grid';
     wrap.style.gridTemplateColumns = videoH + 'px 1fr';
     wrap.style.gridTemplateRows = videoH + 'px ' + controlsH + 'px';
     wrap.style.height = availH + 'px';
-
     var videoWrap = document.querySelector('.yt-video-wrapper');
     if (videoWrap) {
       videoWrap.style.width = videoH + 'px';
@@ -1114,13 +832,20 @@
     var playlist = document.querySelector('.yt-playlist');
     if (playlist) playlist.style.height = availH + 'px';
   }
-
   window.addEventListener('orientationchange', function () {
     setTimeout(ytApplyGridSizing, 50);
     setTimeout(ytApplyGridSizing, 300);
   });
   window.addEventListener('resize', ytApplyGridSizing);
-  ytApplyGridSizing(); /* run once on initial load too */
+  ytApplyGridSizing();
+  /* Re-check shortly after initial load too, same reasoning as the
+     orientationchange handler above: the very first measurement can land
+     before layout has fully settled (fonts, async resources), giving a
+     wrong one-off reading that a later resize would have self-corrected
+     anyway. Re-running a couple of times shortly after load catches that
+     up front instead of waiting for the user to resize the window. */
+  setTimeout(ytApplyGridSizing, 100);
+  setTimeout(ytApplyGridSizing, 500);
 </script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="background-manager.js"></script>

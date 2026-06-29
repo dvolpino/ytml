@@ -97,8 +97,62 @@
       <img id="nas-album-art" src="" alt="Album Art"
            style="width:100%; aspect-ratio:1/1; object-fit:cover; display:block;"/>
       <audio id="nas-audio" preload="auto"></audio>
+
+      <!-- Barra de progreso clickeable, superpuesta sobre la tapa, visible solo con hover -->
+      <div id="nas-progress-wrap" style="position:absolute; left:0; right:0; bottom:0; padding:10px 10px 8px;
+           background:linear-gradient(to top, rgba(0,0,0,0.65), transparent);">
+        <input type="range" id="nas-progress" min="0" max="0" value="0" step="0.1"
+               style="width:100%; display:block; margin:0; cursor:pointer;"
+               oninput="nasSeekPreview(this)" onchange="nasSeekCommit(this)"
+               onmousedown="nasSeeking = true;" onmouseup="nasSeeking = false;"
+               ontouchstart="nasSeeking = true;" ontouchend="nasSeeking = false;"/>
+      </div>
     </div>
   </div>
+
+  <style>
+    /* opacity/pointer-events viven aca (no inline) para que la especificidad
+       de la regla :hover de abajo pueda ganarles correctamente — un estilo
+       inline jamas puede ser superado por una regla normal de hoja de
+       estilos, sin importar que tan especifica sea esa regla. */
+    #nas-progress-wrap {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    #nas-player:hover #nas-progress-wrap { opacity: 1; pointer-events: auto; }
+
+    #nas-progress {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+    }
+    #nas-progress::-webkit-slider-runnable-track {
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+    }
+    #nas-progress::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #ff0000;
+      margin-top: -4px;
+      cursor: pointer;
+    }
+    #nas-progress::-moz-range-track {
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 2px;
+    }
+    #nas-progress::-moz-range-thumb {
+      width: 12px; height: 12px;
+      border: none;
+      border-radius: 50%;
+      background: #ff0000;
+      cursor: pointer;
+    }
+  </style>
 
   <div class="yt-controls">
     <!-- Shuffle toggle: SVG icon, transparent background, dims when off -->
@@ -217,6 +271,7 @@
   var nasAudio       = null;   /* the <audio> element */
   var nasOrder       = [];     /* playback order (sequential or shuffled indices) */
   var nasOrderPos    = 0;      /* current position in nasOrder */
+  var nasSeeking     = false;  /* true while the user is dragging the progress bar, so timeupdate doesn't fight the drag */
 
   /* Track failed-load recovery: whether playback was actually intended
      (so a broken FIRST track doesn't force-start playback on page load),
@@ -273,11 +328,25 @@
       if (loadedRow) loadedRow.classList.remove('unavailable'); /* it just loaded fine — wasn't actually dead */
     });
 
-    /* Update elapsed time display while playing */
+    /* Update elapsed time display while playing, and the progress bar
+       (unless the user is actively dragging it — nasSeeking guards against
+       the bar fighting the user's drag). */
     nasAudio.addEventListener('timeupdate', function() {
       if (!nasAudio.duration) return;
       document.getElementById('yt-time-display').textContent =
         ytFmtTime(nasAudio.currentTime) + ' / ' + ytFmtTime(nasAudio.duration);
+      if (!nasSeeking) {
+        var bar = document.getElementById('nas-progress');
+        if (bar) bar.value = nasAudio.currentTime;
+      }
+    });
+
+    /* Set the progress bar's range to match this track's real duration,
+       as soon as it's known (duration isn't available until metadata
+       loads, can't just hardcode it). */
+    nasAudio.addEventListener('loadedmetadata', function() {
+      var bar = document.getElementById('nas-progress');
+      if (bar) bar.max = nasAudio.duration || 0;
     });
 
     /* Update play/pause icon */
@@ -440,6 +509,11 @@
     nasAudio.load();
     if (autoPlay) nasAudio.play();
 
+    /* Reset progress bar — otherwise it briefly shows the previous track's
+       position until the first timeupdate/loadedmetadata of the new one. */
+    var progressBar = document.getElementById('nas-progress');
+    if (progressBar) { progressBar.value = 0; progressBar.max = 0; }
+
     /* Update title in controls bar */
     document.getElementById('yt-track-title').textContent =
       (track.artist ? track.artist + ' — ' : '') + (track.title || '');
@@ -490,6 +564,24 @@
   function nasPlayPause() {
     if (!nasAudio) return;
     nasAudio.paused ? nasAudio.play() : nasAudio.pause();
+  }
+
+  /* Progress bar: 'input' fires continuously while dragging (and once on a
+     plain click) — just update the time label live, don't seek yet (seeking
+     on every single input event would fire a lot of network requests against
+     the NAS while dragging). 'change' fires once the value is committed
+     (mouse released, or immediately for a plain click) — that's when the
+     actual seek happens. */
+  function nasSeekPreview(bar) {
+    if (!nasAudio) return;
+    document.getElementById('yt-time-display').textContent =
+      ytFmtTime(parseFloat(bar.value)) + ' / ' + ytFmtTime(nasAudio.duration || 0);
+  }
+
+  function nasSeekCommit(bar) {
+    if (!nasAudio) return;
+    nasAudio.currentTime = parseFloat(bar.value);
+    nasSeeking = false;
   }
 
   function nasPrev() {
