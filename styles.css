@@ -2,7 +2,7 @@
    RESET & BASE
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 14px; scrollbar-gutter: stable; /* Always reserve space for the vertical scrollbar, even on pages short enough not to need one. Without this, pages with more content (and therefore a real scrollbar) had a slightly narrower viewport than shorter pages, shifting centered content (logo, nav-list) by the scrollbar's width between pages. */  }
+html { font-size: 14px; scrollbar-gutter: stable; /* Always reserve space for the vertical scrollbar, even on pages short enough not to need one. Without this, pages with more content (and therefore a real scrollbar) had a slightly narrower viewport than shorter pages, shifting centered content (logo, nav-list) by the scrollbar's width between pages. */ background-color: #1a1a2e; /* el gutter reservado se pinta como extension del padding de ESTE elemento (html) -- confirmado con pruebas aisladas que ni .bg-fixed con width:100vw ni ningun otro contenido de la pagina puede pintar esa franja; solo el propio fondo de html la cubre. */ }
 body {
   min-height: 100vh; /* fallback for very old browsers */
   min-height: 100svh; /* fallback for browsers with JS disabled, or before background-manager.js's measurement runs */
