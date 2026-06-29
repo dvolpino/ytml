@@ -449,6 +449,6 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
  .SubGenre4 { font-size: 1.58rem; } /* "Psychedelic & Progressive" — CORREGIDO: la medicion anterior (1.9rem) se hizo antes de agregar .SubGenre4 a la lista de selectores compartida (linea 64), sin el padding real aplicado. Techo REAL con el archivo completo a 344px: 15.82px = 1.582rem en html=10px. No supera a .Genre (2.8rem) */
  .Artists2 { font-size: 1.62rem; } /* "Siouxsie & The Banshees" — techo REAL con Inter a 344px: 16.25px = 1.625rem en html=10px, redondeado hacia abajo a 1.62rem. No supera a .Artists (2.8rem) */
  .Artists3 { font-size: 2.21rem; } /* "The Housemartins" — techo REAL con Inter a 344px: 22.18px = 2.218rem en html=10px, redondeado hacia abajo a 2.21rem. No supera a .Artists (2.8rem) */
- .Genre2 { font-size: 2.3rem; } /* "House & Garage" — techo REAL con Inter a 280px (viewport mas angosto del Z Fold cerrado): 195.2px entra en 196px disponibles; 2.4rem (202.4px) ya no entra. Sin clamp porque el rango ≤360px es demasiado angosto para que vw aporte precision util. No supera a .Genre (2.8rem) */
+ .Genre2 { font-size: 2.4rem; } /* "House & Garage" — techo REAL con Inter a 280px (viewport mas angosto del Z Fold cerrado): 195.2px entra en 196px disponibles; 2.4rem (202.4px) ya no entra. Sin clamp porque el rango ≤360px es demasiado angosto para que vw aporte precision util. No supera a .Genre (2.8rem) */
 	
 } 
