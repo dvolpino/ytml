@@ -87,61 +87,61 @@ body {
  
 }
 
-.scene { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #00F5B4; margin: auto; text-shadow: 1px 1px 1px red,  2px 2px 1px white; } /* Mismo tamaño que .Genre — antes heredaba el font-size de .site-nav (mas chico), nunca tuvo el propio */
+.scene { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #00F5B4; margin: auto; text-shadow: 1px 1px 1px black,  2px 2px 1px black;} /* Mismo tamaño que .Genre — antes heredaba el font-size de .site-nav (mas chico), nunca tuvo el propio */
 .scene:hover {  color: #00F5B4; border-left-color: #00F5B4; background-color: rgba(168, 216, 255, 0.07); }
 .scene.active { border-left-color: #00F5B4;  background-color: rgba(255, 215, 0, 0.07); }
 
-.scene2 { color: #00F5B4; text-shadow: 1px 1px 1px red,  2px 2px 1px white;}
+.scene2 { color: #00F5B4; }
 .scene2:hover {  color: #00F5B4; border-left-color: #00F5B4; background-color: rgba(168, 216, 255, 0.07); }
 .scene2.active { border-left-color: #00F5B4;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Genre { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; text-shadow: 1px 1px 1px red,  2px 2px 1px white; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
+.Genre { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; text-shadow: 1px 1px 1px black,  2px 2px 1px black; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
 .Genre:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
 .Genre.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
 
-.SubGenre { color: #FFFFFF; text-shadow: 1px 1px 1px red,  2px 2px 1px orange;}
+.SubGenre { color: #FFFFFF; }
 .SubGenre:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
 
-.SubGenre2 { font-size: clamp(1.5rem, 18vw, 2rem); color: #FFFFFF; text-shadow: 1px 1px 1px red,  2px 2px 1px orange; } /* Tamaño general menor */
+.SubGenre2 { font-size: clamp(1.5rem, 18vw, 2rem); color: #FFFFFF; } /* Tamaño general menor */
 .SubGenre2:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre2.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
 
-.SubGenre3 { color: #FFFFFF; text-shadow: 1px 1px 1px red,  2px 2px 1px orange; }
+.SubGenre3 { color: #FFFFFF; }
 .SubGenre3:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre3.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
 
-.SubGenre4 { color: #FFFFFF; text-shadow: 1px 1px 1px red,  2px 2px 1px orange; } /* "Psychedelic & Progressive" — texto mas largo medido hasta ahora en este proyecto */
+.SubGenre4 { color: #FFFFFF; } /* "Psychedelic & Progressive" — texto mas largo medido hasta ahora en este proyecto */
 .SubGenre4:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre4.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Artists { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FF0000; text-shadow: 1px 1px 1px white,  2px 2px 1px orange; } /* Tamaño general menor — ver nota en .Genre */
+.Artists { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FF0000; } /* Tamaño general menor — ver nota en .Genre */
 .Artists:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
 .Artists.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Artists2 { color: #FF0000; text-shadow: 1px 1px 1px white,  2px 2px 1px orange;} /* "Siouxsie & The Banshees" / "The Psychedelic Furs" / "Echo & The Bunnymen" — texto largo, igual patron que SubGenre2/3/4 */
+.Artists2 { color: #FF0000; } /* "Siouxsie & The Banshees" / "The Psychedelic Furs" / "Echo & The Bunnymen" — texto largo, igual patron que SubGenre2/3/4 */
 .Artists2:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
 .Artists2.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Artists3 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FF0000; text-shadow: 1px 1px 1px white,  2px 2px 1px orange; } /* "The Housemartins" — mas corto que Artists2; en landscape/tablet/desktop el techo real de wrap (33.7-40px) ya supera el tamaño normal de .Artists, asi que no necesita override ahi, solo en ≤360px y portrait */
+.Artists3 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FF0000; } /* "The Housemartins" — mas corto que Artists2; en landscape/tablet/desktop el techo real de wrap (33.7-40px) ya supera el tamaño normal de .Artists, asi que no necesita override ahi, solo en ≤360px y portrait */
 .Artists3:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
 .Artists3.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Playlists { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #0691FF; text-shadow: 1px 1px 1px orange,  2px 2px 1px red; } /* Tamaño general menor — ver nota en .Genre */
+.Playlists { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #0691FF; } /* Tamaño general menor — ver nota en .Genre */
 .Playlists:hover {  color: #0691FF; border-left-color: #0691FF; background-color: rgba(168, 216, 255, 0.07); }
 .Playlists.active { border-left-color: #0691FF;  background-color: rgba(255, 215, 0, 0.07); }
 
-.Playlists2 { font-size: clamp(1.5rem, 18vw, 2rem); color: #0691FF; text-shadow: 1px 1px 1px orange,  2px 2px 1px red;}
+.Playlists2 { font-size: clamp(1.5rem, 18vw, 2rem); color: #0691FF; }
 .Playlists2:hover {  color: #0691FF; border-left-color: #0691FF; background-color: rgba(168, 216, 255, 0.07); }
 .Playlists2.active { border-left-color: #0691FF;  background-color: rgba(255, 215, 0, 0.07); }
 
 .pl-small { font-size: 0.6em; vertical-align: middle; } /* Small inline label (e.g. "PL") used inside a link's own text, like "Drum n'Bass PL". Sized relative to its parent link's current font-size using em, so it stays proportionally ~60% no matter which class/breakpoint it's nested inside. Replaces the old standalone .PL sibling element. */
 
-.Resto { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FA60FF; text-shadow: 1px 1px 1px white,  2px 2px 1px blue; } /* Tamaño general menor — ver nota en .Genre */
+.Resto { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FA60FF; } /* Tamaño general menor — ver nota en .Genre */
 .Resto:hover {  color: #FA60FF; border-left-color: #FA60FF; background-color: rgba(168, 216, 255, 0.07); }
 .Resto.active { border-left-color: #FA60FF;  background-color: rgba(255, 215, 0, 0.07); }
 
-.LiveSets { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #02FF00; text-shadow: 1px 1px 1px white,  2px 2px 1px blue;} /* Mismo tamaño que .Genre — ver nota en .scene */
+.LiveSets { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #02FF00; } /* Mismo tamaño que .Genre — ver nota en .scene */
 .LiveSets:hover {  color: #02FF00; border-left-color: #02FF00; background-color: rgba(168, 216, 255, 0.07); }
 
 .history{ font-family: Inter; color: #FFFCFC; font-size: 14px; /* margin-left: auto; margin-right: auto; position: relative;*/	} 
