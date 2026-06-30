@@ -170,4 +170,15 @@
   .yt-track-ch { font-size: 1rem; }
   .yt-track-duration { font-size: 1.5rem; }
 	
+  /* AJUSTES MANUALES — Shuffle, nombre de cancion, y tiempo transcurrido/duracion.
+     Sin estos overrides, los tres heredaban el tamaño pensado para
+     desktop/landscape (2.5rem boton shuffle / 2.2rem titulo / 2.2rem tiempo).
+     Como en portrait html font-size baja a 10px (ver @media orientation:portrait
+     en styles.css), esos mismos rem terminan dando un resultado chico en
+     relacion al resto de los elementos de esta pantalla (numero de track,
+     thumbnail, etc, que ya tienen su propio ajuste arriba). Subi/baja cada
+     numero por separado segun lo que necesites: */
+  .yt-controls button { font-size: 2.6rem; } /* Tamaño del icono de Shuffle (y el resto de los botones del control bar). El SVG escala con el font-size del boton (1em). */
+  #yt-track-title { font-size: 1.6rem; } /* Nombre de la cancion sonando ahora mismo */
+  #yt-time-display { font-size: 1.6rem; } /* "0:45 / 3:20" — tiempo transcurrido / duracion total */
 }
