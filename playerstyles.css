@@ -181,4 +181,14 @@
   .yt-controls button { font-size: 2.1rem; } /* Tamaño del icono de Shuffle (y el resto de los botones del control bar). El SVG escala con el font-size del boton (1em). */
   #yt-track-title { font-size: 1.5rem; } /* Nombre de la cancion sonando ahora mismo */
   #yt-time-display { font-size: 1.5rem; } /* "0:45 / 3:20" — tiempo transcurrido / duracion total */
+
+  /* AJUSTES MANUALES — espaciado de la barra de controles (Shuffle + resto
+     de botones). El padding-left de .yt-controls es lo que separa al primer
+     boton (Shuffle) del borde izquierdo de la pantalla -- bajalo para que
+     Shuffle quede mas pegado al borde. El gap es la distancia ENTRE cada
+     boton entre si (Shuffle, Prev, Play/Pause, Next) -- bajalo para que
+     esten mas juntos unos de otros. Ambos son independientes del padding
+     del lado derecho (el .yt-track-info se encarga de ese espacio el solo,
+     vía su propio margin-left). */
+  .yt-controls { padding-left: 0.3rem; gap: 4px; } /* padding-left era 1rem (heredado del shorthand "padding: 0.6rem 1rem" de la regla base) — bajalo aun mas para acercar Shuffle al borde. gap era 8px (heredado de la regla base) — bajalo aun mas para juntar los botones entre si */
 }
