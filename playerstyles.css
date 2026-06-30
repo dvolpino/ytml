@@ -147,6 +147,8 @@
   .yt-playlist-header { padding: 0.4rem 0.8rem; }
   #yt-playlist-name { font-size: 1.1rem; }
   #yt-playlist-count { font-size: 0.95rem; }
+	.yt-controls { padding-left: 0.3rem; gap: 4px; } /* reduce el espaciado de la barra de controles -Shuffle - prev/next - play/pause */
+  #nas-prev, #nas-next { display: none !important; } /* Elimina botones de prev/next en modo NAS/*
 }
 /* PORTRAIT PHONES (matches styles.css's @media orientation:portrait + max-width:600px) */
 @media (orientation: portrait) and (max-width: 600px) {
@@ -192,8 +194,7 @@
      vía su propio margin-left). */
   .yt-controls { padding-left: 0.3rem; gap: 4px; } /* padding-left era 1rem (heredado del shorthand "padding: 0.6rem 1rem" de la regla base) — bajalo aun mas para acercar Shuffle al borde. gap era 8px (heredado de la regla base) — bajalo aun mas para juntar los botones entre si */
 
-  /* Oculta los botones de Previous/Next (solo existen en modo NAS — en modo
-     YouTube no hay equivalentes) dejando unicamente Shuffle y Play/Pause
+  /* Oculta los botones de Previous/Next (solo existen en modo NAS)  dejando unicamente Shuffle y Play/Pause
      visibles en portrait. display:none !important porque el JS del modo
      NAS les pone display:inline-flex directo en el estilo inline del
      elemento (ver MPlayer.html), que sin el !important le ganaria a esta 
