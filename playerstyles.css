@@ -196,7 +196,7 @@
      YouTube no hay equivalentes) dejando unicamente Shuffle y Play/Pause
      visibles en portrait. display:none !important porque el JS del modo
      NAS les pone display:inline-flex directo en el estilo inline del
-     elemento (ver MPlayer.html), que sin el !important le ganaria a esta
+     elemento (ver MPlayer.html), que sin el !important le ganaria a esta 
      regla por especificidad de estilo inline. */
   #nas-prev, #nas-next { display: none !important; }
 }
