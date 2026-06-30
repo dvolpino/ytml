@@ -872,13 +872,24 @@
        cambia el texto — cubre todos los modos (NAS, YouTube, cambios de
        nombre de playlist) sin tocar cada lugar donde se setea el texto */
     var marqueeObserver = new MutationObserver(function(mutations) {
-      mutations.forEach(function(m) { checkEl(m.target); });
+      mutations.forEach(function(m) {
+        if (m.target.id === 'yt-time-display') {
+          /* El tiempo transcurrido/total aparecio o cambio — eso reduce
+             el espacio disponible para #yt-track-title en el flex container,
+             asi que re-chequeamos si el titulo ahora desborida */
+          checkEl(document.getElementById('yt-track-title'));
+        } else {
+          checkEl(m.target);
+        }
+      });
     });
     window.addEventListener('DOMContentLoaded', function() {
       var title = document.getElementById('yt-track-title');
       var name  = document.getElementById('yt-playlist-name');
+      var time  = document.getElementById('yt-time-display');
       if (title) marqueeObserver.observe(title, { childList: true, characterData: true, subtree: true });
       if (name)  marqueeObserver.observe(name,  { childList: true, characterData: true, subtree: true });
+      if (time)  marqueeObserver.observe(time,  { childList: true, characterData: true, subtree: true });
       checkAll();
     });
   })();

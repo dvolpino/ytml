@@ -66,8 +66,8 @@
    (texto desaparecido) antes de reiniciar. Ajusta la duracion en cada
    regla para controlar la velocidad: mas corto = mas rapido. */
 @keyframes yt-marquee {
-  0%,  20% { transform: translateX(0%);    } /* pausa al inicio — texto visible */
-  80%, 100% { transform: translateX(-100%); } /* pausa al final — antes de reiniciar */
+  0%,  20% { transform: translateX(0%);    } /* pausa al inicio — texto completamente visible antes de empezar a scrollear */
+  100%     { transform: translateX(-100%); } /* fin del scroll — el ciclo salta inmediatamente al inicio sin pausa al final */
 }
 /* Marquee activo solo cuando el texto realmente desborda su contenedor.
    La clase .yt-marquee-active la agrega/quita JS (ver MPlayer.html)
