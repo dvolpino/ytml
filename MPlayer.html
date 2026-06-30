@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="playerstyles.css" rel="stylesheet" type="text/css">
 <link href="styles.css" rel="stylesheet" type="text/css">	
+<link rel="manifest" href="manifest.json" />
 <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
-<link rel="manifest" href="manifest.json" />  <!-- PWA -->
 <style>
   .yt-track-row.unavailable .yt-track-num,
   .yt-track-row.unavailable .yt-track-name,
@@ -27,8 +27,6 @@
   .yt-track-row.unavailable::before {
     background: #888 !important;
   }
-	
-
 </style>
 </head>
 <body>
@@ -849,6 +847,41 @@
      up front instead of waiting for the user to resize the window. */
   setTimeout(ytApplyGridSizing, 100);
   setTimeout(ytApplyGridSizing, 500);
+
+  /* Marquee overflow detection — agrega .yt-marquee-active a #yt-track-title
+     y #yt-playlist-name SOLO cuando su texto es mas ancho que su contenedor.
+     La clase activa la animacion de scroll definida en playerstyles.css.
+     Usa MutationObserver para detectar automaticamente cada vez que cambia
+     el textContent de cualquiera de los dos elementos, sin necesidad de
+     tocar ningun otro codigo existente que setee esos textos. */
+  (function initMarqueeCheck() {
+    function checkEl(el) {
+      if (!el) return;
+      var overflows = el.id === 'yt-track-title'
+        ? el.scrollWidth > el.parentElement.clientWidth  /* texto vs .yt-track-info (overflow:hidden) */
+        : el.scrollWidth > el.offsetWidth;               /* texto vs espacio flex disponible en el header */
+      el.classList.toggle('yt-marquee-active', overflows);
+    }
+    function checkAll() {
+      checkEl(document.getElementById('yt-track-title'));
+      checkEl(document.getElementById('yt-playlist-name'));
+    }
+    window.addEventListener('resize', checkAll);
+    window.addEventListener('orientationchange', function() { setTimeout(checkAll, 300); });
+    /* MutationObserver: dispara checkEl automaticamente cada vez que
+       cambia el texto — cubre todos los modos (NAS, YouTube, cambios de
+       nombre de playlist) sin tocar cada lugar donde se setea el texto */
+    var marqueeObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) { checkEl(m.target); });
+    });
+    window.addEventListener('DOMContentLoaded', function() {
+      var title = document.getElementById('yt-track-title');
+      var name  = document.getElementById('yt-playlist-name');
+      if (title) marqueeObserver.observe(title, { childList: true, characterData: true, subtree: true });
+      if (name)  marqueeObserver.observe(name,  { childList: true, characterData: true, subtree: true });
+      checkAll();
+    });
+  })();
 </script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <script src="background-manager.js"></script>
