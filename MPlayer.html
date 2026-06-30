@@ -360,7 +360,7 @@
     var progressBar = document.getElementById('nas-progress');
     if (progressBar) { progressBar.value = 0; progressBar.max = 0; }
     document.getElementById('yt-track-title').textContent =
-      (track.artist ? track.artist + ' — ' : '') + (track.title || '');
+      (track.artist ? track.artist + ' | ' : '') + (track.title || '');
     ytHighlightActive();
   }
   function nasLoadDurations() {
