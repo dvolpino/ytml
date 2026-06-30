@@ -25,12 +25,12 @@
   #yt-shuffle { background: transparent !important; color: #ddd; }
   #yt-shuffle:hover { background: transparent !important; }
   .yt-track-info { flex: 1; overflow: hidden; margin-left: 4px; font-size: 2.2rem; font-weight: 600; }
-  #yt-track-title { font-size: 2.2rem; color: #bbb; font-weight: 600; white-space: nowrap; overflow: visible; /* el padre .yt-track-info ya tiene overflow:hidden — el clipeo lo hace el padre, no este elemento */ text-overflow: clip; /* desactiva el ellipsis — el marquee muestra el texto completo scrolleando */ display: inline-block; /* requerido: transform/animation solo funciona en elementos block o inline-block, no en inline puro */ animation: yt-marquee 12s ease-in-out infinite; /* ajustá la duracion para controlar la velocidad: mas corto = mas rapido */ }
+  #yt-track-title { font-size: 2.2rem; color: #bbb; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;  }
   #yt-time-display { font-size: 2.2rem; color: #bbb; white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums;  }
   .yt-playlist { border-top: 1px solid rgba(0,0,0,0.07); background: rgba(0,0,0,0.66); border-color: rgba(255,255,255,0.07);}
   .yt-playlist-header { border-color: rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.07); font-family: inter;
-     font-weight: 600; letter-spacing: 0.05em; overflow: hidden; /* clipea la animacion de marquee de #yt-playlist-name — sin esto el texto scrolleante se veria fuera del header */  }
-  #yt-playlist-name { font-size: 2.4rem; color: #aaa; flex: 1; /* ocupa el espacio disponible dejando sitio para #yt-playlist-count */ min-width: 0; /* permite que el item flex se achique por debajo del ancho de su contenido (requerido para que el overflow/clip funcione bien) */ white-space: nowrap; display: inline-block; /* requerido para transform/animation */ animation: yt-marquee 12s ease-in-out infinite; /* misma duracion que #yt-track-title — ajustalos juntos o por separado */ }  /* NOMBRE DEL PLAYLIST no especificaba font-size ni font-family: inter; */
+     font-weight: 600; letter-spacing: 0.05em;   }
+  #yt-playlist-name { font-size: 2.4rem; color: #aaa; }  /* NOMBRE DEL PLAYLIST no especificaba font-size ni font-family: inter; */
   #yt-playlist-count { font-size: 2.2rem; color: #aaa; }  /* CANTIDAD DE CANCIONES Y DURACION DEL PLAYLIST font-size: 0.72rem // agregué color: #aaa;*/
   .yt-playlist-list { max-height: 750px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;  } /* largo del playlist */
   .yt-playlist-list::-webkit-scrollbar { width: 4px; }
@@ -57,18 +57,6 @@
     padding-left: 6px;
   }
   .yt-track-ch { font-size: 1.9rem; color:rgba(223,223,223,1.00); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px;  }
-/* =============================================
-   MARQUEE (SCROLLING TEXT) ANIMATION
-   =============================================
-   Aplicada a #yt-track-title y #yt-playlist-name para que el texto
-   scrollee horizontalmente cuando no entra en su contenedor.
-   La animacion pausa 20% al inicio (texto visible) y 20% al final
-   (texto desaparecido) antes de reiniciar. Ajusta la duracion en cada
-   regla para controlar la velocidad: mas corto = mas rapido. */
-@keyframes yt-marquee {
-  0%,  20% { transform: translateX(0%);    } /* pausa al inicio — texto visible */
-  80%, 100% { transform: translateX(-100%); } /* pausa al final — antes de reiniciar */
-}
 /* =============================================
    RESPONSIVE BREAKPOINTS — aligned with styles.css
    ============================================= */
@@ -195,6 +183,7 @@
   .yt-controls button { font-size: 2.1rem; } /* Tamaño del icono de Shuffle (y el resto de los botones del control bar). El SVG escala con el font-size del boton (1em). */
   #yt-track-title { font-size: 1.5rem; } /* Nombre de la cancion sonando ahora mismo */
   #yt-time-display { font-size: 1.5rem; } /* "0:45 / 3:20" — tiempo transcurrido / duracion total */
+
   /* AJUSTES MANUALES — espaciado de la barra de controles (Shuffle + resto
      de botones). El padding-left de .yt-controls es lo que separa al primer
      boton (Shuffle) del borde izquierdo de la pantalla -- bajalo para que
@@ -204,6 +193,7 @@
      del lado derecho (el .yt-track-info se encarga de ese espacio el solo,
      vía su propio margin-left). */
   .yt-controls { padding-left: 0.3rem; gap: 4px; } /* padding-left era 1rem (heredado del shorthand "padding: 0.6rem 1rem" de la regla base) — bajalo aun mas para acercar Shuffle al borde. gap era 8px (heredado de la regla base) — bajalo aun mas para juntar los botones entre si */
+
   /* Oculta los botones de Previous/Next (solo existen en modo NAS)  dejando unicamente Shuffle y Play/Pause
      visibles en portrait. display:none !important porque el JS del modo
      NAS les pone display:inline-flex directo en el estilo inline del
