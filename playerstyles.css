@@ -12,7 +12,7 @@
   .site-header {
     margin-bottom: 0 !important;
   }
-  body { font-family: inter; padding: 0 1rem 1.5rem 1rem; }
+  body { font-family: inter; padding: 0 1rem 1.5rem 1rem; }  /* El padding afecta la posicion del logo y todo el resto Se puede probar a eliminar ya que como está el logo sube un poco respecto al resto de las páginas */
   .yt-player-wrap { border-color: rgba(255,255,255,0.1); width: 100%; max-width: 970px; margin: 0 auto; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.1);   } 
   .yt-video-wrapper { position: relative; } 
   #yt-player { width: 100%; aspect-ratio: 16 / 16; background: rgba(0,0,0,0.00); display: block;  } 
@@ -30,9 +30,9 @@
   .yt-playlist { border-top: 1px solid rgba(0,0,0,0.07); background: rgba(0,0,0,0.66); border-color: rgba(255,255,255,0.07);}
   .yt-playlist-header { border-color: rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.07); font-family: inter;
      font-weight: 600; letter-spacing: 0.05em;   }
-  #yt-playlist-name { font-size: 2.4rem; color: #aaa; }
-  #yt-playlist-count { font-size: 2.2rem; color: #aaa; }
-  .yt-playlist-list { max-height: 750px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;  }
+  #yt-playlist-name { font-size: 2.4rem; color: #aaa; }  /* NOMBRE DEL PLAYLIST no especificaba font-size ni font-family: inter; */
+  #yt-playlist-count { font-size: 2.2rem; color: #aaa; }  /* CANTIDAD DE CANCIONES Y DURACION DEL PLAYLIST font-size: 0.72rem // agregué color: #aaa;*/
+  .yt-playlist-list { max-height: 750px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;  } /* largo del playlist */
   .yt-playlist-list::-webkit-scrollbar { width: 4px; }
   .yt-playlist-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
   .yt-playlist-loading { padding: 1.5rem; text-align: center; font-size: 1rem;  color: #555;;  }
@@ -41,7 +41,7 @@
   .yt-track-row:hover { background: rgba(255,255,255,0.04); }
   .yt-track-row.active { background: rgba(255,0,0,0.2); }
   .yt-track-row.active::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #ff0000; border-radius: 0 2px 2px 0;  }
-  .yt-track-num { font-size: 1.9rem; color:rgba(255,255,255,1.00) ;  width: 18px; text-align: right; flex-shrink: 0; writing-mode: vertical-lr; text-orientation: upright; }
+  .yt-track-num { font-size: 1.9rem; color:rgba(255,255,255,1.00) ;  width: 18px; text-align: right; flex-shrink: 0; writing-mode: vertical-lr; text-orientation: upright; } /* font-size: 0.7rem  agregue: writing-mode: vertical-lr; y text-orientation: upright; para que el track num lo ponga vertical en pantallas angostas (verticales)*/
   .yt-track-row.active .yt-track-num { color: #ff0000; }
   .yt-track-thumb { width: 110px; height: 110px; object-fit: cover; border-radius: 3px; background: #eee; flex-shrink: 0;  }  
   .yt-track-meta { flex: 1; min-width: 0; }
@@ -61,7 +61,7 @@
    RESPONSIVE BREAKPOINTS — aligned with styles.css
    ============================================= */
 @media (min-width: 1200px) {
- .yt-playlist-list { max-height: 300px; }
+ .yt-playlist-list { max-height: 300px; } /* largo del playlist */
 }
 /* TABLETS (matches styles.css's @media max-width:1199px) */
 @media (max-width: 1199px) {
@@ -73,7 +73,7 @@
 	.yt-playlist-header { font-size: 1rem; }
 	#yt-playlist-name { font-size: 1rem;  }
     #yt-playlist-count {  font-size: 1rem; }
-	.yt-playlist-list { max-height: 290px; }
+	.yt-playlist-list { max-height: 290px; } /* largo del playlist */
 	.yt-track-name { font-size: 1rem; }
 	.yt-track-ch { font-size: 0.9rem; }
 	.yt-track-info { font-size: 1.8rem; }
@@ -110,7 +110,7 @@
 	
    /* Playlist settings */
   .yt-playlist { grid-area: playlist; border-top: none; border-left: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; height: var(--avail-h); overflow: hidden;  }
-  .yt-playlist-list { flex: 1; max-height: none; overflow-y: auto;  }
+  .yt-playlist-list { flex: 1; max-height: none; overflow-y: auto;  }  /* largo del playlist */
 	
   #yt-playlist-name { font-size: 1.7rem; }
   #yt-playlist-count { font-size: 1.15rem; }
@@ -137,7 +137,7 @@
   .yt-controls { grid-area: controls; width: var(--video-h);  }
   .yt-playlist { grid-area: playlist; border-top: none; border-left: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; height: var(--avail-h); overflow: hidden;  }
   .yt-playlist-list { flex: 1; max-height: none; overflow-y: auto;  }
-  .yt-track-num { writing-mode: horizontal-tb; }
+  .yt-track-num { writing-mode: horizontal-tb; } /* agregue: horizontal-tb; y text-orientation: upright; para que ponga los numeros normalmente en landscape */
   .yt-track-row { padding: 0.4rem 0.9rem; gap: 9px; }
   .yt-track-thumb { width: 58px; height: 58px; }
   .yt-track-name { font-size: 1.15rem; }
