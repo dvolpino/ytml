@@ -9,6 +9,23 @@ body {
   min-height: var(--real-vh, 100svh); /* set by background-manager.js via window.innerHeight — the only source that's proven reliable across regular browser tabs AND the installed PWA (standalone mode), where pure CSS vh/dvh/svh all measured incorrectly */
   background-color: #1a1a2e; color: #e8e8e8; font-family: "Inter", "Inter VariableFont opsz", 'Segoe UI', Arial, sans-serif;
   display: flex; justify-content: center; }
+
+/* The actual background image lives on a separate element instead of on
+   body directly — injected by background-manager.js on every page. This
+   avoids two separate bugs we hit with background-image directly on body:
+   1) background-attachment:fixed has long-standing bugs on mobile browsers
+      (mainly iOS Safari, some Android Chrome) causing scroll/overscroll
+      glitches.
+   2) Switching to background-attachment:scroll to dodge that bug introduced
+      a NEW one: background-size:cover then sizes against the full
+      DOCUMENT height (including content below the fold), not just the
+      viewport — so on pages where the menu is taller than the screen, the
+      image visibly grows/zooms to "cover" that extra height.
+   A position:fixed div sidesteps both: percentage width/height on a
+   position:fixed element always resolves against the viewport itself,
+   never the document's actual content height, regardless of how tall the
+   page's content is — and position:fixed doesn't carry any of
+   background-attachment:fixed's mobile-browser baggage. */
 .bg-fixed {
   position: fixed;
   top: 0; left: 0;
@@ -19,10 +36,12 @@ body {
   z-index: -1;
   pointer-events: none; /* never intercepts clicks/taps meant for real content */
 }
+
 /* =============================================
    PAGE WRAPPER  – centers all content
    ============================================= */
 .page-wrapper { width: 100%; max-width: 960px; padding: 1% 24px 60px; /* top, left/right, bottom */ display: flex; flex-direction: column; align-items: center; }
+
 /* =============================================
    HEADER / LOGO
    ============================================= */
@@ -39,6 +58,7 @@ body {
   transition: filter 0.2s ease; }
 .logo-img:hover {
   filter: drop-shadow(0 4px 24px rgba(255,255,255,0.18));  }
+
 /* =============================================
    NAVIGATION
    ============================================= */
@@ -48,6 +68,7 @@ body {
 .nav-link { text-decoration: none; color: #ffffff; font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 500; letter-spacing: 0.03em; padding: 6px 14px; border-left: 3px solid transparent; border-radius: 2px; transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;  }
 .nav-link:hover { color: #a8d8ff; border-left-color: #a8d8ff; background-color: rgba(168, 216, 255, 0.07); }
 .nav-link.active { color: #FFD700; border-left-color: #FFD700; background-color: rgba(255, 215, 0, 0.07); }  */
+
 /* =============================================
    SHARED BASE FOR NAV-LINK "PILL" CLASSES
    ============================================= 
@@ -65,77 +86,102 @@ body {
   transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
  
 }
+
 .scene { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #00F5B4; margin: auto; } /* Mismo tamaño que .Genre — antes heredaba el font-size de .site-nav (mas chico), nunca tuvo el propio */
 .scene:hover {  color: #00F5B4; border-left-color: #00F5B4; background-color: rgba(168, 216, 255, 0.07); }
 .scene.active { border-left-color: #00F5B4;  background-color: rgba(255, 215, 0, 0.07); }
+
 .scene2 { color: #00F5B4; }
 .scene2:hover {  color: #00F5B4; border-left-color: #00F5B4; background-color: rgba(168, 216, 255, 0.07); }
 .scene2.active { border-left-color: #00F5B4;  background-color: rgba(255, 215, 0, 0.07); }
+
 .Genre { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; } /* Tamaño general menor — antes no tenia ningun font-size, heredaba el default del navegador sin control responsivo. Maximo 2.8rem iguala el tamaño visual original; ajustado y medido con render real (Opcion D) */
 .Genre:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
 .Genre.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
+
 .Genre2 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FFDD00; font-weight: 400; } /* Igual que .Genre — "House & Garage" entra sin wrap en todos los breakpoints salvo ≤360px, donde se ajusta mas abajo */
 .Genre2:hover {  color: #FFDD00; border-left-color: #FFDD00; background-color: rgba(168, 216, 255, 0.07); }
 .Genre2.active { border-left-color: #FFD700;  background-color: rgba(255, 215, 0, 0.07); }
+
 .SubGenre { color: #FFFFFF; }
 .SubGenre:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
+
 .SubGenre2 { font-size: clamp(1.5rem, 18vw, 2rem); color: #FFFFFF; } /* Tamaño general menor */
 .SubGenre2:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre2.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
+
 .SubGenre3 { color: #FFFFFF; }
 .SubGenre3:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre3.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
+
 .SubGenre4 { color: #FFFFFF; } /* "Psychedelic & Progressive" — texto mas largo medido hasta ahora en este proyecto */
 .SubGenre4:hover {  color: #FFFFFF; border-left-color: #FFFFFF; background-color: rgba(168, 216, 255, 0.07); }
 .SubGenre4.active { border-left-color: #FFFFFF;  background-color: rgba(255, 215, 0, 0.07); }
+
 .Artists { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FF0000; } /* Tamaño general menor — ver nota en .Genre */
 .Artists:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
 .Artists.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
+
 .Artists2 { color: #FF0000; } /* "Siouxsie & The Banshees" / "The Psychedelic Furs" / "Echo & The Bunnymen" — texto largo, igual patron que SubGenre2/3/4 */
 .Artists2:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
 .Artists2.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
+
 .Artists3 { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FF0000; } /* "The Housemartins" — mas corto que Artists2; en landscape/tablet/desktop el techo real de wrap (33.7-40px) ya supera el tamaño normal de .Artists, asi que no necesita override ahi, solo en ≤360px y portrait */
 .Artists3:hover {  color: #FF0000; border-left-color: #FF0000; background-color: rgba(168, 216, 255, 0.07); }
 .Artists3.active { border-left-color: #FF0000;  background-color: rgba(255, 215, 0, 0.07); }
+
 .Playlists { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #0691FF; } /* Tamaño general menor — ver nota en .Genre */
 .Playlists:hover {  color: #0691FF; border-left-color: #0691FF; background-color: rgba(168, 216, 255, 0.07); }
 .Playlists.active { border-left-color: #0691FF;  background-color: rgba(255, 215, 0, 0.07); }
+
 .Playlists2 { font-size: clamp(1.5rem, 18vw, 2rem); color: #0691FF; }
 .Playlists2:hover {  color: #0691FF; border-left-color: #0691FF; background-color: rgba(168, 216, 255, 0.07); }
 .Playlists2.active { border-left-color: #0691FF;  background-color: rgba(255, 215, 0, 0.07); }
+
 .pl-small { font-size: 0.6em; vertical-align: middle; } /* Small inline label (e.g. "PL") used inside a link's own text, like "Drum n'Bass PL". Sized relative to its parent link's current font-size using em, so it stays proportionally ~60% no matter which class/breakpoint it's nested inside. Replaces the old standalone .PL sibling element. */
+
 .Resto { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #FA60FF; } /* Tamaño general menor — ver nota en .Genre */
 .Resto:hover {  color: #FA60FF; border-left-color: #FA60FF; background-color: rgba(168, 216, 255, 0.07); }
 .Resto.active { border-left-color: #FA60FF;  background-color: rgba(255, 215, 0, 0.07); }
+
 .LiveSets { font-size: clamp(2.2rem, 18vw, 2.8rem); color: #02FF00; } /* Mismo tamaño que .Genre — ver nota en .scene */
 .LiveSets:hover {  color: #02FF00; border-left-color: #02FF00; background-color: rgba(168, 216, 255, 0.07); }
+
 .history{ font-family: Inter; color: #FFFCFC; font-size: 14px; /* margin-left: auto; margin-right: auto; position: relative;*/	} 
 .linkshisto { font-family: Inter; color: #0691FF; padding-left: 0; padding-right: 0; } /* sin font-size propio — hereda el de .history (clamp(0.9rem,2vw,1.1rem)) para matchear siempre el tamaño del texto que lo rodea, en vez de quedar fijo en 14px */
 .aka{ display: block; text-align: left; width: 100%; padding: 0 14px; font-family: Inter; color: #FFFCFC; font: bold; font-size: 20px;		} /* padding matches .Genre/.SubGenre's 14px left padding as a base fallback; overridden to 18px in each breakpoint below since AKA's font is smaller and needs slightly more padding to look visually balanced */
+
 /* No longer needs align-self:stretch now that .nav-list has a fixed width —
    the <li> sits at the container's left edge like its siblings by default,
    and .aka's width:100% lets it fill that same fixed width for wrapping. */
 .photo1 {width: 50%; float:left; margin-right: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
 .photo2 {width: 50%; float:right; margin-left: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
 .photo3 {width: 100%; float:left; } /* Fotos que quiero ocupen el 100% del ancho del celular — sin margin-right: cualquier margen sumado a un ancho de 100% siempre desborda el contenedor por exactamente ese margen, causando una barra de scroll horizontal dentro de .history (lo confirmamos midiendo: 14px de overflow = exactamente el 1rem de margen que tenia antes) */
+
 .minidiv { height: 110px; display: flex; } 
+
 .LiveSetsM { color:#02FF00;	font-size: 30px;  }
 .LiveSetsM:hover {  color: #02FF00; border-left-color: #02FF00; background-color: rgba(168, 216, 255, 0.07); }
+
 .PlaylistsM { color:#0691FF; font-size: 30px;  }
 .PlaylistsM:hover {  color: #0691FF; border-left-color: #0691FF; background-color: rgba(168, 216, 255, 0.07); }
 .PlaylistsM.active { border-left-color: #0691FF;  background-color: rgba(255, 215, 0, 0.07); }
+
 /* =============================================
    ARMADO DEL CONTADOR POR DECADA
    ============================================= */
+
 .decada{ display: block;   }
 .decada2{ float: left;   }
+
 /* Album covers carousel: capped width, doesn't grow */
 #image-carousel.splide {
   flex: 0 1 auto;
   max-width: 300px;
   min-width: 0;
 }
+
 /* =============================================
    DECADE TAPE-COUNTER ASSEMBLY (rebuilt with CSS Grid) cambiar tamaños de visualizacion en RESPONSIVE BREAKPOINTS
    ============================================= 
@@ -149,6 +195,7 @@ body {
    .tape-counter-outer reserving the correctly-scaled box size so
    surrounding layout doesn't overlap (the classic transform:scale
    layout-space problem). */
+
 .tape-counter-outer {
   /* Default (no media query) = native size, no scaling */
   width: 686px;
@@ -156,6 +203,7 @@ body {
   overflow: hidden;
   margin-top: 0.86rem; /* Extra space between "Krautrock" link and the tape counter slider, on top of .nav-list's gap:10px. Uses rem (not px) so it scales proportionally with each breakpoint's root font-size (14px desktop -> 12px tablet -> 10px phone) instead of staying a fixed pixel amount. 0.86rem = 12px at the default 14px root. */
 }
+
 .tape-counter-wrap {
   width: 686px;
   height: 383px;
@@ -163,17 +211,20 @@ body {
   grid-template-columns: 82px 1fr 251px;
   grid-template-rows: 66px 1fr 66px;
 }
+
 .tc-top    { grid-column: 1 / 4; grid-row: 1; }
 .tc-left   { grid-column: 1; grid-row: 2; }
 .tc-window { grid-column: 2; grid-row: 2; overflow: hidden; }
 .tc-right  { grid-column: 3; grid-row: 2; }
 .tc-bottom { grid-column: 1 / 4; grid-row: 3; }
+
 .tape-counter-wrap img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: fill;
 }
+
 .tc-window .splide,
 .tc-window .splide__track,
 .tc-window .splide__list,
@@ -183,6 +234,7 @@ body {
   height: 100% !important;
   max-width: none;
 }
+
 /* Images inside slides scale to fit their container — no fixed JS width now.
    #counter is excluded: its images use float-based positioning to align
    with the surrounding frame border images, handled separately below. */
@@ -191,6 +243,7 @@ body {
   height: auto;
   display: block;
 }
+
 /* =============================================
    MAIN CONTENT AREA GENERAL SETTINGS
    ============================================= */
@@ -213,12 +266,14 @@ body {
 /* =============================================
    RESPONSIVE BREAKPOINTS
    ============================================= */
+
 /* WIDE SCREENS  */
 @media (min-width: 1200px) {
  .history { width: 70vw; max-width: 1400px; position: relative; left: 50%; transform: translateX(-50%); } /* << AJUSTÁ el 70vw para mas/menos ancho. Se "escapa" del max-width:960px de .page-wrapper (que sigue igual para todo lo demas) usando vw, que mide el viewport directamente en vez de heredar el limite del contenedor padre. max-width:1400px evita que se ponga demasiado ancho en monitores ultra anchos. Centrado con left:50%+transform en vez de margin:auto -- margin:auto NO reparte el espacio de forma simetrica cuando el elemento es mas ancho que su contenedor (lo confirmamos midiendo: todo el sobrante caia del lado derecho), mientras que left:50%+transform:translateX(-50%) centra correctamente sin importar cuanto mas ancho sea .history que su padre. */
  .aka { padding: 0 18px; } /* SELECCIONADOR DE PADDING DEL TEXTO AKA */
  .logo-img { width: 600px;  } /* give the logo a bit more breathing room */
  #image-carousel.splide { max-width: 400px;  }  /* AFECTA EL TAMAÑO DEL CAROUSEL DE ALBUMES SOLAMENTE*/
+
 .tape-counter-outer {     /* SELECCIONADOR DE PLAYLIST X DECADA */ /* scale = desired width / 686 */ 
     width: 280px;    /* Desired width */
     height: 156px;   /* 383 x scale */
@@ -236,6 +291,8 @@ body {
 .SubGenre4 { font-size: 2.09rem; } /* "Psychedelic & Progressive" — CORREGIDO: la medicion anterior (2.4rem) se hizo antes de agregar .SubGenre4 a la lista de selectores compartida (linea 64), asi que no tenia el padding real aplicado y media contra una caja mas ancha de la real. Techo REAL con el archivo completo: 29.38px = 2.099rem en html=14px. Redondeado a 2.09rem (no 2.1rem, que da 29.4px y supera el techo por 0.02px). No supera a .Genre (2.8rem) */
 .Artists2 { font-size: 2.15rem; } /* "Siouxsie & The Banshees" (el mas largo de los 3) — techo REAL con Inter: 30.14px = 2.153rem en html=14px, redondeado hacia abajo a 2.15rem. No supera a .Artists (2.8rem) */
 } /* <-- closes @media (min-width: 1200px), was missing */
+
+
 /* TABLETS  */ 
 @media (max-width: 1199px) {
 	
@@ -248,6 +305,8 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
 .SubGenre2 { font-size: 2.579rem; } /* "Atmospheric Jungle" — sin margen de prudencia (techo exacto medido con Inter: 30.95px = 2.579rem en html=12px; .nav-list flat 350px en todo este rango, mismo valor en 601-1199px). No supera .Genre (2.8rem en este breakpoint). Nota: probado y confirmado en Chrome DevTools, no en Safari real, asi que no hace falta margen extra por diferencia de motor */
 .SubGenre4 { font-size: 2rem; } /* "Psychedelic & Progressive" — CORREGIDO: ver nota en la version de desktop sobre la medicion original incorrecta. Techo REAL con el archivo completo: 24.08px = 2.007rem en html=12px. No supera .Genre (2.8rem) */
 .Artists2 { font-size: 2.06rem; } /* "Siouxsie & The Banshees" — techo REAL con Inter: 24.73px = 2.061rem en html=12px, redondeado hacia abajo a 2.06rem. No supera a .Artists (2.8rem) */
+
+
 .tape-counter-outer {     /* SELECCIONADOR DE PLAYLIST X DECADA */ /* scale = desired width / 686 */ 
     width: 280px;    /* Desired width */
     height: 156px;   /* 383 x scale */
@@ -262,6 +321,7 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .LiveSetsM { font-size: 18px;  }
   .PlaylistsM { font-size: 18px;  }
 }
+
 /* Landscape phones & small tablets */
 @media (max-width: 600px) {
   .aka { padding: 0 18px; } /* SELECCIONADOR DE PADDING DEL TEXTO AKA */
@@ -270,7 +330,9 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .site-header { margin-bottom: 28px;  }
   /* .site-nav { margin-bottom: 36px;  } -- MOVIDO a @media (orientation: landscape) and (max-width: 960px) el 24/06/2026, portrait siempre lo sobreescribia con un valor distinto */
   .nav-link { font-size: 1rem; padding: 5px 12px;  }
+
   /* .nav-list { width: min(420px, 92vw); } -- MOVIDO a @media (orientation: landscape) and (max-width: 960px) el 24/06/2026, portrait siempre lo sobreescribia con un valor distinto */
+
   /* .tape-counter-outer {
     width: 160px;
     height: 89px;
@@ -281,11 +343,14 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
     grid-template-columns: 19px 1fr 59px;
     grid-template-rows: 15px 1fr 15px;
   } -- MOVIDO junto con .tape-counter-outer */
+
   /* #image-carousel.splide { max-width: 400px;  } -- MOVIDO a @media (orientation: landscape) and (max-width: 960px) el 24/06/2026, portrait siempre lo sobreescribia con un valor distinto */
+
   /* .minidiv { height: 45px; display: flex; } -- MOVIDO a @media (orientation: landscape) and (max-width: 960px) el 24/06/2026 */
   /* .LiveSetsM { font-size: 16px;  } -- MOVIDO junto con .minidiv */
   /* .PlaylistsM { font-size: 16px;  } -- MOVIDO junto con .minidiv */
 }
+
 /* Landscape phones (explicit) — orientation-specific overrides only.
    Everything in here only ever took effect for landscape anyway: portrait
    always overrides each of these with its own (different) value below,
@@ -304,10 +369,12 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
      landscape width is ~1024px, iPad mini). */
   .logo-img { width: min(240px, 72vw);  }
   .site-nav { margin-bottom: 36px;  }
+
   /* Same fixed-width approach as desktop, scaled to fit phone screens
      without overflowing — keeps logo+links aligned consistently across
      pages on phones too. */
   .nav-list { width: min(420px, 92vw); } /* ANCHO COLUMNA DE LINKS - Afecta el centrado de la misma - Elige el valor minimo de los dos (XXpx, XXvw) - 92vw=92% del ancho del viewport */
+
   /* Tape counter: scale down from 686px native to ~300px target.
      transform:scale only affects rendering, so .tape-counter-outer
      reserves the actual scaled footprint to avoid overlapping content. */
@@ -321,16 +388,20 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
     grid-template-columns: 19px 1fr 59px;
     grid-template-rows: 15px 1fr 15px;
   }
+
   #image-carousel.splide { max-width: 400px;  } /*AFECTA EL TAMAÑO DEL CAROUSEL DE ALBUMES SOLAMENTE*/
+
   .minidiv { height: 45px; display: flex; }  /* Renglón doble linea */
   .LiveSetsM { font-size: 16px;  }           /* Renglón doble linea */
   .PlaylistsM { font-size: 16px;  }          /* Renglón doble linea */
+
   .scene2 { font-size: clamp(2.8rem, 20vw, 2.8rem); }     /* Ajusta (achica) texto demasiado ancho a esta @media — igualado a .Genre/.scene (2.8rem) en vez de superarlo; el techo real sin wrap es 3.3rem pero no debe pasar el tamaño de las clases "completas" */
   .SubGenre3 { font-size: clamp(2.8rem, 20vw, 2.8rem); } /* Ajusta (achica) texto demasiado ancho a esta @media — ver nota en .scene2 */
   .SubGenre2 { font-size: 2.8rem; } /* "Atmospheric Jungle" — el techo real sin wrap aqui es 3.144rem (37.73px), pero no debe superar a .Genre/.scene en este breakpoint (2.8rem) — igual que scene2/SubGenre3, el limite de .Genre es el que manda, no el de wrap, cuando el de wrap es mayor */
   .SubGenre4 { font-size: 2.44rem; } /* "Psychedelic & Progressive" — CORREGIDO: ver nota en la version de desktop sobre la medicion original incorrecta. Techo REAL con el archivo completo: 29.38px = 2.448rem en html=12px. Redondeado a 2.44rem (no 2.45rem, que da 29.4px y supera el techo por 0.02px). No supera .Genre (2.8rem) */
   .Artists2 { font-size: 2.51rem; } /* "Siouxsie & The Banshees" — techo REAL con Inter: 30.14px = 2.512rem en html=12px, redondeado hacia abajo a 2.51rem. No supera a .Artists (2.8rem) */
 }
+
 /* PORTRAIT PHONES  */
 @media (orientation: portrait) and (max-width: 600px) {
   .aka { padding: 0 18px; } /* SELECCIONADOR DE PADDING DEL TEXTO AKA */
@@ -338,6 +409,7 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .history { font-size:clamp(0.9rem, 4vw, 2.7rem); padding: 12px 10px 12px 4px; } /* tighter side padding on portrait phones (was 16px 24px 16px 16px) to reduce excess left/right margin on narrow screens. clamp(the smallest the value is ever allowed to be, what it tries to be, usually based on something that changes (like viewport width, the largest the value is ever allowed to be ) */
   
   .page-wrapper { padding-top: 8px;  }  /* Brings the logo closer to the top of the screen, portrait phones only */
+
   .logo-img { width: min(280px, 78vw);  }  /* Slightly larger logo on portrait phones than the landscape phone size */
   .nav-list { width: min(300px, 70vw); } /* ANCHO COLUMNA DE LINKS - Afecta el centrado de la misma - Elige el valor minimo de los dos (XXpx, XXvw) - 92vw=92% del ancho del viewport */
   .site-nav { font-size: clamp(2.7rem, 20vw, 2.7rem) ;   margin-bottom: 30px; } /* reducido de 48 para reducir el gap con el texto debajo en History*/
@@ -347,6 +419,7 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
     width: 220px;
     height: 123px;  }
 .tape-counter-wrap { width: 220px; height: 123px; grid-template-columns: 26px 1fr 81px; grid-template-rows: 21px 1fr 21px;  }
+
   #image-carousel.splide { max-width: 300px;  } /*AFECTA EL TAMAÑO MAXIMO DEL CAROUSEL DE ALBUMES SOLAMENTE*/
   
   .minidiv { height: 50px; display: flex; } /* Renglón doble linea */
@@ -363,6 +436,7 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .Artists3 { font-size: clamp(1.3rem, 6.4vw, 2.8rem); } /* "The Housemartins" — techo REAL con Inter: 23.43px(361px) hasta 28.45px(430px+, plano, ya supera a .Artists) — clampeado a 2.8rem como maximo para no superar a .Artists. Confirmado sin wrap en grilla fina 361-600px */
   .SubGenre2 { font-size: clamp(1.5rem, 5.95vw, 2.608rem); } /* "Atmospheric Jungle" — sin margen de prudencia, ajustado contra una grilla fina de anchos (361 a 600px) con la fuente Inter real. El techo sube de 21.5px a 26.08px en este rango (.nav-list crece de 252 a 300px hasta los ~428px, despues queda plano), por eso necesita vw real y no solo un maximo fijo. No supera a .Genre (2.8rem) en ningun punto */
 }
+
 /* Very small PORTRAIT PHONES like Galazy Z Fold */ 
 @media (max-width: 360px) { 
  /*.page-wrapper { padding: 20px 14px 40px; } /* 20px 14px 40px */
@@ -377,16 +451,4 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
  .Artists3 { font-size: 2.21rem; } /* "The Housemartins" — techo REAL con Inter a 344px: 22.18px = 2.218rem en html=10px, redondeado hacia abajo a 2.21rem. No supera a .Artists (2.8rem) */
  .Genre2 { font-size: 2.4rem; } /* "House & Garage" — techo REAL con Inter a 280px (viewport mas angosto del Z Fold cerrado): 195.2px entra en 196px disponibles; 2.4rem (202.4px) ya no entra. Sin clamp porque el rango ≤360px es demasiado angosto para que vw aporte precision util. No supera a .Genre (2.8rem) */
 	
-}
-/* PORTRAIT PHONES — solo paginas SIN .history (nav-only pages)
-   Las paginas de solo navegacion (listas de generos, artistas, etc.) no
-   necesitan el padding-bottom ni el margin-bottom pensados para dar aire
-   al final del texto scrolleable de .history. Sin este override, esos 78px
-   de espacio vacio (48px padding + 30px margin) empujan la pagina a ser
-   mas alta que la pantalla aunque el contenido visual entre bien.
-   :not(:has(.history)) detecta si la pagina NO tiene un elemento .history —
-   soportado en Chrome 105+, Safari 15.4+, Firefox 121+. */
-@media (orientation: portrait) and (max-width: 600px) {
-  .page-wrapper:not(:has(.history)) { padding-bottom: 8px; } /* << era 48px (heredado de @media max-width:600px) — bajalo/subilo si querés mas/menos espacio debajo del ultimo link */
-  .page-wrapper:not(:has(.history)) .site-nav { margin-bottom: 0; } /* << era 30px (heredado de @media orientation:portrait) — sin .history no hay texto debajo del nav que necesite ese aire */
-}
+} 
