@@ -15,11 +15,15 @@
 <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
 <style>
-  /* Prevent OS scrollbars from appearing regardless of viewport size or OS.
-     The player is designed to always fit within the viewport — internal
-     scrolling (playlist rows) is handled by .yt-playlist-list's own
-     overflow-y:auto, which is unaffected by this rule. */
-  html, body { overflow: hidden; }
+  /* Prevent OS scrollbars from appearing regardless of viewport size or OS,
+     including in PWA standalone mode where overflow:hidden alone sometimes
+     doesn't suppress the scrollbar at the window level.
+     Three-layer approach for maximum compatibility:
+     1. overflow:hidden  — prevents scroll and hides scrollbar in browser tabs
+     2. scrollbar-width:none — Firefox: hides scrollbar UI without affecting overflow
+     3. ::-webkit-scrollbar — Chrome/Edge/Safari: same, via pseudo-element */
+  html, body { overflow: hidden; scrollbar-width: none; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 
   .yt-track-row.unavailable .yt-track-num,
   .yt-track-row.unavailable .yt-track-name,
