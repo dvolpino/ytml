@@ -32,7 +32,7 @@
      font-weight: 600; letter-spacing: 0.05em; overflow: hidden; /* clipea la animacion de marquee de #yt-playlist-name — sin esto el texto scrolleante se veria fuera del header */  }
   #yt-playlist-name { font-size: 2.4rem; color: #aaa; flex: 1; /* ocupa el espacio disponible dejando sitio para #yt-playlist-count */ min-width: 0; /* permite que el item flex se achique por debajo del ancho de su contenido (requerido para que el overflow/clip funcione bien) */ white-space: nowrap; display: inline-block; /* requerido para transform/animation */ /* animation se activa solo cuando JS detecta overflow real — ver clase .yt-marquee-active abajo */ }  /* NOMBRE DEL PLAYLIST no especificaba font-size ni font-family: inter; */
   #yt-playlist-count { font-size: 2.2rem; color: #aaa; }  /* CANTIDAD DE CANCIONES Y DURACION DEL PLAYLIST font-size: 0.72rem // agregué color: #aaa;*/
-  .yt-playlist-list { overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;  } /* largo del playlist — ya no se limita: html,body{overflow:hidden} evita el scroll de pagina, asi que la playlist puede crecer libre y mostrar todos los tracks */
+  .yt-playlist-list { max-height: 750px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent;  } /* largo del playlist */
   .yt-playlist-list::-webkit-scrollbar { width: 4px; }
   .yt-playlist-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
   .yt-playlist-loading { padding: 1.5rem; text-align: center; font-size: 1rem;  color: #555;;  }
@@ -80,7 +80,7 @@
    RESPONSIVE BREAKPOINTS — aligned with styles.css
    ============================================= */
 @media (min-width: 1200px) {
- /* .yt-playlist-list ya no se acota aca — largo del playlist libre, ver regla base arriba */
+ .yt-playlist-list { max-height: 300px; } /* largo del playlist */
 }
 /* TABLETS (matches styles.css's @media max-width:1199px) */
 @media (max-width: 1199px) {
@@ -92,7 +92,7 @@
 	.yt-playlist-header { font-size: 1rem; }
 	#yt-playlist-name { font-size: 1rem;  }
     #yt-playlist-count {  font-size: 1rem; }
-	/* .yt-playlist-list ya no se acota aca — largo del playlist libre, ver regla base arriba */
+	.yt-playlist-list { max-height: 290px; } /* largo del playlist */
 	.yt-track-name { font-size: 1rem; }
 	.yt-track-ch { font-size: 0.9rem; }
 	.yt-track-info { font-size: 1.8rem; }
@@ -173,7 +173,9 @@
 @media (orientation: portrait) and (max-width: 600px) {
 	#yt-player { aspect-ratio: 1 / 1;}
 	
-  /* .yt-playlist-list ya no se acota aca — largo del playlist libre, ver regla base arriba */
+  .yt-playlist-list {
+    max-height: 40vh;
+  }
 	
   .yt-playlist-header { padding: 0.4rem 0.8rem; }
   #yt-playlist-name { font-size: 1.7rem; }

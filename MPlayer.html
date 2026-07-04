@@ -807,23 +807,10 @@
       if (playlistClear) playlistClear.style.removeProperty('height');
       var isPortraitPhone = (h >= w) && (w <= 600);
       var playlistList = document.querySelector('.yt-playlist-list');
-      if (isPortraitPhone && playlistList) {
-        var PORTRAIT_PLAYLIST_EXTRA_PX = 40;
-        var headerEl = document.querySelector('.site-header');
-        var videoWrapEl = document.querySelector('.yt-video-wrapper');
-        var controlsEl = document.querySelector('.yt-controls');
-        var playlistHeaderEl = document.querySelector('.yt-playlist-header');
-        var bodyCS = getComputedStyle(document.body);
-        var bodyVPad = (parseFloat(bodyCS.paddingTop) || 0) + (parseFloat(bodyCS.paddingBottom) || 0);
-        var usedHeight = bodyVPad;
-        if (headerEl) usedHeight += headerEl.getBoundingClientRect().height;
-        if (videoWrapEl) usedHeight += videoWrapEl.getBoundingClientRect().height;
-        if (controlsEl) usedHeight += controlsEl.getBoundingClientRect().height;
-        if (playlistHeaderEl) usedHeight += playlistHeaderEl.getBoundingClientRect().height;
-        var remaining = h - usedHeight + PORTRAIT_PLAYLIST_EXTRA_PX;
-        if (remaining < 120) remaining = 120;
-        playlistList.style.maxHeight = remaining + 'px';
-      } else if (playlistList) {
+      // El playlist ya no se acota dinamicamente en portrait — la lista crece libre
+      // para mostrar todos los tracks (el antiguo calculo de "remaining" evitaba el
+      // scroll de pagina, pero eso ya lo resuelve html,body{overflow:hidden}).
+      if (playlistList) {
         playlistList.style.removeProperty('max-height');
       }
       return;

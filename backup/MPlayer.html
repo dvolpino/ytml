@@ -15,6 +15,21 @@
 <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
 <style>
+  /* Prevent OS scrollbars from appearing regardless of viewport size or OS,
+     including in PWA standalone mode where overflow:hidden alone sometimes
+     doesn't suppress the scrollbar at the window level.
+     Three-layer approach for maximum compatibility:
+     1. overflow:hidden  — prevents scroll and hides scrollbar in browser tabs
+     2. scrollbar-width:none — Firefox: hides scrollbar UI without affecting overflow
+     3. ::-webkit-scrollbar — Chrome/Edge/Safari: same, via pseudo-element */
+  html, body { overflow: hidden; scrollbar-width: none; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+  /* Shuffle button initial state: dimmed (OFF). JS overrides to opacity:1 /
+     brightness(2) when toggled ON. Without this, the button inherits full
+     opacity on page load and looks active even though shuffle starts as OFF. */
+  #yt-shuffle { opacity: 0.35; }
+
   .yt-track-row.unavailable .yt-track-num,
   .yt-track-row.unavailable .yt-track-name,
   .yt-track-row.unavailable .yt-track-ch,
@@ -793,7 +808,7 @@
       var isPortraitPhone = (h >= w) && (w <= 600);
       var playlistList = document.querySelector('.yt-playlist-list');
       if (isPortraitPhone && playlistList) {
-        var PORTRAIT_PLAYLIST_EXTRA_PX = 0;
+        var PORTRAIT_PLAYLIST_EXTRA_PX = 40;
         var headerEl = document.querySelector('.site-header');
         var videoWrapEl = document.querySelector('.yt-video-wrapper');
         var controlsEl = document.querySelector('.yt-controls');
