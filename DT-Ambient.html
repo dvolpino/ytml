@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YTML | Downtempo</title>
+  <title>YTML | Dub</title>
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,13 +23,68 @@
 <header class="site-header"> <a href="index.html" class="logo-link"> <img src="images/logo.webp" alt="Logo" class="logo-img" /> </a> </header>
 
 <!--/// NAVIGATION ///-->
- <nav class="site-nav">
-   <ul class="nav-list">
+<nav class="site-nav">
+  <ul class="nav-list">
     <li><a href="DT.html" class="Genre" >Downtempo</a></li>
-	<li><a href="DT-Krautrock.html" class="SubGenre" >Krautrock</a></li>
-    <li><a href="DT-Dub.html" class="SubGenre">Dub</a></li>
+	  <li><a href="DT-Krautrock.html" class="SubGenre" >Krautrock</a></li>
+   <li><a href="DT-Dub.html" class="SubGenre">Dub</a></li>
    	<li><a href="DT-EF.html" class="SubGenre">Electro Funk</a></li>
-	<li><a href="DT-Ambient.html" class="SubGenre">Ambient</a></li>
+			<li><a href="DT-Ambient.html" class="SubGenre active">Ambient</a></li>
+	  
+	<!-- Playlists por decada --> 
+	<li>
+	<div class="tape-counter-outer">
+	<div class="tape-counter-wrap">
+		<div class="tc-top"><img src="images/counter/borde_superior.webp" alt="" /></div>
+		<div class="tc-left"><img src="images/counter/borde_izquierdo.webp" alt="" /></div>
+		<div class="tc-window">
+			<section id="counter" class="splide" aria-label="Beautiful Images" data-splide='{"pagination":false,"arrows":false,"direction":"ttb","paginationDirection":"ttb"}' >
+			  <div class="splide__track" align="right">	<ul class="splide__list"  >
+				<li class="splide__slide" >
+					<a href="MPlayer.html?list=PLcrAZPdDLDOk&name=Dub 70´s&color=%230691FF&labelcolor=%230691FF"><image src="images/counter/70sb2.webp" alt="" class="decada2"></image></a></li>
+			    <li class="splide__slide">
+				<a href="MPlayer.html?list=PLQCwpQY4-1A8&name=Dub 80´s&color=%230691FF&labelcolor=%230691FF"><image src="images/counter/80sb2.webp" alt="" class="decada2"></image></a></li>
+			    <li class="splide__slide" >
+				<a href="MPlayer.html?list=PLBul3iVAuu0Q&name=Dub 90´s&color=%230691FF&labelcolor=%230691FF"><image src="images/counter/90sb2.webp" alt="" class="decada2"></image></a></li>
+			    <li class="splide__slide">
+				<a href="MPlayer.html?list=PLUWTU9ilDsYM&name=Dub 00´s&color=%230691FF&labelcolor=%230691FF"><image src="images/counter/00sb2.webp" alt="" class="decada2"></image></a></li>
+				<li class="splide__slide">
+				<a href="MPlayer.html?list=PLC4l883u50F0&name=Dub 00´s&color=%230691FF&labelcolor=%230691FF"><image src="images/counter/10sb2.webp" alt="" class="decada2"></image></a></li>
+			    </ul>
+			  </div>
+			</section>
+		</div>
+		<div class="tc-right"><img src="images/counter/borde_derecho.webp" alt="" /></div>
+		<div class="tc-bottom"><img src="images/counter/borde_inferior.webp" alt="" /></div>
+	</div>
+	</div>
+	</li>
+	<!-- Fin Playlists por decada --> 
+	 
+    <!-- Albums --> 
+ <li>
+ <section id="image-carousel" class="splide" aria-label="Beautiful Images" >
+  <div class="splide__track" align="right">
+   <ul class="splide__list">
+
+<li class="splide__slide">
+	<a href="MPlayer.html?list=PLWkaWfWRur4Q&name=Dreamstate%20Logic%20Era3&thumb=images/Covers/Trance/Psychedelic/PsyDub/Albums/Dreamstate Logic Era3.webp"><image src="images/Covers/Trance/Psychedelic/PsyDub/Albums/Dreamstate Logic Era3.webp" alt=""></image></a>
+	</li>
+	<li class="splide__slide">
+	<a href="MPlayer.html?list=PLfvhe-xWk2Cc&name=Dreamstate%20Logic%20Era4&thumb=images/Covers/Trance/Psychedelic/PsyDub/Albums/Dreamstate%20Logic%20Era4.webp"><image src="images/Covers/Trance/Psychedelic/PsyDub/Albums/Dreamstate Logic Era4.webp" alt=""></image></a>
+	</li>
+	<li class="splide__slide">
+	<a href="MPlayer.html?list=OLAK5uy_ni76lpp-4MChSHYBsk9jxSwpuQsNvDSj4&name=AmBeam%20-%20New%20Horizons&thumb=images/Covers/Trance/Psychedelic/PsyDub/Albums/New%20Horizons.webp"><image src="images/Covers/Trance/Psychedelic/PsyDub/Albums//New Horizons.webp" alt=""></image></a>
+	</li>
+	<li class="splide__slide">
+	<a href="MPlayer.html?list=OLAK5uy_n-nYOTYPk5yITRCBf9mL54_-k-MSRRph4&name=AmBeam%20-%20The%20Miracle%20of%20Creation%20EP&thumb=images/Covers/Trance/Psychedelic/PsyDub/Albums/The%20Miracle%20of%20Creation%20EP.webp"><image src="images/Covers/Trance/Psychedelic/PsyDub/Albums/The Miracle Of Creation EP.webp" alt=""></image></a>
+	</li>
+   </ul>
+  </div>
+ </section>
+ </li>
+	<!-- Fin Albums -->	 
+						
 	<li><a href="DT-AJ.html" class="SubGenre">Acid Jazz</a></li>
 	<li><a href="DT-DT.html" class="SubGenre">Downtempo</a></li>
 	<li><a href="Trance-PsT-PsyDub.html" class="SubGenre">PsyDub & Psybient</a></li>
@@ -39,47 +94,11 @@
 	<li><a href="DT-Nortec.html" class="SubGenre">Nortec</a></li>
 	<li><a href="DT-OH.html" class="SubGenre">Organic House</a></li>
 	<li><a href="MPlayer.html?list=PLV5aIGkszfb-HFv57DEin5CDoCVMtbmnA&name=Orbiting&color=%230691FF&labelcolor=%230691FF" class="Playlists" >Orbiting</a></li>
-	<li><a href="DT.html" class="Playlists active" >Albums</a></li>
-		
-<!-- Albums --> 
-<li>	
-<section id="image-carousel" class="splide" aria-label="Beautiful Images" >
- <div class="splide__track" align="right">
-  <ul class="splide__list">
-	<li class="splide__slide">
-				<a href="MPlayer.html?list=PLNPXBpMF7d24&thumb=images/Covers/Downtempo/Albums/Mushroom Jazz 1.webp&name=Mushroom Jazz 1"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 1.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-			</li>
-			<li class="splide__slide">
-				<a href="MPlayer.html?list=PLYrbpvfGmMRE&thumb=images/Covers/Downtempo/Albums/Mushroom Jazz 2.webp&name=Mushroom Jazz 2"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 2.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-			</li>			
-			<li class="splide__slide">
-				<a href="MPlayer.html?list=PLCnORsDxVTAE&thumb=images/Covers/Downtempo/Albums/Mushroom Jazz 3.webp&name=Mushroom Jazz 3"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 3.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-			</li>
-			<li class="splide__slide">
-				<a href="MPlayer.html?list=PLbu2MsK35D2o&thumb=images/Covers/Downtempo/Albums/Mushroom Jazz 4.webp&name=Mushroom Jazz 4"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 4.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-			</li>
-			<li class="splide__slide">
-				<a href="https://music.youtube.com/watch?v=kA957t1ve2E"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 5.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-			</li>
-			<li class="splide__slide">
-				<a href="https://music.youtube.com/playlist?list=OLAK5uy_nEUF6RSMC_kGAtwE3RxD7IQI7CXTmbqZo"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 6.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-			</li>			
-			<li class="splide__slide">
-				<a href="https://music.youtube.com/playlist?list=OLAK5uy_mUpYgrYBZbwmVMeICCTh2gIHEISMcgtEs"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 7.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-			</li>
-			<li class="splide__slide">
-				<a href="https://music.youtube.com/playlist?list=OLAK5uy_mkxtxAGGvuBBaBZsCoSAzQgCQn5VyFQqQ"><image src="images/Covers/Downtempo/Albums/Mushroom Jazz 8.webp" alt=""></image></a> <!-- No se puede ver embeded -->
-	</li>
-   </ul>
-  </div>
- </section>
- </li>
-<!-- Fin Albums -->
-		<li class="PlaylistsM"></li>		
-		<li><a href="MPlayer.html?list=PLV5aIGkszfb-xcDLcBkoFbMbMhJhCTxoG&name=Downtempo Live Sets&color=%2302FF00&labelcolor=%2302FF00" class="LiveSets" >Live Sets</a></li>
-		<li><a href="DT-Art.html" class="Artists" >Artists</a></li>
-   </ul>
- </nav>
+	<li><a href="DT-Albums.html" class="Playlists" >Albums</a></li>
+	<li><a href="MPlayer.html?list=PLV5aIGkszfb-xcDLcBkoFbMbMhJhCTxoG&name=Downtempo Live Sets&color=%2302FF00&labelcolor=%2302FF00" class="LiveSets" >Live Sets</a></li>
+	<li><a href="DT-Art.html" class="Artists" >Artists</a></li>
+</ul>
+</nav>
 </div>
 	<!-- Script para Albums Carrousel --> 
 <script>
