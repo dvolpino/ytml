@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="BB.html" class="Genre " >Breakbeat</a></li>
 	 <li><a href="BB-Breaks-Breaks.html" class="scene" >Breaks</a></li>
      <li><a href="BB-Breaks-Breaks.html" class="SubGenre" >Breaks</a></li>
-	<li class="aka-item"><a class="aka">AKA: Breakbeat, Funky Breaks, Breakbeat House  // Fines 80´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Breakbeat, Funky Breaks, Breakbeat House  // <span data-lang="es">Fines 80s</span><span data-lang="en">Late 80s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,22 +46,39 @@
    
    <div class="history">
    
-<p>No toda la música electrónica tiene un ritmo de 4 por 4.
+<p data-lang="es">No toda la música electrónica tiene un ritmo de 4 por 4.
 
-También existe el breakbeat o breaks, la escena (y género principal de esa escena) que especifica en su nombre que no tiene ritmo de 4 por 4.
-La palabra "breaks" proviene literalmente de los antiguos breaks de batería de las canciones de funk, soul, disco y R&B de los años 60 y 70, en los que la música se detenía y el baterista continuaba sin acompañamiento durante uno o dos compases, lo que lo hacía perfecto para el sampleo.
-Los primeros breaks eran precisamente eso: breaks de batería en bucle, que surgieron en una época en la que el sampleo era la norma y los ejecutivos no podían hacer nada al respecto.
-Al igual que el Hip Hop, los primeros discos de Breakbeat sampleaban muchísimos discos de vinilo viejos, en algunos casos exactamente los mismos ritmos y breaks que sampleaba el Hip Hop (y ya los conoces y los has escuchado en miles de temas: <a class="linkshisto" href="https://music.youtube.com/watch?v=PIUIzE0NfVg">Funky Drummer</a>, <a class="linkshisto" href="https://music.youtube.com/watch?v=GxZuq57_bYM">Amen, Brother</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Scorpio+by+Dennis+Coffey+and+The+Detroit+Guitar+Band">Scorpio</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Take+Me+to+the+Mardi+Gras+by+Bob+James">Take Me To The Mardi Gras</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Ashley%27s+Roachclip+by+The+Soul+Searchers">Ashley's Roachclip</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Think+(About+It)+by+Lyn+Collins">Think</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=The+Champ+by+The+Mohawks">The Champ</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Apache+by+Incredible+Bongo+Band">Apache</a>, etc.), haciendo de los Breaks básicamente una forma instrumental acelerada de Hip Hop.</p><br>
+También existe el breakbeat o breaks, la escena (y género principal de esa escena) que especifica en su nombre que no tiene ritmo de 4 por 4.</p>
+
+<p data-lang="en">Not all electronic music has a 4-on-the-floor beat.
+
+There's also breakbeat, or breaks — the scene (and the main genre of that scene) whose very name specifies that it doesn't have a 4-on-the-floor beat.</p>
 	   
-<p>Pero como la mayoría de los géneros que dependían del sampling (especialmente el new beat y el collage), la expresión musical creativa de canibalizar canciones antiguas como forma de arte popular y comercial fue reprimida por la legislación de los 90. Tras la época de 'samplear un break de batería desnuda de un éxito de R&B de los 70', que prácticamente había terminado a finales de los 90, el break se convirtió en algo fresco, funky e inventivo. Divorciado del ritmo de 4x4, era libre de hacer lo que quisiera, lo que quisiera. Pero, como ocurre con muchos nuevos géneros de música electrónica, tras el período inicial del 'salvaje oeste', donde se prueban diferentes cosas con distintos grados de éxito y fracaso, todo se asienta en uno o dos formatos definidos, generalmente encabezados por una o dos canciones muy populares. Esto es lo que crea géneros y subgéneros."</p><br>
+<p data-lang="es">La palabra "breaks" proviene literalmente de los antiguos breaks de batería de las canciones de funk, soul, disco y R&B de los años 60 y 70, en los que la música se detenía y el baterista continuaba sin acompañamiento durante uno o dos compases, lo que lo hacía perfecto para el sampleo.</p>
+
+<p data-lang="en">The word "breaks" literally comes from the old drum breaks in funk, soul, disco, and R&B songs from the '60s and '70s, where the music would drop out and the drummer would keep going unaccompanied for a bar or two — making it perfect for sampling.</p>
 	   
-<p>Para Breaks, se decidió que James Brown <a class="linkshisto" href="https://www.discogs.com/master/187413-James-Brown-Funky-Drummer">Clyde Stubblefield - Funky Drummer</a> es el mejor break de batería de todos los tiempos. Jungle tiene el Amen, pero Breaks tiene el Funky Drummer.
+<p data-lang="es">Los primeros breaks eran precisamente eso: breaks de batería en bucle, que surgieron en una época en la que el sampleo era la norma y los ejecutivos no podían hacer nada al respecto.</p>
+
+<p data-lang="en">The earliest breaks were exactly that: looped drum breaks, emerging in an era when sampling was the norm and label executives couldn't do much about it.</p>
+
+<p data-lang="es">Al igual que el Hip Hop, los primeros discos de Breakbeat sampleaban muchísimos discos de vinilo viejos, en algunos casos exactamente los mismos ritmos y breaks que sampleaba el Hip Hop (y ya los conoces y los has escuchado en miles de temas: <a class="linkshisto" href="https://music.youtube.com/watch?v=PIUIzE0NfVg">Funky Drummer</a>, <a class="linkshisto" href="https://music.youtube.com/watch?v=GxZuq57_bYM">Amen, Brother</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Scorpio+by+Dennis+Coffey+and+The+Detroit+Guitar+Band">Scorpio</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Take+Me+to+the+Mardi+Gras+by+Bob+James">Take Me To The Mardi Gras</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Ashley%27s+Roachclip+by+The+Soul+Searchers">Ashley's Roachclip</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Think+(About+It)+by+Lyn+Collins">Think</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=The+Champ+by+The+Mohawks">The Champ</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Apache+by+Incredible+Bongo+Band">Apache</a>, etc.), haciendo de los Breaks básicamente una forma instrumental acelerada de Hip Hop.</p>
+<p data-lang="en">Just like Hip Hop, early Breakbeat records sampled tons of old vinyl — in some cases the exact same rhythms and breaks that Hip Hop was sampling (and you already know them, you've heard them in thousands of tracks: <a class="linkshisto" href="https://music.youtube.com/watch?v=PIUIzE0NfVg">Funky Drummer</a>, <a class="linkshisto" href="https://music.youtube.com/watch?v=GxZuq57_bYM">Amen, Brother</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Scorpio+by+Dennis+Coffey+and+The+Detroit+Guitar+Band">Scorpio</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Take+Me+to+the+Mardi+Gras+by+Bob+James">Take Me To The Mardi Gras</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Ashley%27s+Roachclip+by+The+Soul+Searchers">Ashley's Roachclip</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Think+(About+It)+by+Lyn+Collins">Think</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=The+Champ+by+The+Mohawks">The Champ</a>, <a class="linkshisto" href="https://music.youtube.com/search?q=Apache+by+Incredible+Bongo+Band">Apache</a>, etc.), which basically made Breaks a sped-up instrumental form of Hip Hop.</p><br>
+	   
+<p data-lang="es">Pero como la mayoría de los géneros que dependían del sampling (especialmente el <a class="linkshisto" href="H-Industrial_NB">New Beat</a> y el collage), la expresión musical creativa de canibalizar canciones antiguas como forma de arte popular y comercial fue reprimida por la legislación de los 90. Tras la época de 'samplear un break de batería desnuda de un éxito de R&B de los 70', que prácticamente había terminado a finales de los 90, el break se convirtió en algo fresco, funky e inventivo. Divorciado del ritmo de 4x4, era libre de hacer lo que quisiera, lo que quisiera. Pero, como ocurre con muchos nuevos géneros de música electrónica, tras el período inicial del 'salvaje oeste', donde se prueban diferentes cosas con distintos grados de éxito y fracaso, todo se asienta en uno o dos formatos definidos, generalmente encabezados por una o dos canciones muy populares. Esto es lo que crea géneros y subgéneros."</p>
+<p data-lang="en">But like most genres that relied on sampling (especially <a class="linkshisto" href="H-Industrial_NB">New Beat</a> and collage), the creative musical expression of cannibalizing old songs as a popular and commercial art form got clamped down on by '90s legislation. After the era of "sampling a bare drum break from a '70s R&B hit" had essentially ended by the late '90s, breaks became something fresh, funky, and inventive. Freed from the 4x4 beat, it could do whatever it wanted. But as happens with many new electronic music genres, after the initial "wild west" period — where different things get tried with varying degrees of success and failure — everything settles into one or two defined formats, usually led by one or two very popular tracks. This is what creates genres and subgenres.</p><br>
+	   
+<p data-lang="es">Para Breaks, se decidió que James Brown <a class="linkshisto" href="https://www.discogs.com/master/187413-James-Brown-Funky-Drummer">Clyde Stubblefield - Funky Drummer</a> es el mejor break de batería de todos los tiempos. Jungle tiene el Amen, pero Breaks tiene el Funky Drummer.
 	     		     		     
-Varios otros géneros en esta escena usan el break como telón de fondo para algo más: acid para <a class="linkshisto" href="H - Breaks-ChB.html">Chemical Breaks</a>, línea de bajo para Nu Skool Breaks, rock para <a class="linkshisto"  href="H - Breaks-BB.html">Big Beat</a>. Pero el break, en esencia, gira en torno al breakbeat y no debería ser más que eso. </p>
+Varios otros géneros en esta escena usan el break como telón de fondo para algo más: acid para <a class="linkshisto" href="H-BB-Breaks-ChB">Chemical Breaks</a>, línea de bajo para Nu Skool Breaks, rock para <a class="linkshisto"  href="H-BB-Breaks-BB.html">Big Beat</a>. Pero el break, en esencia, gira en torno al breakbeat y no debería ser más que eso. </p>
+<p data-lang="en">For Breaks, it was decided that James Brown's <a class="linkshisto" href="https://www.discogs.com/master/187413-James-Brown-Funky-Drummer">Clyde Stubblefield - Funky Drummer</a> is the greatest drum break of all time. Jungle has the Amen, but Breaks has the Funky Drummer.
+
+Several other genres in this scene use the break as a backdrop for something else: acid for <a class="linkshisto" href="H-BB-Breaks-ChB">Chemical Breaks</a>, a bassline for Nu Skool Breaks, rock for <a class="linkshisto"  href="H-BB-Breaks-BB.html">Big Beat</a>. But breaks, at its core, revolves around the breakbeat and shouldn't be much more than that.</p>
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
