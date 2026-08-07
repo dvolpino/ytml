@@ -390,3 +390,59 @@ html { font-size: 12px; /* was 14px */  } /* Text size - Since most font sizes u
   .page-wrapper:not(:has(.history)) { padding-bottom: 8px; } /* << era 48px (heredado de @media max-width:600px) — bajalo/subilo si querés mas/menos espacio debajo del ultimo link */
   .page-wrapper:not(:has(.history)) .site-nav { margin-bottom: 0; } /* << era 30px (heredado de @media orientation:portrait) — sin .history no hay texto debajo del nav que necesite ese aire */
 }
+
+/* ===============================================================
+   SELECTOR DE IDIOMA (ES / EN)
+   ===============================================================
+   Todo elemento con [data-lang="es"] o [data-lang="en"] arranca
+   oculto por defecto; la clase lang-es/lang-en en <html> (aplicada
+   por el script sincronico en el <head> de cada pagina, y actualizada
+   por ytToggleLang() en lang.js) decide cual de los dos se muestra.
+   Dos reglas separadas por tipo de elemento porque <p> necesita
+   display:block y los <span> (ej. la linea AKA, el boton) necesitan
+   display:inline — mezclarlos rompe el layout de esos casos. */
+p[data-lang],
+span[data-lang] {
+  display: none;
+}
+html.lang-es p[data-lang="es"] {
+  display: block;
+}
+html.lang-en p[data-lang="en"] {
+  display: block;
+}
+html.lang-es span[data-lang="es"] {
+  display: inline;
+}
+html.lang-en span[data-lang="en"] {
+  display: inline;
+}
+ 
+/* Boton selector de idioma, en el header junto al logo.
+   position:absolute a proposito: asi el boton sale del flujo normal del
+   header y NO empuja ni recentra el logo (que sigue posicionado exactamente
+   igual que antes de agregar este boton). .site-header necesita
+   position:relative para que este absolute se ubique respecto al header
+   y no respecto a toda la pagina. */
+.site-header {
+  position: relative;
+}
+.lang-toggle-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #ddd;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  font-family: inter;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.lang-toggle-btn:hover {
+  background: rgba(255,255,255,0.08);
+}

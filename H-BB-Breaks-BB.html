@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado (ej. ver el texto en ingles medio segundo
+     antes de que cambie a español). Por eso va aca arriba, sincronico, y
+     no junto a los otros scripts al final del body. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +27,15 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <!-- Selector de idioma: muestra el idioma AL QUE SE CAMBIA (no el actual),
+       ej. mientras la pagina esta en español, el boton dice "EN". Reusa el
+       mismo mecanismo data-lang que el resto del contenido. -->
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,21 +43,26 @@
      <li><a href="BB.html" class="Genre " >Breakbeat</a></li>
      <li><a href="BB-Breaks.html" class="scene" >Breaks</a></li>
 	    <li><a href="BB-Breaks-BB.html" class="SubGenre" >Big Beat</a></li>
-	<li class="aka-item"><a class="aka">AKA: Block Rockin' Beats  // Mediados 90´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Block Rockin' Beats  // <span data-lang="es">Mediados 90´s</span><span data-lang="en">Mid-90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
 <main class="site-main">
    
    <div class="history">
-	 <p>Mientras que el <a class="linkshisto" href="H - Breaks-ChB.html">Chemical Breaks</a> era principalmente algo estadounidense, el Big Beat era principalmente algo británico. El Big Beat es el género más comercial del break. La leyenda dice que recibió su nombre del club Big Beat Boutique, donde un DJ entonces desconocido llamado <a class="linkshisto" href="https://www.discogs.com/artist/3101-Fatboy-Slim">Fatboy Slim</a> pinchaba este tipo de temas. Puede que sea apócrifo que Fatboy Slim inventara el Big Beat, pero es en gran medida responsable del Big Beat.</p><br>
-	 <p>Big Beat tomó la estructura esencial de Chemical Breaks y eliminó los elementos químicos adictivos, reemplazándolos con líneas de bajo familiares, letras para cantar a coro y gritos vocales, melodías cálidas con ganchos creados a partir de tropos accesibles como riffs de guitarra, fanfarrias de instrumentos de viento y cuerdas, scratching y samples de scratching, e incluso samples de blues antiguos.		</p><br>
-	 <p>Esta combinación permitió que los breaks se consolidaran como uno de los géneros comerciales que impulsaron la explosión de la electrónica a finales de los 90. El Big Beat aún se aferraba a la cadencia Funky Drummer de sus progenitores pero el sonido característico del Big Beat provenía del gran y retumbante golpe de bajo en cada compás: más pesado, más grueso y más prominente que el resto de la percusión. </p><br>
-	 <p>Esto se llama "jammin on the 1", lo que significa que siempre suena fuerte en el primer tiempo de cada compás. Probablemente se podría culpar a los <a class="linkshisto" href="https://www.discogs.com/artist/2290-The-Chemical-Brothers">Chemical Brothers</a> por popularizarlo, pero no lo inventaron. Es un clásico del funk de los 70. </p>
+	 <p data-lang="es">Mientras que el <a class="linkshisto" href="H - Breaks-ChB.html">Chemical Breaks</a> era principalmente algo estadounidense, el Big Beat era principalmente algo británico. El Big Beat es el género más comercial del break. La leyenda dice que recibió su nombre del club Big Beat Boutique, donde un DJ entonces desconocido llamado <a class="linkshisto" href="https://www.discogs.com/artist/3101-Fatboy-Slim">Fatboy Slim</a> pinchaba este tipo de temas. Puede que sea apócrifo que Fatboy Slim inventara el Big Beat, pero es en gran medida responsable del Big Beat.</p>
+	 <p data-lang="en">While <a class="linkshisto" href="H - Breaks-ChB.html">Chemical Breaks</a> was mostly an American thing, Big Beat was mostly a British one. Big Beat is the most commercial of the breakbeat genres. Legend has it that it got its name from the Big Beat Boutique club, where a then-unknown DJ named <a class="linkshisto" href="https://www.discogs.com/artist/3101-Fatboy-Slim">Fatboy Slim</a> used to spin this kind of track. It may be apocryphal that Fatboy Slim invented Big Beat, but he's largely responsible for it.</p><br>
+	 <p data-lang="es">Big Beat tomó la estructura esencial de Chemical Breaks y eliminó los elementos químicos adictivos, reemplazándolos con líneas de bajo familiares, letras para cantar a coro y gritos vocales, melodías cálidas con ganchos creados a partir de tropos accesibles como riffs de guitarra, fanfarrias de instrumentos de viento y cuerdas, scratching y samples de scratching, e incluso samples de blues antiguos.		</p>
+	 <p data-lang="en">Big Beat took the essential structure of Chemical Breaks and stripped out the addictive chemical elements, replacing them with familiar basslines, sing-along lyrics and vocal shouts, and warm melodies built from accessible hooks like guitar riffs, brass and string fanfares, scratching and scratch samples, and even old blues samples.</p><br>
+	 <p data-lang="es">Esta combinación permitió que los breaks se consolidaran como uno de los géneros comerciales que impulsaron la explosión de la electrónica a finales de los 90. El Big Beat aún se aferraba a la cadencia Funky Drummer de sus progenitores pero el sonido característico del Big Beat provenía del gran y retumbante golpe de bajo en cada compás: más pesado, más grueso y más prominente que el resto de la percusión. </p>
+	 <p data-lang="en">This combination let breaks establish themselves as one of the commercial genres driving electronic music's explosion in the late '90s. Big Beat still clung to the Funky Drummer cadence of its forebears, but its signature sound came from the big, booming bass hit on every bar — heavier, thicker, and more prominent than the rest of the percussion.</p><br>
+	 <p data-lang="es">Esto se llama "jammin on the 1", lo que significa que siempre suena fuerte en el primer tiempo de cada compás. Probablemente se podría culpar a los <a class="linkshisto" href="https://www.discogs.com/artist/2290-The-Chemical-Brothers">Chemical Brothers</a> por popularizarlo, pero no lo inventaron. Es un clásico del funk de los 70. </p>
+	 <p data-lang="en">This is called "jammin' on the 1," meaning it always hits hard on the first beat of every bar. The <a class="linkshisto" href="https://www.discogs.com/artist/2290-The-Chemical-Brothers">Chemical Brothers</a> are probably to blame for popularizing it, but they didn't invent it — it's a classic from '70s funk.</p>
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
