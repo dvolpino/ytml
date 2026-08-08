@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="DT.html" class="Genre " >Downtempo</a></li>
      <li><a href="DT-DT.html" class="SubGenre" >Downtempo</a></li>
-	<li class="aka-item"><a class="aka">AKA: Ninja Tune  // Early 90´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Ninja Tune  // <span data-lang="es">Inicios 90s</span><span data-lang="en">Early 90´s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,17 +46,24 @@
    <div class="history">
 
 
-  <p>Downtempo is the result of various urban genres (including genres from the Urban scene) looking to chill the fuck out.</p>
-  <p>The glue holding it all together is the unmistakable groove that feels like the offspring of Funk and Dub making sweet love on a comfy sofa.</p>
-  <p>One of the most successful acts within this genre, <a class="linkshisto" href="https://www.discogs.com/artist/1434-Kruder-Dorfmeister">Kruder & Dorfmeister</a>, knew that a little Pop, Hip Hop, or even Drum n Bass was all you needed. Or take <a class="linkshisto" href="https://www.discogs.com/artist/1035-Thievery-Corporation">Thievery Corporation</a>, adding Latin jams to the mix, made for some proper sexy times indeed.</p><br>
-  <p>Naturally a genre this loose in its definitions will have a number of labels supporting the sound, but none come to dominate Downtempo so thoroughly as <a class="linkshisto" href="https://www.discogs.com/label/109-Ninja-Tune">Ninja Tune</a>.</p><br>
-  <p>A common question that crops up is what's the difference between Downtempo and Chill Out. Aren't they both forms of music for laying back and enjoying some tunes? This is true but their approaches are different.</p>
-  <p>Downtempo is the sort of music that makes sense in urban lofts, chic enclaves, and smoky speakeasies, whereas Chill Out is typically played near exotic pools, meditative gatherings, and suburban dwellings.</p>	
+  <p data-lang="es">El downtempo es el resultado de varios géneros urbanos (incluyendo géneros de la escena Urban) que buscaban relajarse de una puta vez.</p>
+  <p data-lang="en">Downtempo is the result of various urban genres (including genres from the Urban scene) looking to chill the fuck out.</p>
+  <p data-lang="es">Lo que mantiene todo unido es ese groove inconfundible que se siente como si el Funk y el Dub hubieran tenido un hijo haciendo el amor tiernamente en un sofá cómodo.</p>
+  <p data-lang="en">The glue holding it all together is the unmistakable groove that feels like the offspring of Funk and Dub making sweet love on a comfy sofa.</p>
+  <p data-lang="es">Uno de los actos más exitosos dentro de este género, <a class="linkshisto" href="https://www.discogs.com/artist/1434-Kruder-Dorfmeister">Kruder & Dorfmeister</a>, sabía que con un poco de Pop, Hip Hop, o incluso Drum n Bass alcanzaba y sobraba. O tomá a <a class="linkshisto" href="https://www.discogs.com/artist/1035-Thievery-Corporation">Thievery Corporation</a>, que sumando ritmos latinos a la mezcla, logró momentos verdaderamente sensuales.</p><br>
+  <p data-lang="en">One of the most successful acts within this genre, <a class="linkshisto" href="https://www.discogs.com/artist/1434-Kruder-Dorfmeister">Kruder & Dorfmeister</a>, knew that a little Pop, Hip Hop, or even Drum n Bass was all you needed. Or take <a class="linkshisto" href="https://www.discogs.com/artist/1035-Thievery-Corporation">Thievery Corporation</a>, adding Latin jams to the mix, made for some proper sexy times indeed.</p><br>
+  <p data-lang="es">Naturalmente, un género tan laxo en sus definiciones va a tener varios sellos apoyando el sonido, pero ninguno llegó a dominar el Downtempo tan por completo como <a class="linkshisto" href="https://www.discogs.com/label/109-Ninja-Tune">Ninja Tune</a>.</p><br>
+  <p data-lang="en">Naturally a genre this loose in its definitions will have a number of labels supporting the sound, but none come to dominate Downtempo so thoroughly as <a class="linkshisto" href="https://www.discogs.com/label/109-Ninja-Tune">Ninja Tune</a>.</p><br>
+  <p data-lang="es">Una pregunta habitual que surge es cuál es la diferencia entre Downtempo y Chill Out. ¿No son ambos formas de música para relajarse y disfrutar de unos temas? Es cierto, pero sus enfoques son distintos.</p>
+  <p data-lang="en">A common question that crops up is what's the difference between Downtempo and Chill Out. Aren't they both forms of music for laying back and enjoying some tunes? This is true but their approaches are different.</p>
+  <p data-lang="es">El Downtempo es el tipo de música que tiene sentido en lofts urbanos, enclaves chic y bares clandestinos llenos de humo, mientras que el Chill Out suele sonar cerca de piletas exóticas, encuentros meditativos y hogares suburbanos.</p>
+  <p data-lang="en">Downtempo is the sort of music that makes sense in urban lofts, chic enclaves, and smoky speakeasies, whereas Chill Out is typically played near exotic pools, meditative gatherings, and suburban dwellings.</p>	
    </div>
 	<img src="images/History/Downtempo/ninjatune.png" class="photo3" />
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
