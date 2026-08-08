@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="DT.html" class="Genre " >Downtempo</a></li>
      <li><a href="DT-OrganicHouse.html" class="SubGenre" >Organic House</a></li>
-	<li class="aka-item"><a class="aka">AKA: Organic Downtempo, Ethno House, Melodic House // Early 2010´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Organic Downtempo, Ethno House, Melodic House // <span data-lang="es">Inicios 2010s</span><span data-lang="en">Early 2010´s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,16 +45,22 @@
    
    <div class="history">
 	  
-   <p>Organic house is a strain of melodic house built from acoustic and non-electronic material — hand percussion, plucked strings, flutes, field recordings, wordless or non-English vocals — laid over a soft four-to-the-floor kick, usually between 110 and 122 BPM. What separates it from deep or progressive house is texture rather than structure: the percussion is played rather than programmed, the sound design favours wood, skin and breath over synthesis, and tracks are arranged as long, patient builds instead of peaks. The result sits deliberately between a dancefloor genre and a listening one.</p> <br>
-   <p>Its immediate ancestors are the German melodic house of the mid-2000s and the tribal end of minimal. Âme's "Rej" (2005) and the Innervisions catalogue run by Dixon and Âme established the emotional, slow-burning template, while Sven Väth's Cocoon and the Bar 25 crowd in Berlin normalized long sets built on organic percussion. Ricardo Villalobos and the minimal school contributed the idea that a track could be almost entirely rhythm and still hold a room for ten minutes.</p><br>
-   <p>The genre proper crystallized around Lee Burridge's All Day I Dream, founded in 2011 as a Brooklyn daytime party series and then a label. The format mattered as much as the music: outdoor, daylight, canopies and cushions rather than a dark club, which pushed the sound toward warmth and away from aggression. Sabo's Sol Selectas, running since 2003 but hitting its stride in the same period, brought a heavier Latin and Middle Eastern percussion influence. Yokoo, Lost Desert, Matthew Dekay, Nicolas Rada and Armen Miran became the core roster sound.</p><br>
-   <p>A parallel and arguably more interesting current came from Latin America, where producers built the same tempo out of genuinely local traditions rather than sampled ones. Nicola Cruz's "Prender el Alma" (2015) worked Andean rhythms and instruments into a downtempo frame, and Chancha Vía Circuito, El Búho and the ZZK label in Buenos Aires developed digital cumbia along related lines. Bedouin, Acid Pauli, Nu and Blond:ish worked the Middle Eastern and North African side, much of it circulating through Burning Man's Robot Heart, Tulum, and Ibiza parties like Woomoon and Do Not Sit On The Furniture.</p><br>
-   <p>By the late 2010s the sound had been absorbed by larger labels — Anjunadeep, Crosstown Rebels, Get Physical, Katermukke — and had become the default soundtrack for a certain kind of sunset-and-desert aesthetic, which brought both a wide audience and a fair amount of formula. The criticism most often made is that its "organic" instrumentation is frequently sampled rather than played, and its borrowed traditions rarely credited. The best of it, though, does something the parent genres could not: it makes house music that works at low volume, in daylight, without a crowd.</p>
+   <p data-lang="es">El organic house es una vertiente del house melódico construida a partir de material acústico y no electrónico —percusión tocada a mano, cuerdas pulsadas, flautas, grabaciones de campo, voces sin letra o en idiomas distintos del inglés— sobre un bombo suave en cuatro por cuatro, normalmente entre 110 y 122 BPM. Lo que lo diferencia del deep house o el progressive house es la textura más que la estructura: la percusión se toca en vez de programarse, el diseño sonoro favorece la madera, la piel y el aliento por sobre la síntesis, y los temas se arman como construcciones largas y pacientes en vez de apuntar a picos. El resultado se ubica deliberadamente entre un género de pista de baile y uno de escucha.</p>
+   <p data-lang="en">Organic house is a strain of melodic house built from acoustic and non-electronic material — hand percussion, plucked strings, flutes, field recordings, wordless or non-English vocals — laid over a soft four-to-the-floor kick, usually between 110 and 122 BPM. What separates it from deep or progressive house is texture rather than structure: the percussion is played rather than programmed, the sound design favours wood, skin and breath over synthesis, and tracks are arranged as long, patient builds instead of peaks. The result sits deliberately between a dancefloor genre and a listening one.</p> <br>
+   <p data-lang="es">Sus antecedentes inmediatos son el house melódico alemán de mediados de los 2000 y la vertiente tribal del minimal. "Rej" (2005) de Âme y el catálogo de Innervisions, dirigido por Dixon y Âme, establecieron la plantilla emocional y de combustión lenta, mientras que Cocoon de Sven Väth y el círculo de Bar 25 en Berlín normalizaron los sets largos construidos sobre percusión orgánica. Ricardo Villalobos y la escuela del minimal aportaron la idea de que un tema podía ser casi puro ritmo y aun así sostener una pista durante diez minutos.</p>
+   <p data-lang="en">Its immediate ancestors are the German melodic house of the mid-2000s and the tribal end of minimal. Âme's "Rej" (2005) and the Innervisions catalogue run by Dixon and Âme established the emotional, slow-burning template, while Sven Väth's Cocoon and the Bar 25 crowd in Berlin normalized long sets built on organic percussion. Ricardo Villalobos and the minimal school contributed the idea that a track could be almost entirely rhythm and still hold a room for ten minutes.</p><br>
+   <p data-lang="es">El género como tal cristalizó en torno a All Day I Dream de Lee Burridge, fundado en 2011 como una serie de fiestas diurnas en Brooklyn y luego convertido en sello. El formato importaba tanto como la música: al aire libre, a la luz del día, con toldos y almohadones en vez de un club oscuro, lo cual empujó el sonido hacia la calidez y lo alejó de la agresividad. Sol Selectas de Sabo, en actividad desde 2003 pero que encontró su punto justo en ese mismo período, aportó una influencia más marcada de percusión latina y de Medio Oriente. Yokoo, Lost Desert, Matthew Dekay, Nicolas Rada y Armen Miran se convirtieron en el sonido central del roster.</p>
+   <p data-lang="en">The genre proper crystallized around Lee Burridge's All Day I Dream, founded in 2011 as a Brooklyn daytime party series and then a label. The format mattered as much as the music: outdoor, daylight, canopies and cushions rather than a dark club, which pushed the sound toward warmth and away from aggression. Sabo's Sol Selectas, running since 2003 but hitting its stride in the same period, brought a heavier Latin and Middle Eastern percussion influence. Yokoo, Lost Desert, Matthew Dekay, Nicolas Rada and Armen Miran became the core roster sound.</p><br>
+   <p data-lang="es">Una corriente paralela, y posiblemente más interesante, surgió en América Latina, donde los productores construyeron el mismo tempo a partir de tradiciones genuinamente locales en vez de sampleadas. "Prender el Alma" (2015) de Nicola Cruz incorporó ritmos e instrumentos andinos a un marco downtempo, y Chancha Vía Circuito, El Búho y el sello ZZK de Buenos Aires desarrollaron la cumbia digital en líneas afines. Bedouin, Acid Pauli, Nu y Blond:ish trabajaron el costado de Medio Oriente y el norte de África, gran parte de eso circulando a través de Robot Heart de Burning Man, Tulum, y fiestas de Ibiza como Woomoon y Do Not Sit On The Furniture.</p>
+   <p data-lang="en">A parallel and arguably more interesting current came from Latin America, where producers built the same tempo out of genuinely local traditions rather than sampled ones. Nicola Cruz's "Prender el Alma" (2015) worked Andean rhythms and instruments into a downtempo frame, and Chancha Vía Circuito, El Búho and the ZZK label in Buenos Aires developed digital cumbia along related lines. Bedouin, Acid Pauli, Nu and Blond:ish worked the Middle Eastern and North African side, much of it circulating through Burning Man's Robot Heart, Tulum, and Ibiza parties like Woomoon and Do Not Sit On The Furniture.</p><br>
+   <p data-lang="es">Hacia fines de la década de 2010, el sonido ya había sido absorbido por sellos más grandes —Anjunadeep, Crosstown Rebels, Get Physical, Katermukke— y se había convertido en la banda sonora por defecto de cierta estética de atardecer y desierto, lo cual trajo tanto un público amplio como una buena dosis de fórmula. La crítica que más se repite es que su instrumentación "orgánica" suele estar sampleada en vez de tocada, y que sus tradiciones tomadas prestadas rara vez son reconocidas. Lo mejor del género, sin embargo, logra algo que los géneros originales no podían: hacer música house que funcione a bajo volumen, a la luz del día, sin una multitud.</p>
+   <p data-lang="en">By the late 2010s the sound had been absorbed by larger labels — Anjunadeep, Crosstown Rebels, Get Physical, Katermukke — and had become the default soundtrack for a certain kind of sunset-and-desert aesthetic, which brought both a wide audience and a fair amount of formula. The criticism most often made is that its "organic" instrumentation is frequently sampled rather than played, and its borrowed traditions rarely credited. The best of it, though, does something the parent genres could not: it makes house music that works at low volume, in daylight, without a crowd.</p>
 	
 	</div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
