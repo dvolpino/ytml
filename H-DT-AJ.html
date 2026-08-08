@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="DT.html" class="Genre " >Downtempo</a></li>
      <li><a href="DT-AJ.html" class="SubGenre" >Acid Jazz</a></li>
-	<li class="aka-item"><a class="aka">AKA: Jazzdance, Electro Swing, House Jazz  // Fines 80´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Jazzdance, Electro Swing, House Jazz  // <span data-lang="es">Fines 80s</span><span data-lang="en">Late 80s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,17 +45,24 @@
    
    <div class="history">
 
-		  <p>En los años 60, en el norte de Gran Bretaña surgió el fenómeno cultural del coleccionismo de vinilos, en concreto en lo que respecta a la escena Northern Soul (soul americano). Esto condujo a algo llamado el movimiento Rare Groove, donde los cazadores obsesivos de vinilos dirigieron su atención a encontrar "esos ritmos raros" que pudieran usarse para el sampling, con un fuerte énfasis en el Funk, el Soul, el Disco y el Jazz.</p>
-		  <p>Naturalmente, cuanto más raro era el groove que descubrías, más prestigio tenías y los cazadores necesitaban canales para exhibir sus preciados artefactos ante un público astuto. Si bien no era nada popular en comparación con las discotecas de la época, este sonido de "club jazz" despertó suficiente interés como para que un par de sellos especializados empezaran a promocionarlo, a veces con reediciones, pero sobre todo apoyando material más reciente inspirado en los antiguos Rare Grooves.</p><br>
-		  <p>El sello más destacado fue el creado por Eddie Piller y Gilles Peterson en 1987, llamado <a class="linkshisto"  href="https://www.discogs.com/label/997-Acid-Jazz">Acid Jazz</a> . Tan destacado, de hecho, que la música que interpretaban se etiquetaba como tal. Sin importar que Acid Jazz no fuera tan jazzístico (tenía más en común con el funk y el soul de la escena Rare Groove), y contenía muy poco ácido.</p><br>
-		  <p>El nombre surgió de la aparición del acid house en el Reino Unido y, por alguna culpa suya, el sello se mantuvo. A pesar del nombre, Acid Jazz (la música) nunca se popularizó en la cultura rave como el resto de la música electrónica a principios de los años 90. En cambio, se mantuvo aislado en lofts urbanos, locales de jazz, cafés y otros enclaves de moda en los barrios interiores de Londres.</p><br>
-		  <p>Al Acid Jazz le gusta considerarse música dance inteligente y culta, que toma elementos de la música hip consolidada, como el funk y el soul menos conocidos, y los fusiona con música hip emergente como <a class="linkshisto" href="https://music.ishkur.com/?query=USDeepHouse">el Deep House</a> y el <a class="linkshisto" href="https://music.ishkur.com/?query=ConsciousRap"> Conscious Rap</a> . Y aunque dependa de una caja de ritmos, un tocadiscos o un sampler para sus ritmos, eso no significa que no pueda incluir una trompeta, un saxofón o un solo de piano. De hecho, cuantos más instrumentos en vivo incluya, mejor.</p><br>
-		  <p>Eso probablemente convierte al acid jazz en uno de los géneros de música electrónica menos puros, pero su éxito impulsó la escena downtempo. También fue uno de los géneros más rentables durante buena parte de los 90. Artistas como <a class="linkshisto" href="https://www.discogs.com/artist/1396-The-Brand-New-Heavies" target="_blank">The Brand New Heavies</a> , <a class="linkshisto" href="https://www.discogs.com/artist/28348-Corduroy" target="_blank">Corduroy</a> , <a class="linkshisto" href="https://www.discogs.com/artist/763-Incognito" target="_blank">Incognito</a> y <a class="linkshisto" href="https://www.discogs.com/artist/8029-Jamiroquai" target="_blank">Jamiroquai</a> (es decir, ese tipo con sombrero que podía bailar hacia atrás en una cinta transportadora) causaron un gran impacto en las listas de éxitos del Reino Unido.</p>
+		  <p data-lang="es">En los años 60, en el norte de Gran Bretaña surgió el fenómeno cultural del coleccionismo de vinilos, en concreto en lo que respecta a la escena Northern Soul (soul americano). Esto condujo a algo llamado el movimiento Rare Groove, donde los cazadores obsesivos de vinilos dirigieron su atención a encontrar "esos ritmos raros" que pudieran usarse para el sampling, con un fuerte énfasis en el Funk, el Soul, el Disco y el Jazz.</p>
+		  <p data-lang="en">In the 1960s, northern Britain saw the rise of the cultural phenomenon of vinyl collecting, specifically around the Northern Soul scene (American soul). This led to something called the Rare Groove movement, where obsessive vinyl hunters turned their attention to finding "those rare grooves" that could be used for sampling, with a strong emphasis on Funk, Soul, Disco, and Jazz.</p>
+		  <p data-lang="es">Naturalmente, cuanto más raro era el groove que descubrías, más prestigio tenías y los cazadores necesitaban canales para exhibir sus preciados artefactos ante un público astuto. Si bien no era nada popular en comparación con las discotecas de la época, este sonido de "club jazz" despertó suficiente interés como para que un par de sellos especializados empezaran a promocionarlo, a veces con reediciones, pero sobre todo apoyando material más reciente inspirado en los antiguos Rare Grooves.</p><br>
+		  <p data-lang="en">Naturally, the rarer the groove you dug up, the more prestige you had, and hunters needed channels to show off their prized finds to a discerning audience. While nowhere near as popular as the era's discos, this "club jazz" sound sparked enough interest for a handful of specialist labels to start promoting it, sometimes through reissues, but mostly by backing newer material inspired by the old Rare Grooves.</p><br>
+		  <p data-lang="es">El sello más destacado fue el creado por Eddie Piller y Gilles Peterson en 1987, llamado <a class="linkshisto"  href="https://www.discogs.com/label/997-Acid-Jazz">Acid Jazz</a> . Tan destacado, de hecho, que la música que interpretaban se etiquetaba como tal. Sin importar que Acid Jazz no fuera tan jazzístico (tenía más en común con el funk y el soul de la escena Rare Groove), y contenía muy poco ácido.</p><br>
+		  <p data-lang="en">The most prominent label was the one Eddie Piller and Gilles Peterson founded in 1987, called <a class="linkshisto"  href="https://www.discogs.com/label/997-Acid-Jazz">Acid Jazz</a> . Prominent enough, in fact, that the music they put out got labeled the same way — never mind that Acid Jazz wasn't especially jazzy (it had more in common with the funk and soul of the Rare Groove scene), and contained very little acid.</p><br>
+		  <p data-lang="es">El nombre surgió de la aparición del acid house en el Reino Unido y, por alguna culpa suya, el sello se mantuvo. A pesar del nombre, Acid Jazz (la música) nunca se popularizó en la cultura rave como el resto de la música electrónica a principios de los años 90. En cambio, se mantuvo aislado en lofts urbanos, locales de jazz, cafés y otros enclaves de moda en los barrios interiores de Londres.</p><br>
+		  <p data-lang="en">The name came out of acid house's rise in the UK, and somehow, through no real fault of its own, it stuck. Despite the name, Acid Jazz (the music) never caught on with rave culture the way the rest of electronic music did in the early '90s. Instead, it stayed tucked away in urban lofts, jazz clubs, cafés, and other trendy spots across London's inner boroughs.</p><br>
+		  <p data-lang="es">Al Acid Jazz le gusta considerarse música dance inteligente y culta, que toma elementos de la música hip consolidada, como el funk y el soul menos conocidos, y los fusiona con música hip emergente como el<a class="linkshisto" href="H-House-DeepH.html">Deep House</a> y el <a class="linkshisto" href="https://music.ishkur.com/?query=ConsciousRap"> Conscious Rap</a> . Y aunque dependa de una caja de ritmos, un tocadiscos o un sampler para sus ritmos, eso no significa que no pueda incluir una trompeta, un saxofón o un solo de piano. De hecho, cuantos más instrumentos en vivo incluya, mejor.</p><br>
+		  <p data-lang="en">Acid Jazz likes to think of itself as smart, cultured dance music, pulling in elements from established hip music — the deeper cuts of funk and soul — and fusing them with emerging hip music like <a class="linkshisto" href="H-House-DeepH.html">Deep House</a> and <a class="linkshisto" href="https://music.ishkur.com/?query=ConsciousRap"> Conscious Rap</a> . And even though it leans on a drum machine, turntable, or sampler for its rhythms, that doesn't mean it can't feature a trumpet, a saxophone, or a piano solo. In fact, the more live instruments it packs in, the better.</p><br>
+		  <p data-lang="es">Eso probablemente convierte al acid jazz en uno de los géneros de música electrónica menos puros, pero su éxito impulsó la escena downtempo. También fue uno de los géneros más rentables durante buena parte de los 90. Artistas como <a class="linkshisto" href="https://www.discogs.com/artist/1396-The-Brand-New-Heavies" target="_blank">The Brand New Heavies</a> , <a class="linkshisto" href="https://www.discogs.com/artist/28348-Corduroy" target="_blank">Corduroy</a> , <a class="linkshisto" href="https://www.discogs.com/artist/763-Incognito" target="_blank">Incognito</a> y <a class="linkshisto" href="https://www.discogs.com/artist/8029-Jamiroquai" target="_blank">Jamiroquai</a> (es decir, ese tipo con sombrero que podía bailar hacia atrás en una cinta transportadora) causaron un gran impacto en las listas de éxitos del Reino Unido.</p>
+		  <p data-lang="en">That probably makes acid jazz one of the least "pure" electronic music genres out there, but its success gave the downtempo scene a real boost. It was also one of the most profitable genres for a good chunk of the '90s. Artists like <a class="linkshisto" href="https://www.discogs.com/artist/1396-The-Brand-New-Heavies" target="_blank">The Brand New Heavies</a> , <a class="linkshisto" href="https://www.discogs.com/artist/28348-Corduroy" target="_blank">Corduroy</a> , <a class="linkshisto" href="https://www.discogs.com/artist/763-Incognito" target="_blank">Incognito</a> , and <a class="linkshisto" href="https://www.discogs.com/artist/8029-Jamiroquai" target="_blank">Jamiroquai</a> (yes, that guy in the hat who could dance backwards on a conveyor belt) made a serious dent in the UK charts.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
