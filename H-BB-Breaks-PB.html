@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,21 +38,25 @@
      <li><a href="BB.html" class="Genre " >Breakbeat</a></li>
      <li><a href="BB-Breaks.html" class="scene" >Breaks</a></li>
 	  <li><a href="BB-Breaks-PB.html" class="SubGenre" >Progressive Breaks</a></li>
-	<li class="aka-item"><a class="aka">AKA: Atmospheric Breaks, Ambient Breaks    // Late 90´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Atmospheric Breaks, Ambient Breaks    // <span data-lang="es">Fines 90s</span><span data-lang="en">Late 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
 <main class="site-main">
    
    <div class="history">
-		  <p>The earliest Progressive Breaks records were classified as Breaktrance and a lot of the early artists (like Hybrid, General Midi, Way Out West, and maybe even BT) cut their teeth in Progressive Trance/House and were exploring new sonic possibilities that did not involve a 4-to-the-floor kick. And a lot of early Progressive Breaks records were simply remixes of Progressive House and Trance -- the b-side Breaks remix that Trance DJs never played unless their name was Sasha.</p><br>
-		  <p>So half of this genre sounds like Progressive House/Trance with breaks. The other half sounds like its trying to be Orbital. It can get cheesy at times, with the washy pads and twinkly leads and sometimes even ethnic vocals (without going full Worldbeat), but it certainly does not sound like any other Breaks, shedding the Hip Hop motifs entirely.</p><br>
+		  <p data-lang="es">Los primeros discos de Progressive Breaks se clasificaban como Breaktrance, y muchos de los artistas pioneros (como <a class="linkshisto" href="https://www.discogs.com/artist/5513-Hybrid">Hybrid</a>, <a class="linkshisto" href="https://www.discogs.com/artist/9438-General-Midi">General Midi</a>, <a class="linkshisto" href="https://www.discogs.com/artist/3128-Way-Out-West">Way Out West</a>, y quizás hasta <a class="linkshisto" href="https://www.discogs.com/artist/2737-BT">BT</a>) se curtieron en el Progressive Trance/House y exploraban nuevas posibilidades sonoras que no implicaban un bombo de 4 por 4. Y muchos de los primeros discos de Progressive Breaks eran simplemente remixes de Progressive House y Trance: el remix de Breaks del lado B que los DJs de Trance nunca pinchaban, a menos que se llamaran Sasha.</p>
+		  <p data-lang="en">The earliest Progressive Breaks records were classified as Breaktrance and a lot of the early artists (like <a class="linkshisto" href="https://www.discogs.com/artist/5513-Hybrid">Hybrid</a>, <a class="linkshisto" href="https://www.discogs.com/artist/9438-General-Midi">General Midi</a>, <a class="linkshisto" href="https://www.discogs.com/artist/3128-Way-Out-West">Way Out West</a>, and maybe even <a class="linkshisto" href="https://www.discogs.com/artist/2737-BT">BT</a>) cut their teeth in Progressive Trance/House and were exploring new sonic possibilities that did not involve a 4-to-the-floor kick. And a lot of early Progressive Breaks records were simply remixes of Progressive House and Trance -- the b-side Breaks remix that Trance DJs never played unless their name was Sasha.</p><br>
+		  <p data-lang="es">Así que la mitad de este género suena a Progressive House/Trance con breaks. La otra mitad suena como si intentara ser Orbital. A veces puede ponerse cursi, con pads difusos y leads brillantes, e incluso a veces con voces étnicas (sin llegar al Worldbeat completo), pero desde luego no suena como ningún otro Breaks, dejando por completo de lado los motivos del Hip Hop.</p>
+		  <p data-lang="en">So half of this genre sounds like Progressive House/Trance with breaks. The other half sounds like its trying to be Orbital. It can get cheesy at times, with the washy pads and twinkly leads and sometimes even ethnic vocals (without going full Worldbeat), but it certainly does not sound like any other Breaks, shedding the Hip Hop motifs entirely.</p><br>
 			
-	      <p>Progressive Breaks has a massive number of miscellaneous subgenres: Atmospheric Breaks, Balearic Breaks, Deep Progressive Breaks, Intelligent Breaks -- essentially a Breaks equivalent of every Prog genre that exists including McProg -- it's called Vocal Progressive Breaks.</p>
+	      <p data-lang="es">El Progressive Breaks tiene una cantidad enorme de subgéneros variados: Atmospheric Breaks, Balearic Breaks, Deep Progressive Breaks, Intelligent Breaks — básicamente un equivalente en Breaks de cada género <a class="linkshisto" href="H-Progressive-Prog.html">Prog</a> que existe, incluyendo el <a class="linkshisto" href="H-Progressive-McP.html">McProg</a> — se llama Vocal Progressive Breaks.</p>
+	      <p data-lang="en">Progressive Breaks has a massive number of miscellaneous subgenres: Atmospheric Breaks, Balearic Breaks, Deep Progressive Breaks, Intelligent Breaks -- essentially a Breaks equivalent of every <a class="linkshisto" href="H-Progressive-Prog.html">Prog</a> genre that exists including <a class="linkshisto" href="H-Progressive-McP.html">McProg</a> -- it's called Vocal Progressive Breaks.</p>
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
