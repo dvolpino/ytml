@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="DT.html" class="Genre " >Downtempo</a></li>
      <li><a href="DT-Dub.html" class="SubGenre" >Dub</a></li>
-	<li class="aka-item"><a class="aka">AKA: Reggae Dub, Ambient Dub  // Fines 60´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Reggae Dub, Ambient Dub  // <span data-lang="es">Fines 60´s</span><span data-lang="en">Late 60s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,27 +45,37 @@
    
    <div class="history">
 	  	  	
-	   <p>En los años cincuenta y sesenta Jamaica absorvió gran parte de la musica negra del sur de Estados Unidos gracias a las emisoras de radio. De la influencia del rythm n´ blues y soul americano en los generos locales (ska, calypso y mento) surgió el rocksteady y luego el reggae.</p>
-	   <p>Al mismo tiempo, los DJ imitaban el parloteo (<i>jive</i>) de los locutores americanos, improvisaciones habladas sobre discos, surgiendo asi el <i>toasting</i>, una manera sincopada y vertiginosa de hablar, precedente directo del rap. Los DJ hacían <i>toastings</i> sobre éxitos de reggae, en las pausas entre versos de las canciones. Esas pausas era muy cortas y por lo tanto hacían falta pausas mas largas. Por este motivo, comenzó a ser costumbre incluir <i>versions</i> instrumentales en el lado B de los singles.</p><br>
+	   <p data-lang="es">En los años cincuenta y sesenta Jamaica absorvió gran parte de la musica negra del sur de Estados Unidos gracias a las emisoras de radio. De la influencia del rythm n´ blues y soul americano en los generos locales (ska, calypso y mento) surgió el rocksteady y luego el reggae.</p>
+	   <p data-lang="en">In the fifties and sixties, Jamaica soaked up a lot of Black American music from the southern United States thanks to radio stations. From the influence of American rhythm and blues and soul on local genres (ska, calypso, and mento), rocksteady emerged, and later reggae.</p>
+	   <p data-lang="es">Al mismo tiempo, los DJ imitaban el parloteo (<i>jive</i>) de los locutores americanos, improvisaciones habladas sobre discos, surgiendo asi el <i>toasting</i>, una manera sincopada y vertiginosa de hablar, precedente directo del rap. Los DJ hacían <i>toastings</i> sobre éxitos de reggae, en las pausas entre versos de las canciones. Esas pausas era muy cortas y por lo tanto hacían falta pausas mas largas. Por este motivo, comenzó a ser costumbre incluir <i>versions</i> instrumentales en el lado B de los singles.</p><br>
+	   <p data-lang="en">At the same time, DJs imitated the chatter (<i>jive</i>) of American radio hosts — spoken improvisations over records — giving rise to <i>toasting</i>, a syncopated, breakneck way of talking that's a direct precursor to rap. DJs would <i>toast</i> over reggae hits, during the pauses between song verses. Those pauses were very short, so longer pauses were needed. This is why it became common practice to include instrumental <i>versions</i> on the B-sides of singles.</p><br>
 	   
-	   <p><img src="images/History/Downtempo/Dub/dubplate.webp" class="photo1" />A fines de los 60, Osbourne Ruddock mas conocido como <i>King Tubby</i>, armó un <i>Sound System</i>al que llamó Home Town Hi-Fi, el cual contaba con clara distinción entre graves y agudos, reverb y eco, conviertiéndose en uno de los mas famosos de Kingston. Además imprimía vinilos, siendo pionero en el uso de <i>dubplates</i>.</p>
+	   <p data-lang="es"><img src="images/History/Downtempo/Dub/dubplate.webp" class="photo1" />A fines de los 60, Osbourne Ruddock mas conocido como <i>King Tubby</i>, armó un <i>Sound System</i>al que llamó Home Town Hi-Fi, el cual contaba con clara distinción entre graves y agudos, reverb y eco, conviertiéndose en uno de los mas famosos de Kingston. Además imprimía vinilos, siendo pionero en el uso de <i>dubplates</i>.</p>
+	   <p data-lang="en"><img src="images/History/Downtempo/Dub/dubplate.webp" class="photo1" />In the late 60s, Osbourne Ruddock, better known as <i>King Tubby</i>, built a <i>Sound System</i> he called Home Town Hi-Fi, which featured a clear distinction between bass and treble, reverb, and echo, becoming one of the most famous in Kingston. He also pressed vinyl, pioneering the use of <i>dubplates</i>.</p>
 	   			
-	   <p>Una placa dub es un disco de acetato barato y único con una vida útil limitada de unas 50 escuchas antes de degradarse. Se suele usar para demos, sellos blancos, versiones inéditas, masters alternativos, pruebas y lanzamientos iniciales de sencillos antes de que la versión final salga en vinilo.</p><br>
+	   <p data-lang="es">Una placa dub es un disco de acetato barato y único con una vida útil limitada de unas 50 escuchas antes de degradarse. Se suele usar para demos, sellos blancos, versiones inéditas, masters alternativos, pruebas y lanzamientos iniciales de sencillos antes de que la versión final salga en vinilo.</p><br>
+	   <p data-lang="en">A dubplate is a cheap, one-off acetate record with a limited lifespan of about 50 plays before it degrades. It's typically used for demos, white labels, unreleased versions, alternate masters, test pressings, and early releases of singles before the final version comes out on vinyl.</p><br>
 	   
-	   <p>Tubby manipulaba los masters creando <i>versions</i> para los lados B de los singles. Pero no se limitaba a quitar los vocales; también jugaba con el volumen y subía el bajo. Luego comenzó a utilizar dubplates en vivo y a experimentar con ellos. Tuvo tanto éxito con su nuevo sonido en vivo que llamó la atención de Bunny Lee, productor del famoso sello jamaicano Treasure Isle. Sintiendo una tendencia de moda, Bunny se acercó a <i>King Tubby</i>, para hacer más de estas pistas instrumentales de reggae, rocksteady y ska para sustituir las<i>versions</i> en los lados B de los singles.<img src="images/History/Downtempo/Dub/kingtubby.webp" class="photo2" /></p><br>
+	   <p data-lang="es">Tubby manipulaba los masters creando <i>versions</i> para los lados B de los singles. Pero no se limitaba a quitar los vocales; también jugaba con el volumen y subía el bajo. Luego comenzó a utilizar dubplates en vivo y a experimentar con ellos. Tuvo tanto éxito con su nuevo sonido en vivo que llamó la atención de Bunny Lee, productor del famoso sello jamaicano Treasure Isle. Sintiendo una tendencia de moda, Bunny se acercó a <i>King Tubby</i>, para hacer más de estas pistas instrumentales de reggae, rocksteady y ska para sustituir las<i>versions</i> en los lados B de los singles.<img src="images/History/Downtempo/Dub/kingtubby.webp" class="photo2" /></p><br>
+	   <p data-lang="en">Tubby manipulated the masters to create <i>versions</i> for the B-sides of singles. But he didn't just strip out the vocals; he also played with volume and boosted the bass. He then started using dubplates live and experimenting with them. His new live sound was such a success that it caught the attention of Bunny Lee, producer at the famous Jamaican label Treasure Isle. Sensing a trend in the making, Bunny approached <i>King Tubby</i> to make more of these instrumental reggae, rocksteady, and ska tracks to serve as <i>versions</i> for the B-sides of singles.<img src="images/History/Downtempo/Dub/kingtubby.webp" class="photo2" /></p><br>
 		  	
-	  <p>Con el tiempo, los remixes de Ruddock tuvieron tanta demanda que montó su propio estudio. Allí, comenzó a utilizar cuatro pistas y creó la dinámica del dub: un bajo que ataca a gran volumen, una batería con reverby ecos, la voz y los demás instrumentos que aprecen u desaparecen y fuertes efectos de sonido. Deconstruía el master reordenando sus elementos básico, añadía sonmidos nuevos... creó el remix.</p><br>
+	  <p data-lang="es">Con el tiempo, los remixes de Ruddock tuvieron tanta demanda que montó su propio estudio. Allí, comenzó a utilizar cuatro pistas y creó la dinámica del dub: un bajo que ataca a gran volumen, una batería con reverby ecos, la voz y los demás instrumentos que aprecen u desaparecen y fuertes efectos de sonido. Deconstruía el master reordenando sus elementos básico, añadía sonmidos nuevos... creó el remix.</p><br>
+	  <p data-lang="en">Over time, Ruddock's remixes were in such demand that he set up his own studio. There, he started working with four tracks and created the dynamics of dub: a bass that hits at high volume, drums drenched in reverb and echo, vocals and other instruments that appear and disappear, and heavy sound effects. He'd deconstruct the master, rearranging its basic elements, adding new sounds... he created the remix.</p><br>
 	   
-	  <p>En sus colaboraciones con Sir Niney The Observer, se puede apreciar còmo las baterías pasan por un filtro de agudos <a href= "https://music.youtube.com/watch?v=9MsbGPZPlkQ&si=RMdVj94aPzWg_X8V" class="linkshisto">Rebel Dance 1975</a>, una técnica que se utilizó luego en el House. También experimentó con una invención rítmica, el <i>steppers</i>, un ritmo rápido con un patrón parecido al del funk. Temas como <a href="https://music.youtube.com/watch?v=3qMP2S_u9Ks&si=3sHBrCIR6C6LA9Sr" class="linkshisto">Sir Niney´s Rock</a> anticiparon la fórmula del Drum n´Bass. En <a href="https://music.youtube.com/watch?v=8tLpHpMm0X4&si=KEjuNogNi2_0d7n9" class="linkshisto">A Rougher Version</a> utiliza un patrón rítmico de sintetizador que aparece y desaparece asemejándose a un loop de Techno de Detroit. En el tema <a href="https://music.youtube.com/watch?v=Hl84qtaXjFo&si=jUmk7z2rhL_XLyDs" class="linkshisto">The Poor Barber</a>, Bunny Lee y Tubby recrearon con baterías y frecuencias de <i>test</i> el sonido de bombas y ametralladoras.  </p><br>
+	  <p data-lang="es">En sus colaboraciones con Sir Niney The Observer, se puede apreciar còmo las baterías pasan por un filtro de agudos <a href= "https://music.youtube.com/watch?v=9MsbGPZPlkQ&si=RMdVj94aPzWg_X8V" class="linkshisto">Rebel Dance 1975</a>, una técnica que se utilizó luego en el House. También experimentó con una invención rítmica, el <i>steppers</i>, un ritmo rápido con un patrón parecido al del funk. Temas como <a href="https://music.youtube.com/watch?v=3qMP2S_u9Ks&si=3sHBrCIR6C6LA9Sr" class="linkshisto">Sir Niney´s Rock</a> anticiparon la fórmula del Drum n´Bass. En <a href="https://music.youtube.com/watch?v=8tLpHpMm0X4&si=KEjuNogNi2_0d7n9" class="linkshisto">A Rougher Version</a> utiliza un patrón rítmico de sintetizador que aparece y desaparece asemejándose a un loop de Techno de Detroit. En el tema <a href="https://music.youtube.com/watch?v=Hl84qtaXjFo&si=jUmk7z2rhL_XLyDs" class="linkshisto">The Poor Barber</a>, Bunny Lee y Tubby recrearon con baterías y frecuencias de <i>test</i> el sonido de bombas y ametralladoras.  </p><br>
+	  <p data-lang="en">In his collaborations with Sir Niney The Observer, you can hear how the drums run through a high-pass filter — <a href= "https://music.youtube.com/watch?v=9MsbGPZPlkQ&si=RMdVj94aPzWg_X8V" class="linkshisto">Rebel Dance 1975</a> — a technique later used in House music. He also experimented with a rhythmic invention, the <i>steppers</i>, a fast rhythm with a pattern similar to funk. Tracks like <a href="https://music.youtube.com/watch?v=3qMP2S_u9Ks&si=3sHBrCIR6C6LA9Sr" class="linkshisto">Sir Niney's Rock</a> anticipated the formula for Drum n Bass. In <a href="https://music.youtube.com/watch?v=8tLpHpMm0X4&si=KEjuNogNi2_0d7n9" class="linkshisto">A Rougher Version</a>, he uses a synth rhythmic pattern that appears and disappears, resembling a Detroit Techno loop. On <a href="https://music.youtube.com/watch?v=Hl84qtaXjFo&si=jUmk7z2rhL_XLyDs" class="linkshisto">The Poor Barber</a>, Bunny Lee and Tubby recreated the sound of bombs and machine guns using drums and <i>test</i> frequencies.  </p><br>
 	   
-	  <p>Otros destacados productores jamaiquinos pronto aprenderían su oficio, y el Sr. Ruddock les mostró el camino, cambiando para siempre la forma de crear instrumentales de reggae. Pasaría a la historia como uno de los productores más influyentes, no solo en la historia de la música jamaiquina o de la música electrónica, sino en toda la historia de la música.</p><br>
+	  <p data-lang="es">Otros destacados productores jamaiquinos pronto aprenderían su oficio, y el Sr. Ruddock les mostró el camino, cambiando para siempre la forma de crear instrumentales de reggae. Pasaría a la historia como uno de los productores más influyentes, no solo en la historia de la música jamaiquina o de la música electrónica, sino en toda la historia de la música.</p><br>
+	  <p data-lang="en">Other prominent Jamaican producers would soon learn the craft, and Mr. Ruddock showed them the way, changing forever how reggae instrumentals were made. He would go down in history as one of the most influential producers, not just in the history of Jamaican music or electronic music, but in the entire history of music.</p><br>
 		
-	  <p>Si bien los LP de dub jamaiquino se volvieron más raros después de principios de la década de 1980, el estilo ha sido muy influyente en el desarrollo de la música electrónica al desarrollar el concepto moderno de remix y formar las raíces del Dancehall, mientras que el sonido y el nombre han pasado a géneros como Dub Techno, Ambient Dub y Dubstep.</p>
+	  <p data-lang="es">Si bien los LP de dub jamaiquino se volvieron más raros después de principios de la década de 1980, el estilo ha sido muy influyente en el desarrollo de la música electrónica al desarrollar el concepto moderno de remix y formar las raíces del Dancehall, mientras que el sonido y el nombre han pasado a géneros como Dub Techno, Ambient Dub y Dubstep.</p>
+	  <p data-lang="en">While Jamaican dub LPs became scarcer after the early 1980s, the style has been highly influential in the development of electronic music by developing the modern concept of the remix and forming the roots of Dancehall, while its sound and name have carried over into genres like Dub Techno, Ambient Dub, and Dubstep.</p>
 	   	
     </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
