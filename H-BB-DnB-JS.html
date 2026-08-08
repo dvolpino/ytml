@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,18 +38,20 @@
 	  	<li><a href="index.html" class="Genre" >Breakbeat</a></li>
 		<li><a href="BB-DnB.html" class="scene" >Drum n´Bass</a></li>
 		<li><a href="BB-DnB-JS.html" class="SubGenre" >Jazzstep</a></li>
-		<li class="aka-item"><a class="aka">AKA: Jazzy Jungle, Jazzy DnB, Jazz n´Bass  // Mediados 90´s</a></li>
+		<li class="aka-item"><a class="aka">AKA: Jazzy Jungle, Jazzy DnB, Jazz n´Bass  // <span data-lang="es">Mediados 90´s</span><span data-lang="en">Mid 90s</span></a></li>
 </ul>   
  </nav>
 <!-- MAIN CONTENT -->
 <main class="site-main">
    
    <div class="history">
-		  <p>El jazzstep es un género que combina el ritmo y la velocidad del drum and bass con las melodías, la composición y la instrumentación del jazz. Se samplean instrumentos de metal, contrabajo y percusión de jazz, y las escalas de jazz se utilizan con bastante frecuencia junto con las voces, especialmente las femeninas. Alex Reece popularizó el género a mediados de los 90 con su sencillo &quot;Pulp Fiction / Chill Pill&quot;. Sin embargo, el género decayó en popularidad y, para principios de la década del 2000, se publicaron muy pocos lanzamientos. Ha sido reemplazado por el drum and bass atmosférico y el drum and bass líquido. Entre sus artistas más representativos se encuentran Alex Reece y Roni Size &amp; Reprazent.</p>
+		  <p data-lang="es">El jazzstep es la progresión del <a class="linkshisto" href="H-BB-DnB-AJ.html">Atmospheric Jungle</a>. Combina el ritmo y la velocidad del Drum and Bass con las melodías, la composición y la instrumentación del Jazz. Se samplean instrumentos de metal, contrabajo y percusión de Jazz, y las escalas de Jazz se utilizan con bastante frecuencia junto con las voces, especialmente las femeninas. <a class="linkshisto" href="https://www.discogs.com/artist/1560-Alex-Reece">Alex Reece</a> popularizó el género a mediados de los 90 con su sencillo &quot;Pulp Fiction / Chill Pill&quot;. Sin embargo, el género decayó en popularidad y, para principios de la década del 2000, se publicaron muy pocos lanzamientos. Ha sido reemplazado por el <a class="linkshisto" href="H-BB-DnB-LF.html">Liquid Funk</a>. Entre sus artistas más representativos se encuentran <a class="linkshisto" href="https://www.discogs.com/artist/1560-Alex-Reece">Alex Reece</a> y <a class="linkshisto" href="https://www.discogs.com/artist/124108-Roni-Size-Reprazent">Roni Size &amp; Reprazent</a>.</p>
+		  <p data-lang="en">Jazzstep is the progression of <a class="linkshisto" href="H-BB-DnB-AJ.html">Atmospheric Jungle</a>. It combines the rhythm and speed of Drum and Bass with the melodies, composition, and instrumentation of Jazz. Brass instruments, upright bass, and jazz percussion get sampled, and jazz scales are used quite often alongside vocals, especially female ones. <a class="linkshisto" href="https://www.discogs.com/artist/1560-Alex-Reece">Alex Reece</a> popularized the genre in the mid-90s with his single &quot;Pulp Fiction / Chill Pill&quot;. However, the genre declined in popularity, and by the early 2000s very few releases were coming out. It has since been replaced by <a class="linkshisto" href="H-BB-DnB-LF.html">Liquid Funk</a>. Its most representative artists include <a class="linkshisto" href="https://www.discogs.com/artist/1560-Alex-Reece">Alex Reece</a> and <a class="linkshisto" href="https://www.discogs.com/artist/124108-Roni-Size-Reprazent">Roni Size &amp; Reprazent</a>.</p>
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is

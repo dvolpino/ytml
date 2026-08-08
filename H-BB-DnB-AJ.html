@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,22 +38,26 @@
 	  	<li><a href="index.html" class="Genre" >Breakbeat</a></li>
 		<li><a href="BB-DnB.html" class="scene" >Drum n´Bass</a></li>
 		<li><a href="BB-DnB-AJ.html" class="SubGenre2" >Atmospheric Jungle</a></li>
-		<li class="aka-item"><a class="aka">AKA: Atmospheric Drum n´Bass, Ambient Jungle, Ambient Drum n´Bass  // Mediados 90´s</a></li>
+		<li class="aka-item"><a class="aka">AKA: Atmospheric Drum n´Bass, Ambient Jungle, Ambient Drum n´Bass  // <span data-lang="es">Med 90s</span><span data-lang="en">Mid 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
 <main class="site-main">
    
    <div class="history">
-		  <p>El Atmospheric Jungle es un subgénero del drum and bass que cobró prominencia a mediados de los 90, aunque existen temas con sus características que datan de 1991. Se distinguió de otros estilos de drum and bass populares en aquel entonces por acelerar los breakbeats (a veces superando los 170 BPM) y reducir su énfasis en la producción, centrándose en la melodía y la armonía. Los temas suelen incluir líneas de bajo lentas y cálidas, una producción limpia y melodías relajadas y atmosféricas inspiradas en el ambient y el ambient house. Estos elementos contrastaban marcadamente con la energía frenética del jungle y el happy hardcore, populares en aquel entonces. </p><br>
-	   
-		  <p>LTJ Bukem es reconocido como el principal pionero y defensor del género, con clásicos como Demon's Theme y Atlantis (I Need You) (L.T.J. Bukem Remix), además de fundar Good Looking Records, el sello discográfico más exitoso especializado en este estilo. Otros nombres importantes del género incluyen a Goldie, Photek, Adam F y Omni Trio.</p><br>
+		  <p data-lang="es">El Atmospheric Jungle es un subgénero del Drum and Bass que cobró prominencia a mediados de los 90, aunque existen temas con sus características que datan de 1991. Se distinguió de otros estilos de Drum and Bass populares en aquel entonces por acelerar los breakbeats (a veces superando los 170 BPM) y reducir su énfasis en la producción, centrándose en la melodía y la armonía. Los temas suelen incluir líneas de bajo lentas y cálidas, una producción limpia y melodías relajadas y atmosféricas inspiradas en el Ambient y el Ambient House. Estos elementos contrastaban marcadamente con la energía frenética del Jungle y el Happy Hardcore, populares en aquel entonces. </p>
+		  <p data-lang="en">Atmospheric Jungle is a Drum and Bass subgenre that rose to prominence in the mid-90s, though tracks with its defining characteristics date back as far as 1991. It set itself apart from other popular Drum and Bass styles of the time by speeding up the breakbeats (sometimes past 170 BPM) and pulling back on the production, focusing instead on melody and harmony. Tracks typically feature slow, warm basslines, clean production, and relaxed, atmospheric melodies drawing from Ambient and Ambient house. These elements stood in sharp contrast to the frantic energy of Jungle and Happy Hardcore, both popular at the time.</p><br>
+	   <img src="images/History/Breakbeat/goodlookingrecords.jpg" class="photo1" />
+		  <p data-lang="es"><a class="linkshisto" href="https://www.discogs.com/artist/321-LTJ-Bukem">LTJ Bukem</a> es reconocido como el principal pionero y defensor del género, con clásicos como Demon's Theme y Atlantis (I Need You) (L.T.J. Bukem Remix), además de fundar <a class="linkshisto" href="https://www.discogs.com/label/124-Good-Looking-Records">Good Looking Records</a>, el sello discográfico más exitoso especializado en este estilo. Otros nombres importantes del género incluyen a <a class="linkshisto" href="https://www.discogs.com/artist/2825-Goldie">Goldie</a>, <a class="linkshisto" href="https://www.discogs.com/artist/417-Photek">Photek</a>, <a class="linkshisto" href="https://www.discogs.com/artist/336-Adam-F">Adam F</a> y <a class="linkshisto" href="https://www.discogs.com/artist/1415-Omni-Trio">Omni Trio</a>.</p>
+		  <p data-lang="en"><a class="linkshisto" href="https://www.discogs.com/artist/321-LTJ-Bukem">LTJ Bukem</a> is recognized as the genre's foremost pioneer and champion, with classics like Demon's Theme and Atlantis (I Need You) (L.T.J. Bukem Remix), and also founded <a class="linkshisto" href="https://www.discogs.com/label/124-Good-Looking-Records">Good Looking Records</a>, the most successful label specializing in this style. Other major names in the genre include <a class="linkshisto" href="https://www.discogs.com/artist/2825-Goldie">Goldie</a>, <a class="linkshisto" href="https://www.discogs.com/artist/417-Photek">Photek</a>, <a class="linkshisto" href="https://www.discogs.com/artist/336-Adam-F">Adam F</a>, and <a class="linkshisto" href="https://www.discogs.com/artist/1415-Omni-Trio">Omni Trio</a>.</p><br>
 		    
-	      <p> El género alcanzó un breve auge de popularidad en 1995 y 1996, tras lo cual fue superado por estilos más recientes de drum and bass (principalmente el techstep). Su filosofía fue adoptada por el jazzstep, un estilo estrechamente relacionado, y posteriormente por Liquid Drum and Bass. Paralelamente al jungle, el drum and bass atmosférico experimentó un resurgimiento considerable en las décadas de 2010 y 2020, liderado por artistas como Coco Bryce, Kloke y ASC, y sellos como OKBRON Records.</p>
+	      <p data-lang="es"> El género alcanzó un breve auge de popularidad en 1995 y 1996, tras lo cual fue superado por estilos más recientes de Drum and Bass (principalmente el techstep). Su filosofía fue adoptada por el <a class="linkshisto" href="H-BB-DnB-JS.html">Jazzstep</a>  y posteriormente por el <a class="linkshisto" href="H-BB-DnB-LF.html">Liquid Funk</a>. Paralelamente al Jungle, el Drum and Bass Atmosférico experimentó un resurgimiento considerable en las décadas de 2010 y 2020, liderado por artistas como <a class="linkshisto" href="https://www.discogs.com/artist/1488101-Coco-Bryce">Coco Bryce</a> y <a class="linkshisto" href="https://www.discogs.com/artist/1642887-Kloke">Kloke</a>, y sellos como <a class="linkshisto" href="https://www.discogs.com/label/1656404-OKBRON">OKBRON Records</a>.</p>
+	      <p data-lang="en">The genre had a brief peak in popularity in 1995 and 1996, after which it was overtaken by newer Drum and Bass styles (mainly techstep). Its philosophy was carried forward by <a class="linkshisto" href="H-BB-DnB-JS.html">Jazzstep</a> and later by <a class="linkshisto" href="H-BB-DnB-LF.html">Liquid Funk</a>. Alongside Jungle, Atmospheric Jungle saw a considerable resurgence in the 2010s and 2020s, led by artists like <a class="linkshisto" href="https://www.discogs.com/artist/1488101-Coco-Bryce">Coco Bryce</a> and <a class="linkshisto" href="https://www.discogs.com/artist/1642887-Kloke">Kloke</a>, and labels like <a class="linkshisto" href="https://www.discogs.com/label/1656404-OKBRON">OKBRON Records</a>.</p>
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
