@@ -1,9 +1,17 @@
-<<!doctype html>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="House.html" class="Genre" >House & Garage</a></li>
      <li><a href="House-DiscoH-FH.html" class="SubGenre" >French House</a></li>
-	<li class="aka-item"><a class="aka">AKA: Filter House, Sidechain House, Tekfunk  // Fines 90´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Filter House, Sidechain House, Tekfunk  // <span data-lang="es">Fines 90´s</span><span data-lang="en">Late 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,23 +45,36 @@
    
    <div class="history">
 
-		  <p>El <a href="https://music.ishkur.com/?query=DiscoHouse" target="_blank" draggable="false" rel="noopener" class="linkshisto">Disco House</a> estableció el modelo de repetir un viejo estribillo de una canción de los años 70.</p>
-		  <p>El French House fue un paso más allá e introdujo el ridículamente adictivo filtro de paso bajo, una técnica de audio consagrada por el tiempo que elimina las frecuencias más altas y hace que la señal suene apagada, con graves y, cuando se combina con flanger y barridos de frecuencia, francamente funky.</p><br>
-		  <p>El filtro se aplicó a todo, incluso al bombo, que lo hacía pasar de un &quot;golpe&quot; a un suave &quot;golpe&quot;. También se usó sidechaining. El filtro es tan importante para la estética del house francés que su apodo es &quot;Filter House&quot;.</p><br>
-		  <p>El House Francés tomó los loops de la música disco. Dividió compases enteros en medios compases y cuartos de compás (y a veces incluso corcheas) y los repitió con descaro y encanto. Sin duda, el género house más repetitivo, el House Francés evita la estrofa AAAB en favor de una locura AAAA directa y sin desviaciones: un solo compás en loop con filtros de ecualización cuidadosamente diseñados que introducen y eliminan elementos, acercándolo a sus antecedentes del Tech House y el Techno.</p><br>
-		  <p>Claro que con tantos filtros paso bajo en todo, surgieron problemas. Es un hecho de la física del audio que, si se reproducen dos sonidos de la misma frecuencia con un desfase de 180 grados, se cancelan mutuamente, por lo que la salida queda silenciada o extremadamente baja. Entonces, con todo el registro grave ocupado, ¿adónde va el bombo? Queda ahogado por las otras frecuencias graves. La solución es el sidechaining.</p>
-		  <p>El sidechaining proviene de una antigua técnica de radio llamada ducking, que permite a los DJ hablar sobre la música sin que esta los ahogue. Cada vez que el DJ habla, el volumen de la música baja inmediatamente por debajo del de su voz, para que se le escuche con mayor claridad. El ducking es útil para locuciones, sobregrabaciones y todo tipo de aplicaciones de audio.</p>
-		  <p>El sidechaining es lo mismo, solo que se usa de forma más microscópica: baja el volumen de todo lo que suena a la misma frecuencia que el bombo, de modo que este se escucha mientras todo lo demás se esconde debajo. Esto produce un curioso efecto de sonido casi inverso en los pads y el bajo que, junto con el bombo, produce un sonido que dice &quot;¡WOMP WOMP WOMP WOMP!&quot;, ya que bajan constantemente el volumen con cada bombo durante una fracción de segundo, añadiendo una nueva dimensión de la robusta calidad francesa.</p><br>
-		  <p>La cuestión es que el house francés es muy funky y hay muchas técnicas de audio divertidas que lo hacen funky.</p>
-		  <p>Sí, Daft Punk prácticamente lo inventó con su álbum Homework, pero no han hecho house francés desde 2001, y Thomas, individualmente, no ha hecho house francés desde 2007, y Guy-Manuel quizá desde 2004. Fue más o menos al mismo tiempo que sus sellos ( <a href="https://www.discogs.com/label/310620-Roul%C3%A9-Music" target="_blank" draggable="false" rel="noopener" class="linkshisto">Roule</a> y <a href="https://www.discogs.com/label/823-Crydamoure" target="_blank" draggable="false" rel="noopener" class="linkshisto">Crydamoure</a> ) dejaron de publicar, pero no importa. Los franceses siguen dominando el house francés, pero al igual que otros géneros regionales que se globalizan, parte del mejor house francés <a href="https://www.discogs.com/label/16307-Eyezcream-Recordings" target="_blank" draggable="false" rel="noopener" class="linkshisto">no proviene de Francia</a> .</p><br>
-		  <p>El French House siguió la trayectoria de Daft Punk, conquistando el mundo cuando lo hacían y decayendo cuando dejaron de hacerlo. Después de Homework, todos se apresuraron a crear el sonido Daft Punk (incluso <a href="https://www.discogs.com/Madonna-Music/master/34721" target="_blank" draggable="false" rel="noopener" class="linkshisto">Madonna</a>), y después de <a href="https://www.discogs.com/Daft-Punk-Discovery/master/26647" target="_blank" draggable="false" rel="noopener" class="linkshisto">Discovery</a> (2001), todos empezaron a cansarse un poco de la técnica de &quot;samplear y filtrar hasta el cansancio un viejo gancho de los 70&quot; (incluido Daft Punk, razón por la cual su siguiente álbum, <a href="https://www.discogs.com/Daft-Punk-Human-After-All/master/26833" target="_blank" draggable="false" rel="noopener" class="linkshisto">Human After All</a> (2005 ), no contenía ningún sample, salvo Robot Rock), lo cual es bastante acertado.</p><br>
-		  <p>El período de apogeo para cualquier género popular es de 3 a 5 años, y luego todos quieren pasar a la gran novedad, que en este caso fue el <a href="House-DiscoH-EH.html" target="_blank" draggable="false" rel="noopener" class="linkshisto">Electrohouse</a> .</p>
-		  <p>El house francés sigue vigente porque algo tan adictivo y funky nunca morirá. Igual que la música disco.</p>
+		  <p data-lang="es">El <a href="https://music.ishkur.com/?query=DiscoHouse" target="_blank" draggable="false" rel="noopener" class="linkshisto">Disco House</a> estableció el modelo de repetir un viejo estribillo de una canción de los años 70.</p>
+		  <p data-lang="en">The <a href="https://music.ishkur.com/?query=DiscoHouse" target="_blank" draggable="false" rel="noopener" class="linkshisto">Disco House</a> genre set the template of looping an old hook from a 70s song.</p>
+		  <p data-lang="es">El French House fue un paso más allá e introdujo el ridículamente adictivo filtro de paso bajo, una técnica de audio consagrada por el tiempo que elimina las frecuencias más altas y hace que la señal suene apagada, con graves y, cuando se combina con flanger y barridos de frecuencia, francamente funky.</p>
+		  <p data-lang="en">French House took it a step further and introduced the ridiculously addictive low-pass filter, a time-honored audio technique that strips out the higher frequencies and makes the signal sound muffled, bassy, and, when combined with flanger and frequency sweeps, downright funky.</p><br>
+		  <p data-lang="es">El filtro se aplicó a todo, incluso al bombo, que lo hacía pasar de un &quot;golpe&quot; a un suave &quot;golpe&quot;. También se usó sidechaining. El filtro es tan importante para la estética del house francés que su apodo es &quot;Filter House&quot;.</p>
+		  <p data-lang="en">The filter got applied to everything, even the kick drum, turning it from a &quot;thump&quot; into a soft &quot;thump.&quot; Sidechaining got used too. The filter is so central to French house's aesthetic that its nickname is &quot;Filter House.&quot;</p><br>
+		  <p data-lang="es">El House Francés tomó los loops de la música disco. Dividió compases enteros en medios compases y cuartos de compás (y a veces incluso corcheas) y los repitió con descaro y encanto. Sin duda, el género house más repetitivo, el House Francés evita la estrofa AAAB en favor de una locura AAAA directa y sin desviaciones: un solo compás en loop con filtros de ecualización cuidadosamente diseñados que introducen y eliminan elementos, acercándolo a sus antecedentes del Tech House y el Techno.</p>
+		  <p data-lang="en">French House took disco loops. It chopped whole bars down into half-bars and quarter-bars (and sometimes even eighth notes) and looped them with shameless charm. Without question the most repetitive of the house genres, French House skips the AAAB verse structure in favor of a straight-up, no-deviation AAAA madness: a single bar on loop, with carefully engineered EQ filters bringing elements in and out, pulling it closer to its Tech House and Techno ancestors.</p><br>
+		  <p data-lang="es">Claro que con tantos filtros paso bajo en todo, surgieron problemas. Es un hecho de la física del audio que, si se reproducen dos sonidos de la misma frecuencia con un desfase de 180 grados, se cancelan mutuamente, por lo que la salida queda silenciada o extremadamente baja. Entonces, con todo el registro grave ocupado, ¿adónde va el bombo? Queda ahogado por las otras frecuencias graves. La solución es el sidechaining.</p>
+		  <p data-lang="en">Of course, with low-pass filters slapped on everything, problems came up. It's a fact of audio physics that if you play two sounds of the same frequency 180 degrees out of phase, they cancel each other out, leaving the output muted or extremely quiet. So with the whole bass register taken up, where does the kick drum go? It gets swallowed up by the other low frequencies. The solution is sidechaining.</p>
+		  <p data-lang="es">El sidechaining proviene de una antigua técnica de radio llamada ducking, que permite a los DJ hablar sobre la música sin que esta los ahogue. Cada vez que el DJ habla, el volumen de la música baja inmediatamente por debajo del de su voz, para que se le escuche con mayor claridad. El ducking es útil para locuciones, sobregrabaciones y todo tipo de aplicaciones de audio.</p>
+		  <p data-lang="en">Sidechaining comes from an old radio technique called ducking, which lets DJs talk over the music without it drowning them out. Every time the DJ talks, the music's volume immediately drops below their voice, so they come through more clearly. Ducking is useful for voiceovers, overdubs, and all kinds of audio applications.</p>
+		  <p data-lang="es">El sidechaining es lo mismo, solo que se usa de forma más microscópica: baja el volumen de todo lo que suena a la misma frecuencia que el bombo, de modo que este se escucha mientras todo lo demás se esconde debajo. Esto produce un curioso efecto de sonido casi inverso en los pads y el bajo que, junto con el bombo, produce un sonido que dice &quot;¡WOMP WOMP WOMP WOMP!&quot;, ya que bajan constantemente el volumen con cada bombo durante una fracción de segundo, añadiendo una nueva dimensión de la robusta calidad francesa.</p>
+		  <p data-lang="en">Sidechaining is the same thing, just used on a much more microscopic scale: it lowers the volume of everything sitting at the same frequency as the kick drum, so the kick comes through while everything else ducks underneath it. This produces a curious, almost inverse sound effect on the pads and bass that, combined with the kick, produces a sound that goes &quot;WOMP WOMP WOMP WOMP!&quot;, constantly dipping in volume with every kick for a split second, adding a whole new dimension to that robust French quality.</p><br>
+		  <p data-lang="es">La cuestión es que el house francés es muy funky y hay muchas técnicas de audio divertidas que lo hacen funky.</p>
+		  <p data-lang="en">The point is, French house is extremely funky, and there are a lot of fun audio techniques that make it funky.</p>
+		  <p data-lang="es">Sí, Daft Punk prácticamente lo inventó con su álbum Homework, pero no han hecho house francés desde 2001, y Thomas, individualmente, no ha hecho house francés desde 2007, y Guy-Manuel quizá desde 2004. Fue más o menos al mismo tiempo que sus sellos ( <a href="https://www.discogs.com/label/310620-Roul%C3%A9-Music" target="_blank" draggable="false" rel="noopener" class="linkshisto">Roule</a> y <a href="https://www.discogs.com/label/823-Crydamoure" target="_blank" draggable="false" rel="noopener" class="linkshisto">Crydamoure</a> ) dejaron de publicar, pero no importa. Los franceses siguen dominando el house francés, pero al igual que otros géneros regionales que se globalizan, parte del mejor house francés <a href="https://www.discogs.com/label/16307-Eyezcream-Recordings" target="_blank" draggable="false" rel="noopener" class="linkshisto">no proviene de Francia</a> .</p>
+		  <p data-lang="en">Yes, Daft Punk basically invented it with their album Homework, but they haven't made French house since 2001, and Thomas, solo, hasn't made French house since 2007, and Guy-Manuel maybe since 2004. That's roughly around the same time their labels ( <a href="https://www.discogs.com/label/310620-Roul%C3%A9-Music" target="_blank" draggable="false" rel="noopener" class="linkshisto">Roule</a> and <a href="https://www.discogs.com/label/823-Crydamoure" target="_blank" draggable="false" rel="noopener" class="linkshisto">Crydamoure</a> ) stopped putting out releases, but it doesn't matter. The French still dominate French house, but like other regional genres that go global, some of the best French house <a href="https://www.discogs.com/label/16307-Eyezcream-Recordings" target="_blank" draggable="false" rel="noopener" class="linkshisto">doesn't come from France</a> .</p><br>
+		  <p data-lang="es">El French House siguió la trayectoria de Daft Punk, conquistando el mundo cuando lo hacían y decayendo cuando dejaron de hacerlo. Después de Homework, todos se apresuraron a crear el sonido Daft Punk (incluso <a href="https://www.discogs.com/Madonna-Music/master/34721" target="_blank" draggable="false" rel="noopener" class="linkshisto">Madonna</a>), y después de <a href="https://www.discogs.com/Daft-Punk-Discovery/master/26647" target="_blank" draggable="false" rel="noopener" class="linkshisto">Discovery</a> (2001), todos empezaron a cansarse un poco de la técnica de &quot;samplear y filtrar hasta el cansancio un viejo gancho de los 70&quot; (incluido Daft Punk, razón por la cual su siguiente álbum, <a href="https://www.discogs.com/Daft-Punk-Human-After-All/master/26833" target="_blank" draggable="false" rel="noopener" class="linkshisto">Human After All</a> (2005 ), no contenía ningún sample, salvo Robot Rock), lo cual es bastante acertado.</p>
+		  <p data-lang="en">French House followed Daft Punk's trajectory, conquering the world while they were at it and fading once they stopped. After Homework, everyone rushed to recreate the Daft Punk sound (even <a href="https://www.discogs.com/Madonna-Music/master/34721" target="_blank" draggable="false" rel="noopener" class="linkshisto">Madonna</a>), and after <a href="https://www.discogs.com/Daft-Punk-Discovery/master/26647" target="_blank" draggable="false" rel="noopener" class="linkshisto">Discovery</a> (2001), everyone started getting a little tired of the &quot;sample and filter an old 70s hook to death&quot; technique (Daft Punk included, which is why their next album, <a href="https://www.discogs.com/Daft-Punk-Human-After-All/master/26833" target="_blank" draggable="false" rel="noopener" class="linkshisto">Human After All</a> (2005 ), didn't contain a single sample, except for Robot Rock) — which is a pretty fair assessment.</p><br>
+		  <p data-lang="es">El período de apogeo para cualquier género popular es de 3 a 5 años, y luego todos quieren pasar a la gran novedad, que en este caso fue el <a href="House-DiscoH-EH.html" target="_blank" draggable="false" rel="noopener" class="linkshisto">Electrohouse</a> .</p>
+		  <p data-lang="en">The peak lifespan for any popular genre is 3 to 5 years, after which everyone wants to move on to the next big thing, which in this case was <a href="House-DiscoH-EH.html" target="_blank" draggable="false" rel="noopener" class="linkshisto">Electrohouse</a> .</p>
+		  <p data-lang="es">El house francés sigue vigente porque algo tan adictivo y funky nunca morirá. Igual que la música disco.</p>
+		  <p data-lang="en">French house is still around because something this addictive and funky will never die. Just like disco music.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
