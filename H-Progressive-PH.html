@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="House.html" class="Genre" >House & Garage</a></li>
 	 <li><a href="Progressive.html" class="scene" >Progressive</a></li>
      <li><a href="Progressive-PH.html" class="SubGenre" >Progressive House</a></li>
-	<li class="aka-item"><a class="aka">AKA: Prog House, Leftfield// Inicios 90s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Prog House, Leftfield// <span data-lang="es">Inicios 90s</span><span data-lang="en">Early 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,18 +46,25 @@
    
    <div class="history">
 
-	  <p>El House Progresivo surgió cuando el House británico empezó a sonar como algo propio y cohesivo, y no como un intento a medias de productores británicos por crear un House con un sonido propio de Chicago.    Probablemente fue acuñado por Genesis Breyer P-Orridge, de la entonces Psychic TV, para referirse a grupos como Leftfield, que hacían algo con la música House que no encajaba en el molde del House (Leftfield fue uno de los primeros nombres del House Progresivo, nombrado específicamente en honor a la banda. El término sigue vigente, pero ahora prácticamente no tiene sentido). </p><br>
+	  <p data-lang="es">El House Progresivo surgió cuando el House británico empezó a sonar como algo propio y cohesivo, y no como un intento a medias de productores británicos por crear un House con un sonido propio de Chicago. Probablemente fue acuñado por Genesis Breyer P-Orridge, de la entonces Psychic TV, para referirse a grupos como <a class="linkshisto" href="https://www.discogs.com/artist/1866-Leftfield">Leftfield</a>, que hacían algo con la música House que no encajaba en el molde del House (Leftfield fue el primer nombre para el House Progresivo, nombrado específicamente en honor a la banda. El término sigue vigente, pero ahora prácticamente no tiene sentido). </p>
+	  <p data-lang="en">Progressive House emerged once British House started sounding like its own cohesive thing, rather than a half-hearted attempt by British producers to make House with a Chicago sound. It was probably coined by Genesis Breyer P-Orridge, then of Psychic TV, to refer to groups like <a class="linkshisto" href="https://www.discogs.com/artist/1866-Leftfield">Leftfield</a>, who were doing something with House music that didn't fit the House mold (Leftfield was an early name for Progressive House, specifically named in the band's honor. The term is still around, though it barely means anything at this point). </p><br>
 		  
-		<p>El House Progresivo se ganó su nombre en sus inicios. Era una extensión del house que utilizaba ideas y conceptos muy alejados de sus orígenes gays y negros en Chicago. Breakbeats tribales con bongós y tambores africanos, congas y maracas, punteos de guitarra española, samples de lamentos y vítores étnicos, flautas de pan, panderetas y maracas, arpas y punteos de sintetizador, voces de indie rock y riffs de guitarra eléctrica, y pads exuberantes y atmósferas corales. Casi ningún sonido o instrumento no le parecía una buena idea al House Progresivo. </p><br>
-			<p>Si hubiera una mezcla que definiera el sonido clásico del Progressive House sería <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a>. </p><br>
-		<p>Fiel al estilo Progressive House, <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a> fue una emocionante mezcla de Breaks, Techno, Chill Out, Downtempo, Ambient, Balearic, Trance y muy poco Progressive House propiamente dicho. </p><br>
-		<p>Probablemente lo más importante que introdujo el Progressive House fueron los arpegios (esas líneas de sintetizador en bucle que hacen &quot;doodly doodly doodly&quot;, de arpegio, la técnica musical de tocar las notas de un acorde en rápida sucesión en lugar de todas a la vez). Los arpegios no eran nuevos en la música electrónica (Hi-NRG los introdujo en 1977), pero no se conocían como propios del House.</p>
-		<p>Al principio, no tuvieron mucho impacto, pero sí lo tendrían más adelante, cuando el Trance se impuso y los británicos, con esa típica forma británica suya, decidieron que si dominaban la vertiente progresiva del House, también podrían dominar la vertiente progresiva del Trance. O tal vez simplemente fusionar ambas y llamarlo Prog.</p>
+		<p data-lang="es">El House Progresivo se ganó su nombre en sus inicios. Era una extensión del House que utilizaba ideas y conceptos muy alejados de sus orígenes gays y negros en Chicago. Breakbeats tribales con bongós y tambores africanos, congas y maracas, punteos de guitarra española, samples de lamentos y vítores étnicos, flautas de pan, panderetas y maracas, arpas y punteos de sintetizador, voces de Indie Rock y riffs de guitarra eléctrica, y pads exuberantes y atmósferas corales. Casi ningún sonido o instrumento no le parecía una buena idea al House Progresivo. </p>
+		<p data-lang="en">Progressive House earned its name in its early days. It was an extension of House that pulled in ideas and concepts far removed from its Black and gay Chicago origins. Tribal breakbeats with bongos and African drums, congas and maracas, Spanish guitar picking, samples of ethnic wailing and chanting, pan flutes, tambourines and maracas, harps and synth arpeggios, Indie Rock vocals and electric guitar riffs, and lush pads and choral atmospheres. Almost no sound or instrument seemed like a bad idea to Progressive House. </p><br>
+			<p data-lang="es">Si hubiera una mezcla que definiera el sonido clásico del Progressive House sería <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a>. </p>
+			<p data-lang="en">If there's one mix that defines the classic Progressive House sound, it's <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a>. </p>
+		<p data-lang="es">Fiel al estilo Progressive House, <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a> fue una emocionante mezcla de Breaks, Techno, Chill Out, Downtempo, Ambient, Balearic, Trance y muy poco Progressive House propiamente dicho. </p>
+		<p data-lang="en">True to Progressive House form, <a href="https://music.youtube.com/watch?v=R3bc2MlpKb8&list=PLese6n3wNq4IycpZXhRUQN59I49TYfXfQ" class="linkshisto">Northern Exposure</a> was a thrilling mix of Breaks, Techno, Chill Out, Downtempo, Ambient, Balearic, Trance, and very little actual Progressive House. </p><br>
+		<p data-lang="es">Probablemente lo más importante que introdujo el Progressive House fueron los arpegios (esas líneas de sintetizador en bucle que hacen &quot;doodly doodly doodly&quot;, de arpegio, la técnica musical de tocar las notas de un acorde en rápida sucesión en lugar de todas a la vez). Los arpegios no eran nuevos en la música electrónica (Hi-NRG los introdujo en 1977), pero no se conocían como propios del House.</p>
+		<p data-lang="en">Probably the most important thing Progressive House introduced was arpeggios (those looping synth lines that go &quot;doodly doodly doodly,&quot; from arpeggio, the musical technique of playing the notes of a chord in quick succession instead of all at once). Arpeggios weren't new to electronic music (Hi-NRG introduced them in 1977), but they weren't known as a House staple.</p>
+		<p data-lang="es">Al principio, no tuvieron mucho impacto, pero sí lo tendrían más adelante, cuando el Trance se impuso y los británicos, con esa típica forma británica suya, decidieron que si dominaban la vertiente progresiva del House, también podrían dominar la vertiente progresiva del Trance. O tal vez simplemente fusionar ambas y llamarlo Prog.</p>
+		<p data-lang="en">At first, they didn't make much of an impact, but they would later, once Trance took over and the British, in that typically British way of theirs, decided that if they'd already mastered the progressive side of House, they could master the progressive side of Trance too. Or maybe just merge the two and call it Prog.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
