@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="House.html" class="Genre" >House & Garage</a></li>
 	 <li><a href="Progressive.html" class="scene" >Progressive</a></li>
      <li><a href="Progressive-McP.html" class="SubGenre" >McProg</a></li>
-	<li class="aka-item"><a class="aka">AKA: Vocal Prog, Melodic Prog // inicios 00´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Vocal Prog, Melodic Prog // <span data-lang="es">inicios 00´s</span><span data-lang="en">Early 00s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,7 +46,8 @@
    
    <div class="history">
 	   
-	   <p>Es escencialmente Vocal Trance Progresivo. Hacia fines de la década de 2000 se hace mas comercial y exagerado.</p>
+	   <p data-lang="es">Es escencialmente Vocal Trance Progresivo. Hacia fines de la década de 2000 se hace mas comercial y exagerado.</p>
+	   <p data-lang="en">It's essentially Progressive Vocal Trance. Toward the late 2000s it becomes more commercial and over-the-top.</p>
 
 	 
 		
@@ -42,6 +56,7 @@
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
