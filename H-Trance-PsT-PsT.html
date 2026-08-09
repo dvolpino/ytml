@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="Trance.html" class="Genre" >Trance</a></li>
 		<li><a href="Trance-PsT.html" class="scene2" >Psychedelic Trance</a></li>
 		<li><a href="Trance-PsT-PsT.html" class="SubGenre3" >Psychedelic Trance</a></li>
-	   <li class="aka-item"><a class="aka">AKA: Uptempo Psy, UK Psy, Melodic Psytrance  // Fines 90´s</a></li>
+	   <li class="aka-item"><a class="aka">AKA: Uptempo Psy, UK Psy, Melodic Psytrance  // <span data-lang="es">Fines 90´s</span><span data-lang="en">Late 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,21 +46,31 @@
    
    <div class="history">
 
-		  <p>El trance psicodélico es lo que suena como el <a class="linkshisto" href="Trance-PsT-Goa.html">Goa Trance</a> cuando eliminas el Goa.</p>
-		  <p>Con el tiempo, la música se volvió más rápida, más psicodélica, más intensa y menos espiritual. </p><br>
-		  <p>También contribuyó el lanzamiento de dos nuevos equipos analógicos virtuales que permitieron a Goa transformarse en Psy. El primero fue el Nord Lead 1 de Clavia, lanzado en 1995.</p><img src="images/History/Trance/PsyTrance/nordlead1.webp" class=photo3 />
+		  <p data-lang="es">El Psychedelic Trance es lo que suena como el <a class="linkshisto" href="H-Trance-PsT-Goa.html">Goa Trance</a> cuando eliminas el Goa.</p>
+		  <p data-lang="en">Psychedelic Trance is what <a class="linkshisto" href="H-Trance-PsT-Goa.html">Goa Trance</a> sounds like once you take the Goa out of it.</p>
+		  <p data-lang="es">Con el tiempo, la música se volvió más rápida, más psicodélica, más intensa y menos espiritual. </p><br>
+		  <p data-lang="en">Over time, the music got faster, more psychedelic, more intense, and less spiritual. </p><br>
+		  <p data-lang="es">También contribuyó el lanzamiento de dos nuevos equipos analógicos virtuales que permitieron a Goa transformarse en Psy. El primero fue el Nord Lead 1 de Clavia, lanzado en 1995.</p>
+		  <p data-lang="en">Also contributing to this was the release of two new virtual analog synths that let Goa transform into Psy. The first was Clavia's Nord Lead 1, released in 1995.</p><img src="images/History/Trance/PsyTrance/nordlead1.webp" class=photo3 /><br style="clear:both;">
 			  
-		  <p>  El otro fue el virus Access en 1997.</p><img src="images/History/Trance/PsyTrance/accessvirus.webp" class=photo3 />
-		  <p>El Nord Lead 1 fue apodado &quot;El Gritón&quot;, mientras que el Virus fue apodado &quot;El Mutante&quot; (tomando el nombre del TB-303 que lo ostentaba anteriormente). </p><br>
-		  <p>Eso no quiere decir que crear Psy Trance fuera difícil antes del lanzamiento de estas bestias. Aún existían el SH-101 &quot;Red Devil&quot; y el Juno 106 &quot;Fuck Oberheim&quot; y una docena de sintetizadores más con los que experimentar. Pero estos dos sintetizadores en particular realmente cautivaron a todos los productores de Psy en un sonido característico. Así que si te preguntas por qué todos los Psy empezaron a sonar igual después del 97, esta es la razón. Mismo equipo; mismos presets; mismos arreglos.</p><br>
-		  <p>Como el trance psicodélico es técnicamente el género base de toda la escena, ha generado la mayor cantidad de subgéneros. El principal de estos son sus incursiones en el trance, incluyendo el psy tech-trance, el psy techno, el tech psy y el psy tekk, que los amantes del psy trance insisten en que son cosas completamente distintas. También existen demarcaciones entre el &quot;trance psicodélico melódico&quot; y el &quot;trance psicodélico oscuro&quot;, pero esas son solo descripciones que a ningún DJ en su sano juicio le importan.</p><br>
-		  <p>También existe Suomisaundi (literalmente, &quot;sonido finlandés&quot;), una variante finlandesa fabricada por Fins que proviene de Finlandia.</p>
-		  <p>Pero probablemente el subgénero más importante del trance psicodélico fue <a class="linkshisto" href="https://music.ishkur.com/?query=FullOn" target="_blank" draggable="false" rel="noopener">Full On</a>.</p>
+		  <p data-lang="es">El otro fue el virus Access en 1997.</p>
+		  <p data-lang="en">The other was the Access Virus in 1997.</p><img src="images/History/Trance/PsyTrance/accessvirus.webp" class=photo3 /><br style="clear:both;">
+		  <p data-lang="es">El Nord Lead 1 fue apodado &quot;El Gritón&quot;, mientras que el Virus fue apodado &quot;El Mutante&quot; (tomando el nombre del TB-303 que lo ostentaba anteriormente). </p><br>
+		  <p data-lang="en">The Nord Lead 1 was nicknamed &quot;The Screamer,&quot; while the Virus was nicknamed &quot;The Mutator&quot; (taking the name previously held by the TB-303). </p><br>
+		  <p data-lang="es">Eso no quiere decir que crear Psy Trance fuera difícil antes del lanzamiento de estas bestias. Aún existían el SH-101 &quot;Red Devil&quot; y el Juno 106 &quot;Fuck Oberheim&quot; y una docena de sintetizadores más con los que experimentar. Pero estos dos sintetizadores en particular realmente cautivaron a todos los productores de Psy en un sonido característico. Así que si te preguntas por qué todos los Psy empezaron a sonar igual después del 97, esta es la razón. Mismo equipo; mismos presets; mismos arreglos.</p><br>
+		  <p data-lang="en">That's not to say making Psy Trance was hard before these beasts came out. There was still the SH-101 &quot;Red Devil&quot; and the Juno 106 &quot;Fuck Oberheim&quot; and a dozen other synths to mess around with. But these two synths in particular really locked every Psy producer into one signature sound. So if you're wondering why all Psy started sounding the same after '97, this is why. Same gear; same presets; same arrangements.</p><br>
+		  <p data-lang="es">Como el Psychedelic Trance es técnicamente el género base de toda la escena, ha generado la mayor cantidad de subgéneros. El principal de estos son sus incursiones en el Trance, incluyendo el Psy Tech-trance, el Psy Techno, el Tech Psy y el Psy Tekk, que los amantes del Psy Trance insisten en que son cosas completamente distintas. También existen demarcaciones entre el &quot;Psychedelic Trance melódico&quot; y el &quot;Psychedelic Trance oscuro&quot;, pero esas son solo descripciones que a ningún DJ en su sano juicio le importan.</p><br>
+		  <p data-lang="en">Since Psychedelic Trance is technically the base genre of the whole scene, it's spawned the most subgenres. Chief among these are its forays into Trance, including Psy Tech-trance, Psy Techno, Tech Psy, and Psy Tekk, which Psy Trance heads insist are all completely different things. There are also distinctions between &quot;melodic Psychedelic Trance&quot; and &quot;dark Psychedelic Trance,&quot; but those are just descriptions no sane DJ actually cares about.</p><br>
+		  <p data-lang="es">También existe Suomisaundi (literalmente, &quot;sonido finlandés&quot;), una variante finlandesa fabricada por Fins que proviene de Finlandia.</p>
+		  <p data-lang="en">There's also Suomisaundi (literally &quot;Finnish sound&quot;), a Finnish variant made by Finns that comes from Finland.</p>
+		  <p data-lang="es">Pero probablemente el subgénero más importante del Psychedelic Trance fue <a class="linkshisto" href="https://music.ishkur.com/?query=FullOn" target="_blank" draggable="false" rel="noopener">Full On</a>.</p>
+		  <p data-lang="en">But probably the most important subgenre of Psychedelic Trance was <a class="linkshisto" href="https://music.ishkur.com/?query=FullOn" target="_blank" draggable="false" rel="noopener">Full On</a>.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
