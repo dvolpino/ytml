@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="Trance.html" class="Genre" >Trance</a><a class="SubGenre">/</a><a href="Trance-EuroT.html" class="scene" >Eurotrance</a></li>
 		<li><a href="Trance-EuroT-AH.html" class="SubGenre" >Anthem House</a></li>
-		<li class="aka-item"><a class="aka">AKA: Stadium House, Epic House, Big Room, Club House  // Inicios 90´s</a></li>
+		<li class="aka-item"><a class="aka">AKA: Stadium House, Epic House, Big Room, Club House  // <span data-lang="es">Inicios 90s</span><span data-lang="en">Early 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,21 +46,46 @@
    <div class="history">
 
 
-		  <p>&quot;El Anthem House&quot; se caracteriza por sus melodías contundentes y memorables, y sus cualidades himnarias, a menudo utilizadas como himnos de club. Es esencialmente una canción de música house que captura la esencia de un género y está diseñada para complacer al público.</p>
-		  <p>Características Clave del Anthem House:</p>
-		  <p>Melodías Contundentes:</p>
-		  <p>Las canciones de Anthem House suelen presentar melodías pegadizas y memorables, diseñadas para ser reconocibles al instante y contagiosas.</p>
-		  <p>Riffs Himnarios:</p>
-		  <p>La música suele incluir riffs o frases prominentes y himnarios que se repiten a lo largo de la canción, creando una sensación de ritmo y emoción.</p>
-		  <p>Ritmos Contundentes y Líneas de Bajo Imponentes:</p>
-		  <p>Espera un ritmo contundente, listo para la pista de baile, con líneas de bajo prominentes y pulsantes que impulsan la música.</p>
-		  <p>Eufórico y Emocionante:</p>
-		  <p>Anthem House busca crear una atmósfera eufórica y estimulante, lo que lo hace ideal para clubes y festivales. Muestras vocales y manipulaciones: Muchas pistas de house himno incorporan muestras vocales, fragmentos o manipulaciones para realzar aún más el impacto antémico y emocional.</p>
+		  <p data-lang="es">El Anthem House se caracteriza por sus melodías contundentes y memorables, y sus cualidades himnarias, a menudo utilizadas como himnos de club. Es esencialmente una canción de música house que captura la esencia de un género y está diseñada para complacer al público.</p>
+		  <p data-lang="en">Anthem House is characterized by its bold, memorable melodies and its anthemic qualities, often used as club anthems. It's essentially a house track that captures the essence of a genre and is designed to please the crowd.</p><br>
+		  <p data-lang="es">Características Clave del Anthem House:</p>
+		  <p data-lang="en">Key Characteristics of Anthem House:</p>
+		  <p data-lang="es">Melodías Contundentes:</p>
+		  <p data-lang="en">Bold Melodies:</p>
+		  <p data-lang="es">Las canciones de Anthem House suelen presentar melodías pegadizas y memorables, diseñadas para ser reconocibles al instante y contagiosas.</p>
+		  <p data-lang="en">Anthem House tracks typically feature catchy, memorable melodies, designed to be instantly recognizable and infectious.</p><br>
+		  <p data-lang="es">Riffs Himnarios:</p>
+		  <p data-lang="en">Anthemic Riffs:</p>
+		  <p data-lang="es">La música suele incluir riffs o frases prominentes y himnarios que se repiten a lo largo de la canción, creando una sensación de ritmo y emoción.</p>
+		  <p data-lang="en">The music usually includes prominent, anthemic riffs or phrases that repeat throughout the song, creating a sense of momentum and excitement.</p><br>
+		  <p data-lang="es">Ritmos Contundentes y Líneas de Bajo Imponentes:</p>
+		  <p data-lang="en">Powerful Rhythms and Commanding Basslines:</p>
+		  <p data-lang="es">Espera un ritmo contundente, listo para la pista de baile, con líneas de bajo prominentes y pulsantes que impulsan la música.</p>
+		  <p data-lang="en">Expect a powerful, dancefloor-ready beat, with prominent, pulsing basslines that drive the music forward.</p><br>
+		  <p data-lang="es">Eufórico y Emocionante:</p>
+		  <p data-lang="en">Euphoric and Exciting:</p>
+		  <p data-lang="es">Anthem House busca crear una atmósfera eufórica y estimulante, lo que lo hace ideal para clubes y festivales. Muestras vocales y manipulaciones: Muchas pistas de house himno incorporan muestras vocales, fragmentos o manipulaciones para realzar aún más el impacto antémico y emocional.</p>
+		  <p data-lang="en">Anthem House aims to create a euphoric, uplifting atmosphere, making it ideal for clubs and festivals. Vocal samples and manipulation: Many anthem house tracks incorporate vocal samples, snippets, or manipulation to further heighten the anthemic, emotional impact.</p><br>
+	   
+	   <p data-lang="es">A lo largo de los años ha habido varios éxitos de Anthem House, pero probablemente el tema monstruo que más significó para el underground de la época fue <a class="linkshisto" href="https://www.discogs.com/master/55716-Faithless-Insomnia">Faithless - Insomnia</a>.</p>
+	   <p data-lang="en">There have been a number of Anthem House hits over the years, but probably the one monster track that means the most to the underground at the time was <a class="linkshisto" href="https://www.discogs.com/master/55716-Faithless-Insomnia">Faithless - Insomnia</a>.</p><br>
+	   
+	   <p data-lang="es"><img src="images/History/Trance/jd-990.png" class="photo1" />Lanzado en 1995, Insomnia estableció la plantilla para todos los himnos que vendrían después: un breakdown que dura más de un minuto, una construcción con redoble de caja de 8 compases o más, y un himno creciente que hace saltar a todo el mundo. El himno, en este caso, se creó con el patch Pizzicato del sintetizador Roland JD-990, que era el módulo de rack del Roland JD-800.</p>
+	   <p data-lang="en"><img src="images/History/Trance/jd-990.png" class="photo1" />Released in 1995, Insomnia set the template for all anthems thereafter: A breakdown that lasts over a minute, a snare roll build of 8 bars or more, and a crescending anthem to get everyone to hop up and down. The anthem in this case was created with the Pizzicato patch on the Roland JD-990 synthesizer which was the rack module of the Roland JD-800.</p>
+	   <p data-lang="es">Durante algunos años, muchos productores, desde Sash! hasta DJ Quicksilver, usaron ese mismo patch Pizzicato. Y toda una nueva generación creció con la impresión de que, para hacer un tema exitoso, había que tener una construcción, un breakdown y un himno en la canción.</p>
+	   <p data-lang="en">For a few years, a lot of producers from Sash! to DJ Quicksilver all used this same Pizzicato patch. And a new generation came of age under the impression that to make a hit track, you had to have a build, a breakdown, and an anthem in your song.</p><br>
+	   
+	   <p data-lang="es">Al igual que muchos otros géneros de larga trayectoria (Balearic, Progressive Breaks, Experimental), el Anthem House es bastante trendwhore en el sentido de que siempre adopta lo que esté de moda en cada momento. Tiene que hacerlo si quiere mantener su estatus de "rey de la pista de baile", como si eso fuera algo importante que ser.</p>
+	   <p data-lang="en">Like a lot of other longstanding genres (Balearic, Progressive Breaks, Experimental), Anthem House is very trendwhorish in that it always adopts whatever is big at the time. It has to if it wants to maintain its status as the "dancefloor king", as if that's an important thing to be.</p>
+
+<p data-lang="es">Cuando el Disco House estaba de moda, el Anthem House sonaba a Disco House pero con himnos. Cuando el French House pegó fuerte, el Anthem House sonaba a French House pero con himnos. Cuando explotó el Electrohouse, el Anthem House sonaba a Electrohouse pero con himnos. Y cuando llegó el Dutch House, el Anthem House dijo "paso", porque estaba haciendo algo llamado el anti-himno.</p>
+<p data-lang="en">When Disco House was hot, Anthem House sounded like Disco House but with anthems. When French House was big, Anthem House sounded like French House but with Anthems. When Electrohouse blew up, Anthem House sounded like Electrohouse but with anthems. And when Dutch House became a thing, Anthem House said "nah" since it was doing something called the anti-anthem.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
