@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,20 +38,23 @@
      <li><a href="House_and_Garage.html" class="Genre" >House & Garage</a></li>
       <li><a href="House-UKG.html" class="scene" >UK Garage</a></li>
 	   <li><a href="House-UKG-Midtempo Bass.html" class="SubGenre" >Midtempo Bass</a></li>
-	<li class="aka-item"><a class="aka">  // Mediados 2010´s</a></li>
+	<li class="aka-item"><a class="aka">  // <span data-lang="es">Mediados 2010´s</span><span data-lang="en">Mid 2010s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
 <main class="site-main">
    
    <div class="history">
-<p>
-		  Midtempo Bass (which goes by Space Bass and a variety of other names) takes the dance-oriented sound of Electronic Dance Music subgenres like Electro House and Brostep, and mixes them with Post-Industrial at mid-tempos around 100 BPM range. Tracks in this style often have a dark atmosphere, repetitive, and bass heavy construction. The genre became known around 2015 and 2016, led by 20 year old female Canadian prodigy REZZ. She grabbed the attention of both Skrillex and deadmau5 where she has done work on both their labels. She has quickly become the leader of the Midtempo Bass movement, using the Space Bass genre name to refer to her sound.</p>
+<p data-lang="es">
+		  El Midtempo Bass (también conocido como Space Bass y varios otros nombres) toma el sonido bailable de subgéneros de la música dance electrónica como el Electro House y el Brostep, y los mezcla con el Post-Industrial a un tempo medio alrededor de los 100 BPM. Los temas de este estilo suelen tener una atmósfera oscura, repetitiva y una construcción cargada de bajos. El género se dio a conocer alrededor de 2015 y 2016, liderado por la prodigio canadiense de 20 años <a class="linkshisto" href="https://www.discogs.com/artist/4517531-Rezz">REZZ</a>. Llamó la atención tanto de Skrillex como de deadmau5, con quienes ha trabajado en ambos sellos. Rápidamente se convirtió en la líder del movimiento Midtempo Bass, usando el nombre de género Space Bass para referirse a su sonido.</p>
+<p data-lang="en">
+		  Midtempo Bass (which goes by Space Bass and a variety of other names) takes the dance-oriented sound of Electronic Dance Music subgenres like Electro House and Brostep, and mixes them with Post-Industrial at mid-tempos around 100 BPM range. Tracks in this style often have a dark atmosphere, repetitive, and bass heavy construction. The genre became known around 2015 and 2016, led by 20 year old female Canadian prodigy <a class="linkshisto" href="https://www.discogs.com/artist/4517531-Rezz">REZZ</a>. She grabbed the attention of both Skrillex and deadmau5 where she has done work on both their labels. She has quickly become the leader of the Midtempo Bass movement, using the Space Bass genre name to refer to her sound.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
