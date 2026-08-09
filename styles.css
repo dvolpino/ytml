@@ -117,9 +117,9 @@ body {
 /* No longer needs align-self:stretch now that .nav-list has a fixed width —
    the <li> sits at the container's left edge like its siblings by default,
    and .aka's width:100% lets it fill that same fixed width for wrapping. */
-.photo1 {width: 50%; float:left; margin-right: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
-.photo2 {width: 50%; float:right; margin-left: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular */
-.photo3 {width: 100%; float:left; } /* Fotos que quiero ocupen el 100% del ancho del celular — sin margin-right: cualquier margen sumado a un ancho de 100% siempre desborda el contenedor por exactamente ese margen, causando una barra de scroll horizontal dentro de .history (lo confirmamos midiendo: 14px de overflow = exactamente el 1rem de margen que tenia antes) */
+.photo1 {width: 50%; float:left; margin-right: 1rem; margin-bottom: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular // agregue margin-bottom: 1rem — un <br> despues de una imagen flotante no genera un salto de linea visible fiable (el float rompe el flujo normal), asi que el espacio real hay que darselo a la imagen con margin, no con <br> */
+.photo2 {width: 50%; float:right; margin-left: 1rem; margin-bottom: 1rem; } /* Fotos que quiero ocupen el 50% del ancho del celular // agregue margin-bottom: 1rem — mismo motivo que .photo1 */
+.photo3 {width: 100%; float:left; margin-bottom: 1rem; } /* Fotos que quiero ocupen el 100% del ancho del celular — sin margin-right: cualquier margen sumado a un ancho de 100% siempre desborda el contenedor por exactamente ese margen, causando una barra de scroll horizontal dentro de .history (lo confirmamos midiendo: 14px de overflow = exactamente el 1rem de margen que tenia antes) // agregue margin-bottom: 1rem — mismo motivo que .photo1, y no desborda porque es vertical, no horizontal */
 .minidiv { height: 110px; display: flex; } 
 .LiveSetsM { color:#02FF00;	font-size: 30px;  }
 .LiveSetsM:hover {  color: #02FF00; border-left-color: #02FF00; background-color: rgba(168, 216, 255, 0.07); }
