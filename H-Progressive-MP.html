@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="House.html" class="Genre" >House & Garage</a></li>
 	 <li><a href="Progressive.html" class="scene" >Progressive</a></li>
      <li><a href="Progressive-MP.html" class="SubGenre" >Minimal Prog</a></li>
-	<li class="aka-item"><a class="aka">AKA: Minimal Progressive House // Mediados 00´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Minimal Progressive House // <span data-lang="es">Med 00s</span><span data-lang="en">Mid 00s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,13 +46,16 @@
    
    <div class="history">
 
-      <p>El Prog siempre ha sido un género grave, pesado y denso, con mucha compresión y demás. En un analizador de espectro, parece una barra enorme y gruesa: muy pocos picos y valles (sin incluir las largas caídas).</p>
-      <p>El Minimal Prog es un intento de acabar con todo eso y hacer por el Progressive lo que el <a href="TechH-MTH.html" class="linkshisto" >Minimal Tech</a> hizo por el <a href="TechH-TH.html" class="linkshisto" >Tech House</a> y el <a href="Techno-MT.html" class="linkshisto" >Minimal Techno</a> por el <a href="Techno-Detroit.html" class="linkshisto" >techno de Detroit</a>.</p>
+      <p data-lang="es">El Prog siempre ha sido un género grave, pesado y denso, con mucha compresión y demás. En un analizador de espectro, parece una barra enorme y gruesa: muy pocos picos y valles (sin incluir las largas caídas).</p>
+      <p data-lang="en">Prog has always been a heavy, dense, bass-driven genre, with plenty of compression and the like. On a spectrum analyzer, it looks like one huge, thick bar: very few peaks and valleys (not counting the long breakdowns).</p><br>
+      <p data-lang="es">El Minimal Prog es un intento de acabar con todo eso y hacer por el Progressive lo que el <a href="TechH-MTH.html" class="linkshisto" >Minimal Tech</a> hizo por el <a href="TechH-TH.html" class="linkshisto" >Tech House</a> y el <a href="Techno-MT.html" class="linkshisto" >Minimal Techno</a> por el <a href="Techno-Detroit.html" class="linkshisto" >techno de Detroit</a>.</p>
+      <p data-lang="en">Minimal Prog is an attempt to do away with all that and do for Progressive what <a href="TechH-MTH.html" class="linkshisto" >Minimal Tech</a> did for <a href="TechH-TH.html" class="linkshisto" >Tech House</a> and <a href="Techno-MT.html" class="linkshisto" >Minimal Techno</a> did for <a href="Techno-Detroit.html" class="linkshisto" >Detroit techno</a>.</p>
  	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
