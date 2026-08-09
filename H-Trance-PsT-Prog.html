@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="Trance.html" class="Genre" >Trance</a></li>
 		<li><a href="Trance-PsT.html" class="scene2" >Psychedelic Trance</a></li>
 		<li><a href="Trance-PsT-Prog.html" class="SubGenre" >ProgPsy</a></li>
-		<li class="aka-item"><a class="aka">AKA: Progressive Psy Trance, Psyprog, Psygressive  // Inicios 00´s</a></li>
+		<li class="aka-item"><a class="aka">AKA: Progressive Psy Trance, Psyprog, Psygressive  // <span data-lang="es">Inicios 00s</span><span data-lang="en">Early 00s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,14 +46,18 @@
    
    <div class="history">
 
-	<p>El Progpsy no tiene que ver con el house progresivo , el trance progresivo , el break progresivo o incluso el progresivo , pero sí intenta capturar su espíritu tendiendo a ser más maduro e intelectual (léase: pretencioso), siguiendo la gran filosofía del rock progresivo.</p><br>
-	<p>Mientras que el  Full On enfatiza los himnos principales y el Darkpsy las contundentes líneas de bajo minimalistas, el Prog Psy prioriza ritmos tenues, texturas en capas y melodías que intentan no ser demasiado ambiguas, aunque la mayoría de las variantes progresivas ven las melodías ambiguas como un avance en su arte. Pero en el caso de Psy es un inconveniente, ya que todos los géneros lo hacen. Así es la música progresiva: siempre intentando ser diferente por el simple hecho de serlo.</p><br>
-	 <p>Debido a su naturaleza discreta y sobria, el Prog Psy se considera menos recargado y más minimalista que otros géneros de Psy Trance (uno de sus primeros nombres fue Minimal Psy). Casi podría pasar por Trance normal (el más sencillo) y su atractivo para fusiones no ha sido pasado por alto por la mayoría de los DJs que combinan Trance y Psy. Incluso se podría argumentar que el Progpsy existe porque existe el Trance Progresivo. Pero, siendo sinceros, casi cualquier tema de Psy puede sonar a Progpsy si se reproduce a 120 bpm en lugar de 145.</p>
+	<p data-lang="es">No voy a decir que el Progpsy tenga algo que ver con el <a class="linkshisto" href="H-Progressive-PH.html" >Progressive House</a> o el <a class="linkshisto" href="H-Trance-Trance-PT.html" >Progressive Trance</a> o el <a class="linkshisto" href="H-BB-Breaks-PB.html" >Progressive Breaks</a> o incluso el <a class="linkshisto" href="H-Progressive-Prog.html" >Progressive</a>, pero sí intenta capturar el espíritu de todos ellos. Con esto me refiero no al sonido en sí, sino a la tendencia a ser más maduro e intelectual (léase: pretencioso), siguiendo el gran ethos del Rock Progresivo.</p>
+	<p data-lang="en">I won't say that Progpsy has anything to do with <a class="linkshisto" href="H-Progressive-PH.html" >Progressive House</a> or <a class="linkshisto" href="H-Trance-Trance-PT.html" >Progressive Trance</a> or <a class="linkshisto" href="H-BB-Breaks-PB.html" >Progressive Breaks</a> or even <a class="linkshisto" href="H-Progressive-Prog.html" >Progressive</a>, but it does make an attempt to capture the spirit of them. By that I mean not the actual sound but rather the tendency to be more mature and intellectual (read: pretentious), following in the grand ethos of Progressive Rock.</p><br>
+	<p data-lang="es">Mientras que el Full On pone el énfasis en los himnos de lead y el Darkpsy en las líneas de bajo minimalistas y contundentes, el Prog Psy pone el énfasis en ritmos contenidos, texturas en capas, y melodías que intentan no volverse demasiado erráticas, aunque la mayoría de las variantes Progressive ven las melodías erráticas como un avance de su oficio. Pero en el caso del Psy es un problema, porque todos los géneros ya lo hacen. Así es la música progresiva: siempre tratando de ser distinta solo por serlo.</p>
+	<p data-lang="en">Where Full On emphasizes the lead anthems and Darkpsy emphasizes the pummelling minimalist basslines, Prog Psy emphasizes subdued rhythms, layered textures, and melodies that try not to get too squirrelly even though most Progressive variants see squirrelly melodies as an advancement of their craft. But in Psy's case it's a detriment since every genre does it. That's progressive music for you: Always trying to be different for the sake of being different.</p><br>
+	 <p data-lang="es">Debido a su naturaleza contenida y sobria, el Prog Psy se considera menos cargado y más minimalista que otros géneros de Psy Trance (un nombre temprano para él fue Minimal Psy). Casi podría pasar por Trance normal (del tipo no cursi), y su atractivo cruzado no ha pasado desapercibido para la mayoría de los DJs híbridos de Trance/Psy. Incluso se podría argumentar que el Progpsy existe porque existe el Progressive Trance. Pero, siendo honestos, prácticamente cualquier tema Psy puede sonar a Progpsy si lo pinchás a 120 bpm en vez de 145.</p>
+	 <p data-lang="en">Because of its subdued and understated nature, Prog Psy is considered less busy and more minimalist than other Psy Trance genres (an early name for it was Minimal Psy). It could almost pass off as regular Trance (the non cheesy kind) and its crossover appeal has not been overlooked by most Trance/Psy hybrid DJs. You can even make an argument that Progpsy exists because Progressive Trance does. But to be perfectly honest, just about any Psy track can sound like Progpsy if you play it at 120 bpm instead of 145.</p>
  	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
