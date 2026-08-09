@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="TechH.html" class="Genre" >Tech House</a></li>
      <li><a href="TechH-MH.html" class="SubGenre" >Micro House</a></li>
-	<li class="aka-item"><a class="aka">AKA: Minimal House, Glitch House  // Fines 90s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Minimal House, Glitch House  // <span data-lang="es">Fines 90s</span><span data-lang="en">Late 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,16 +45,22 @@
    
    <div class="history">
 
-		  <p>Artifacts son pequeños errores de audio que se producían durante el proceso de codificación digital de mp3. Son el equivalente en audio a los artefactos de compresión en imágenes retocadas con Photoshop de baja calidad.</p><br>
-		  <p>Los artefactos eran bastante comunes en los 90, cuando los mp3 proliferaban como archivos de audio de baja calidad de 128 kbps, ya que el tamaño del archivo era un problema en aquel entonces.</p>
-		  <p>Esto dio a los productores la idea de &quot;glitchear&quot; sus producciones con fragmentos de samples en lugar de samples de barras completas, algunos de ellos reducidos a 1/64 de nota, lo que suena como si alguien cambiara de canal a una velocidad irritante o subiera constantemente el volumen de la radio en su coche.</p><br>
-		  <p>El microcorte de samples es de donde proviene el nombre del género, acuñado por primera vez por Philip Sherburne en un artículo de 2001.</p><br>
-		  <p>El Microhouse llegó en el momento perfecto, cuando el IDM estaba en auge y la gente finalmente comenzaba a apreciar la rareza de los clics y cortes del público experimental del glitch. Todo lo que necesitas hacer es adjuntar un ritmo constante y una cadencia rítmica a esos fragmentos aleatorios y rítmicos y funcionarán totalmente como un género de baile.</p>
+		  <p data-lang="es">Artifacts son pequeños errores de audio que se producían durante el proceso de codificación digital de mp3. Son el equivalente en audio a los artefactos de compresión en imágenes retocadas con Photoshop de baja calidad.</p>
+		  <p data-lang="en">Artifacts are small audio glitches that occurred during the digital encoding process of mp3s. They're the audio equivalent of compression artifacts in low-quality Photoshop-edited images.</p><br>
+		  <p data-lang="es">Los artefactos eran bastante comunes en los 90, cuando los mp3 proliferaban como archivos de audio de baja calidad de 128 kbps, ya que el tamaño del archivo era un problema en aquel entonces.</p>
+		  <p data-lang="en">Artifacts were pretty common in the 90s, when mp3s proliferated as low-quality 128 kbps audio files, since file size was a real concern back then.</p>
+		  <p data-lang="es">Esto dio a los productores la idea de &quot;glitchear&quot; sus producciones con fragmentos de samples en lugar de samples de barras completas, algunos de ellos reducidos a 1/64 de nota, lo que suena como si alguien cambiara de canal a una velocidad irritante o subiera constantemente el volumen de la radio en su coche.</p>
+		  <p data-lang="en">This gave producers the idea to &quot;glitch&quot; their productions with sample fragments instead of full-bar samples, some of them chopped down to 1/64 notes, which sounds like someone channel-surfing at an irritating speed or constantly cranking the volume knob on their car radio.</p><br>
+		  <p data-lang="es">El microcorte de samples es de donde proviene el nombre del género, acuñado por primera vez por Philip Sherburne en un artículo de 2001.</p>
+		  <p data-lang="en">Micro-chopping samples is where the genre's name comes from, first coined by Philip Sherburne in a 2001 article.</p><br>
+		  <p data-lang="es">El Microhouse llegó en el momento perfecto, cuando el IDM estaba en auge y la gente finalmente comenzaba a apreciar la rareza de los clics y cortes del público experimental del glitch. Todo lo que necesitas hacer es adjuntar un ritmo constante y una cadencia rítmica a esos fragmentos aleatorios y rítmicos y funcionarán totalmente como un género de baile.</p>
+		  <p data-lang="en">Microhouse arrived at the perfect moment, when IDM was on the rise and people were finally starting to appreciate the weirdness of clicks and cuts from the experimental glitch crowd. All you need to do is attach a steady beat and rhythmic cadence to those random, rhythmic fragments and they'll work perfectly well as a dance genre.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
