@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -31,29 +44,43 @@
 <main class="site-main">
    
    <div class="history">
-	  	  	
-		  <p>El Hypnotic Techno se caracteriza por sus beats repetitivos y rítmicos, y sus cualidades hipnóticas, similares al trance. Suele presentar líneas de bajo<br>
-	      vibrantes, melodías etéreas y un enfoque en crear un estado meditativo o eufórico en el oyente.</p><br>
+		  <p data-lang="es">El Hypnotic Techno se caracteriza por sus beats repetitivos y rítmicos, y sus cualidades hipnóticas, similares al trance. Suele presentar líneas de bajo<br>
+	      vibrantes, melodías etéreas y un enfoque en crear un estado meditativo o eufórico en el oyente.</p>
+		  <p data-lang="en">Hypnotic Techno is characterized by its repetitive, rhythmic beats and its hypnotic, trance-like qualities. It typically features vibrant<br>
+	      basslines, ethereal melodies, and a focus on creating a meditative or euphoric state in the listener.</p><br>
 		  
-		  <p>Ritmo y tempo:</p>
-		  <p>El techno hipnótico suele tener un tempo relativamente lento, a menudo en el rango de 120 a 140 BPM, lo que permite que la estructura rítmica sea el<br>
-		    centro de atención. La repetición de elementos clave y patrones rítmicos crea un efecto hipnótico.</p><br>
+		  <p data-lang="es">Ritmo y tempo:</p>
+		  <p data-lang="en">Rhythm and tempo:</p>
+		  <p data-lang="es">El techno hipnótico suele tener un tempo relativamente lento, a menudo en el rango de 120 a 140 BPM, lo que permite que la estructura rítmica sea el<br>
+		    centro de atención. La repetición de elementos clave y patrones rítmicos crea un efecto hipnótico.</p>
+		  <p data-lang="en">Hypnotic techno usually has a relatively slow tempo, often in the 120 to 140 BPM range, which lets the rhythmic structure take<br>
+		    center stage. The repetition of key elements and rhythmic patterns creates a hypnotic effect.</p><br>
 		  
-		  <p>Sonidos:</p>
-		  <p>Aunque existen variaciones, suele presentar una combinación de líneas de bajo vibrantes, sonidos profundos y atmosféricos, y potencialmente algunas<br>
-		    melodías sintetizadas o efectos atmosféricos.</p><br>
+		  <p data-lang="es">Sonidos:</p>
+		  <p data-lang="en">Sounds:</p>
+		  <p data-lang="es">Aunque existen variaciones, suele presentar una combinación de líneas de bajo vibrantes, sonidos profundos y atmosféricos, y potencialmente algunas<br>
+		    melodías sintetizadas o efectos atmosféricos.</p>
+		  <p data-lang="en">While variations exist, it typically features a combination of vibrant basslines, deep, atmospheric sounds, and potentially some<br>
+		    synthesized melodies or ambient effects.</p><br>
 		  
-	      <p>Atmósfera:</p>
-		  <p>El techno hipnótico busca crear una sensación de inmersión y una experiencia similar al trance, llevando al oyente a un estado de concentración e<br>
-		    incluso euforia. Subgéneros y variaciones:</p><br>
-		  <p>Existe una amplia gama de estilos dentro del techno hipnótico, desde sonidos ambientales/tribales profundos hasta temas más intensos con influencia<br>
+	      <p data-lang="es">Atmósfera:</p>
+	      <p data-lang="en">Atmosphere:</p>
+		  <p data-lang="es">El techno hipnótico busca crear una sensación de inmersión y una experiencia similar al trance, llevando al oyente a un estado de concentración e<br>
+		    incluso euforia. Subgéneros y variaciones:</p>
+		  <p data-lang="en">Hypnotic techno aims to create a sense of immersion and a trance-like experience, taking the listener into a state of focus and<br>
+		    even euphoria. Subgenres and variations:</p><br>
+		  <p data-lang="es">Existe una amplia gama de estilos dentro del techno hipnótico, desde sonidos ambientales/tribales profundos hasta temas más intensos con influencia<br>
 		    industrial. Algunos describen el "techno hipnótico profundo" como un sonido más atmosférico y tribal, mientras que el "techno hipnótico berlinés" puede<br>
 		    ser más intenso y crudo.</p>
+		  <p data-lang="en">There's a wide range of styles within hypnotic techno, from deep ambient/tribal sounds to more intense tracks with industrial<br>
+		    influence. Some describe "deep hypnotic techno" as a more atmospheric, tribal sound, while "Berlin hypnotic techno" tends to<br>
+		    be more intense and raw.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
