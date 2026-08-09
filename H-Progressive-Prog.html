@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="House.html" class="Genre" >House & Garage</a></li>
 	 <li><a href="Progressive.html" class="scene" >Progressive</a></li>
      <li><a href="Progressive-Prog.html" class="SubGenre" >Progressive</a></li>
-	<li class="aka-item"><a class="aka">AKA: Prog // Mediados 90´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Prog // <span data-lang="es">Med 90s</span><span data-lang="en">Mid 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,19 +46,27 @@
    
    <div class="history">
 
-		  <p>El adjetivo &quot;progresivo&quot; se refiere al intento de un género de avanzar hacia un nuevo ámbito intelectual de curiosidad musical (léase: pretenciosidad artística).</p>
-		  <p>Muchas escenas musicales tienen una versión &quot;progresiva&quot; que amplía el marco de su estética, desde el break progresivo hasta el trance progresivo y el house progresivo, e incluso música no electrónica como el rock progresivo y el metal progresivo. Estos géneros &quot;progresivos&quot; no tienen nada en común entre sí, salvo el afán de explorar y expandir la calidad de su esencia innata.</p>
-		  <p>Y luego está esto: una escena y un género llamado Progresivo. No es progresivo en absoluto, solo progresivo, o Prog. Un sustantivo, no un adjetivo. Probablemente recibió su nombre como una fusión entre el House Progresivo y el Trance Progresivo, produciendo algo que suena simultáneamente a ambos y a ninguno.</p><br>
-		  <p>El House Progresivo siempre ha sido la mezcla de géneros musicales, utilizando instrumentación y sonidos que no se usaban tradicionalmente en el House, desde guitarras acústicas hasta panderetas y lamentos étnicos. Pero muchos discos de House Progresivo incluían una &quot;mezcla Dub&quot; en la otra cara, que era la misma pista, pero más oscura, densa y profunda. No tan profunda como en el Deep House, sino melancólica y fría. Antes de la influyente mezcla <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a> de John Digweed en 1999, la música aún se consideraba House Progresivo. Después, pareció oportuno separar por completo el sonido <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a>, con su fuerte componente dub, del House Progresivo y crear una nueva corriente llamada Progresivo o Prog.</p><br>
-		  <p>Impulsado por Sasha y Digweed, el Prog se contrapuso al Anthem House (subgénero del Progressive House) de finales de los 90 que azotaba el mundo de los clubes.</p>
-		  <p>El Prog fue uno de los primeros géneros en llamarse &quot;EDM&quot; a principios de la década del 2000, cuando muchos DJs de trance fanáticos de Sasha se pasaron al Prog y los fanáticos del trance no sabían cómo llamar a lo que pinchaban que ya no era trance.		  </p><br>
-		  <p>Con el paso de los años, parece que el Progressive y el Tech House propiamente dichos prácticamente se han fusionado, con el Tech House cada vez más denso y el Progressive más simple, que es justo lo que ambos necesitaban para sonar como el otro. En este punto, las diferencias son superficiales (y territoriales; se trata de una cuestión entre el Reino Unido y Alemania).</p>
+		  <p data-lang="es">El adjetivo &quot;progresivo&quot; se refiere al intento de un género de avanzar hacia un nuevo ámbito intelectual de curiosidad musical (léase: pretenciosidad artística).</p>
+		  <p data-lang="en">The adjective &quot;progressive&quot; refers to a genre's attempt to move into a new intellectual realm of musical curiosity (read: artistic pretentiousness).</p><br>
+		  <p data-lang="es">Muchas escenas musicales tienen una versión &quot;progresiva&quot; que amplía el marco de su estética, desde el <a class="linkshisto" href="H-BB-Breaks-PB.html">Progressive Breaks</a> hasta el <a class="linkshisto" href="H-Trance-Trance-PT.html">Progressive Trance</a> y el <a class="linkshisto" href="H-Progressive-PH.html">Progressive House</a>, e incluso música no electrónica como el rock progresivo y el metal progresivo. Estos géneros &quot;progresivos&quot; no tienen nada en común entre sí, salvo el afán de explorar y expandir la calidad de su esencia innata.</p>
+		  <p data-lang="en">Many music scenes have a &quot;progressive&quot; version that broadens the frame of their aesthetic, from <a class="linkshisto" href="H-BB-Breaks-PB.html">Progressive Breaks</a> to <a class="linkshisto" href="H-Trance-Trance-PT.html">Progressive Trance</a> and <a class="linkshisto" href="H-Progressive-PH.html">Progressive House</a>, and even non-electronic music like progressive rock and progressive metal. These &quot;progressive&quot; genres have nothing in common with each other, except the drive to explore and expand the quality of their innate essence.</p>
+		  <p data-lang="es">Y luego está esto: una escena y un género llamado Progresivo. No es progresivo en absoluto, solo progresivo, o Prog. Un sustantivo, no un adjetivo. Probablemente recibió su nombre como una fusión entre el House Progresivo y el Trance Progresivo, produciendo algo que suena simultáneamente a ambos y a ninguno.</p>
+		  <p data-lang="en">And then there's this: a scene and genre simply called Progressive. It isn't progressive at all, just Progressive, or Prog. A noun, not an adjective. It probably got its name as a fusion of Progressive House and Progressive Trance, producing something that sounds simultaneously like both and like neither.</p><br>
+		  <p data-lang="es">El House Progresivo siempre ha sido la mezcla de géneros musicales, utilizando instrumentación y sonidos que no se usaban tradicionalmente en el House, desde guitarras acústicas hasta panderetas y lamentos étnicos. Pero muchos discos de House Progresivo incluían una &quot;mezcla Dub&quot; en la otra cara, que era la misma pista, pero más oscura, densa y profunda. No tan profunda como en el Deep House, sino melancólica y fría. Antes de la influyente mezcla <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a> de John Digweed en 1999, la música aún se consideraba House Progresivo. Después, pareció oportuno separar por completo el sonido <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a>, con su fuerte componente dub, del House Progresivo y crear una nueva corriente llamada Progresivo o Prog.</p>
+		  <p data-lang="en">Progressive House has always been a blend of musical genres, using instrumentation and sounds not traditionally used in House, from acoustic guitars to tambourines and ethnic wailing. But a lot of Progressive House records included a &quot;Dub mix&quot; on the flip side, which was the same track, but darker, denser, and deeper. Not deep in the Deep House sense, but melancholic and cold. Before John Digweed's influential <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a> mix in 1999, the music was still considered Progressive House. Afterward, it seemed fitting to fully separate the <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a> sound, with its strong dub component, from Progressive House and create a new strand called Progressive, or Prog.</p><br>
+		  <p data-lang="es">Impulsado por <a class="linkshisto" href="https://www.discogs.com/artist/3365-Sasha">Sasha</a> y <a class="linkshisto" href="https://www.discogs.com/artist/10435-John-Digweed">Digweed</a>, el Prog se contrapuso al Anthem House (subgénero del Progressive House) de finales de los 90 que azotaba el mundo de los clubes.</p>
+		  <p data-lang="en">Driven by <a class="linkshisto" href="https://www.discogs.com/artist/3365-Sasha">Sasha</a> and <a class="linkshisto" href="https://www.discogs.com/artist/10435-John-Digweed">Digweed</a>, Prog positioned itself against the Anthem House (a Progressive House subgenre) that was dominating the club world in the late 90s.</p>
+		  <p data-lang="es">El Prog fue uno de los primeros géneros en llamarse &quot;EDM&quot; a principios de la década del 2000, cuando muchos DJs de trance fanáticos de Sasha se pasaron al Prog y los fanáticos del trance no sabían cómo llamar a lo que pinchaban que ya no era trance.		  </p>
+		  <p data-lang="en">Prog was one of the first genres to call itself &quot;EDM&quot; in the early 2000s, when a lot of trance DJs who were Sasha fans switched over to Prog, and trance fans didn't know what to call what they were spinning anymore since it wasn't trance.		  </p><br>
+		  <p data-lang="es">Con el paso de los años, parece que el Progressive y el Tech House propiamente dichos prácticamente se han fusionado, con el Tech House cada vez más denso y el Progressive más simple, que es justo lo que ambos necesitaban para sonar como el otro. En este punto, las diferencias son superficiales (y territoriales; se trata de una cuestión entre el Reino Unido y Alemania).</p>
+		  <p data-lang="en">Over the years, it seems like Progressive and Tech House proper have basically merged, with Tech House getting denser and Progressive getting simpler — which is exactly what each needed to start sounding like the other. At this point, the differences are superficial (and territorial; it's really a UK-versus-Germany thing).</p>
 		  
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
