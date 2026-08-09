@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="TechH.html" class="Genre" >Tech House</a></li>
      <li><a href="TechH-DTH.html" class="SubGenre" >Deep Tech House</a></li>
-	<li class="aka-item"><a class="aka">AKA: Deep Tech, Deep-tech  // Inicios 00´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Deep Tech, Deep-tech  // <span data-lang="es">Inicios 00s</span><span data-lang="en">Early 00s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,13 +45,16 @@
    
    <div class="history">
 
-		  <p>El Deeptech o Deep Techouse es un genero de UK, el cual busca sonar como el Deep House de USA o Europeo.</p><br>
-		  <p>Fusiona elementos del Deep House y el Tech House. A menudo se describe como más atmosférico y conmovedor que el Tech House, pero con un mayor enfoque en el groove y el ritmo. Se caracteriza por sus líneas de bajo profundas, percusión minimalista y melodías sobrias, creando una atmósfera melancólica e hipnótica.</p>
+		  <p data-lang="es">El Deeptech o Deep Techouse es un genero de UK, el cual busca sonar como el <a class="linkshisto" href="H-House-DeepH.html">Deep House</a> de USA o Europeo.</p>
+		  <p data-lang="en">Deeptech, or Deep Techouse, is a UK genre that aims to sound like American or European <a class="linkshisto" href="H-House-DeepH.html">Deep House</a>.</p><br>
+		  <p data-lang="es">Fusiona elementos del <a class="linkshisto" href="H-House-DeepH.html">Deep House</a> y el <a class="linkshisto" href="H-TechH-TH.html">Tech House</a>. A menudo se describe como más atmosférico y conmovedor que el Tech House, pero con un mayor enfoque en el groove y el ritmo. Se caracteriza por sus líneas de bajo profundas, percusión minimalista y melodías sobrias, creando una atmósfera melancólica e hipnótica.</p>
+		  <p data-lang="en">It fuses elements of <a class="linkshisto" href="H-House-DeepH.html">Deep House</a> and <a class="linkshisto" href="H-TechH-TH.html">Tech House</a>. It's often described as more atmospheric and moving than Tech House, but with a greater focus on groove and rhythm. It's characterized by deep basslines, minimalist percussion, and understated melodies, creating a melancholic, hypnotic atmosphere.</p>
  	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
