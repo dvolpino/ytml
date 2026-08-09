@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -25,7 +38,7 @@
      <li><a href="Trance.html" class="Genre" >Trance</a></li>
 		<li><a href="Trance-PsT.html" class="scene2" >Psychedelic Trance</a></li>
 		<li><a href="Trance-PsT-PsyDub.html" class="SubGenre" >PsyDub</a></li>
-		<li class="aka-item"><a class="aka">AKA: Ambient Psy, Ambient Goa, Psy Chill, Psy Dub, Psybient  // Inicios 90´s</a></li>
+		<li class="aka-item"><a class="aka">AKA: Ambient Psy, Ambient Goa, Psy Chill, Psy Dub, Psybient  // <span data-lang="es">Inicios 90´s</span><span data-lang="en">Early 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -33,15 +46,20 @@
    
    <div class="history">
 
-	<p>Cada escena tiene su propio género chill-room, y el Psy Dub llegó bastante rápido después de que Goa Trance se consolidara. </p>
-	<p>Ha cambiado mucho con los años. Uno de sus primeros nombres fue Psybient (que todavía se usa para cualquier Psydub que no contenga Dub), y era una versión psytrance de los sonidos chill out emergentes del Ambient House (por ejemplo, <a href="https://www.discogs.com/The-KLF-Chill-Out/master/13456" target="_blank" draggable="false" rel="noopener" class="linkshisto">The KLF</a> , <a href="https://www.discogs.com/Orb-The-Orbs-Adventures-Beyond-The-Ultraworld/master/7119" target="_blank" draggable="false" rel="noopener" class="linkshisto">The Orb</a> y similares): breakbeats sencillos con líneas de acid mutantes, pero ralentizados para que sean menos ondulantes y más caprichosos.</p><br>
-	<p>Con el tiempo, el Psydub se consolidó como un excelente género chill out. Shpongle ha tenido un impacto indeleble en el Psydub. Y sí, cada canción de Psydub durante la década posterior estuvo muy influenciada por <a href="https://www.discogs.com/Shpongle-Are-You-Shpongled/master/7815" target="_blank" draggable="false" rel="noopener" class="linkshisto">Are You Shpongled?</a> Y ese sonido de goteo. El sonido de goteo que definió a Psydub (y a mucho Psy Trance) durante la siguiente década.</p><br>
-	<p>Un sello destacado en el genero es <a href="https://www.discogs.com/label/12444-Ultimae-Records" target="_blank" draggable="false" rel="noopener" class="linkshisto">Ultimae Records</a> . Aunque no es estrictamente Psydub, el sello que nos dio <a href="https://www.discogs.com/artist/99459-Carbon-Based-Lifeforms" target="_blank" draggable="false" rel="noopener" class="linkshisto">Carbon Based Lifeforms</a> , <a href="https://www.discogs.com/artist/56495-Aes-Dana" target="_blank" draggable="false" rel="noopener" class="linkshisto">Aes Dana</a> , <a href="https://www.discogs.com/artist/27984-Asura" target="_blank" draggable="false" rel="noopener" class="linkshisto">Asura</a> y <a href="https://www.discogs.com/artist/56494-Solar-Fields" target="_blank" draggable="false" rel="noopener" class="linkshisto">Solar fucking Fields</a> es increíblemente consistente.</p>
+	<p data-lang="es">Cada escena tiene su propio género chill-room, y el Psy Dub llegó bastante rápido después de que Goa Trance se consolidara. </p>
+	<p data-lang="en">Every scene has its own chill-room genre, and Psy Dub came along pretty quickly after Goa Trance got established. </p><br>
+	<p data-lang="es">Ha cambiado mucho con los años. Uno de sus primeros nombres fue Psybient (que todavía se usa para cualquier Psydub que no contenga Dub), y era una versión psytrance de los sonidos chill out emergentes del Ambient House (por ejemplo, <a href="https://www.discogs.com/The-KLF-Chill-Out/master/13456"  class="linkshisto">The KLF</a> , <a href="https://www.discogs.com/Orb-The-Orbs-Adventures-Beyond-The-Ultraworld/master/7119"  class="linkshisto">The Orb</a> y similares): breakbeats sencillos con líneas de acid mutantes, pero ralentizados para que sean menos ondulantes y más caprichosos.</p>
+	<p data-lang="en">It's changed a lot over the years. One of its early names was Psybient (still used for any Psydub that doesn't contain Dub), and it was a psytrance take on the emerging chill out sounds of Ambient House (think <a href="https://www.discogs.com/The-KLF-Chill-Out/master/13456"  class="linkshisto">The KLF</a> , <a href="https://www.discogs.com/Orb-The-Orbs-Adventures-Beyond-The-Ultraworld/master/7119"  class="linkshisto">The Orb</a> , and similar acts): simple breakbeats with mutant acid lines, but slowed down to be less wavy and more whimsical.</p><br>
+	<p data-lang="es">Con el tiempo, el Psydub se consolidó como un excelente género chill out. Shpongle ha tenido un impacto indeleble en el Psydub. Y sí, cada canción de Psydub durante la década posterior estuvo muy influenciada por <a href="https://www.discogs.com/Shpongle-Are-You-Shpongled/master/7815"  class="linkshisto">Are You Shpongled?</a> Y ese sonido de goteo. El sonido de goteo que definió a Psydub (y a mucho Psy Trance) durante la siguiente década.</p>
+	<p data-lang="en">Over time, Psydub established itself as an excellent chill out genre. Shpongle has had an indelible impact on Psydub. And yeah, every Psydub track for the following decade was heavily influenced by <a href="https://www.discogs.com/Shpongle-Are-You-Shpongled/master/7815"  class="linkshisto">Are You Shpongled?</a> And that dripping sound. The dripping sound that defined Psydub (and a lot of Psy Trance) for the next decade.</p><br>
+	<p data-lang="es">Un sello destacado en el genero es <a href="https://www.discogs.com/label/12444-Ultimae-Records"  class="linkshisto">Ultimae Records</a> . Aunque no es estrictamente Psydub, el sello que nos dio <a href="https://www.discogs.com/artist/99459-Carbon-Based-Lifeforms"  class="linkshisto">Carbon Based Lifeforms</a> , <a href="https://www.discogs.com/artist/56495-Aes-Dana"  class="linkshisto">Aes Dana</a> , <a href="https://www.discogs.com/artist/27984-Asura"  class="linkshisto">Asura</a> y <a href="https://www.discogs.com/artist/56494-Solar-Fields"  class="linkshisto">Solar Fields</a> es increíblemente consistente.</p>
+	<p data-lang="en">A standout label in the genre is <a href="https://www.discogs.com/label/12444-Ultimae-Records"  class="linkshisto">Ultimae Records</a> . Though not strictly Psydub, the label that gave us <a href="https://www.discogs.com/artist/99459-Carbon-Based-Lifeforms"  class="linkshisto">Carbon Based Lifeforms</a> , <a href="https://www.discogs.com/artist/56495-Aes-Dana"  class="linkshisto">Aes Dana</a> , <a href="https://www.discogs.com/artist/27984-Asura"  class="linkshisto">Asura</a> , and <a href="https://www.discogs.com/artist/56494-Solar-Fields"  class="linkshisto">Solar Fields</a> is incredibly consistent.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
