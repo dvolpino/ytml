@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="Industrial.html" class="Genre" >Industrial / Goth&nbsp;</a></li>
      <li><a href="Industrial_NB.html" class="SubGenre" >New Beat</a></li>
-	<li class="aka-item"><a class="aka">AKA: Dark Disco, Nu Disco, Slo-beat //&nbsp; Fines 80´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Dark Disco, Nu Disco, Slo-beat //&nbsp; <span data-lang="es">Fines 80´s</span><span data-lang="en">Late 80s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,15 +45,20 @@
    
    <div class="history">
 
-		  <p>Some electronic music genres can trace their origin to a single label, artist or even album. Belgian New Beat (or just New Beat) is one of those genres that can trace its origins to a single song. And the exact time and place it happened.</p><br>
-		  <p>As legend has it, in 1986 DJ Fat Ronnie -- resident in legendary Antwerp club Ancienne Belgique -- accidentally played EBM hit <a  class="linkshisto" href="https://www.youtube.com/watch?v=kcZ5XST6xbg&list=RDkcZ5XST6xbg&start_radio=1" >A Split Second - Flesh</a> at 33 rpm, not its intended speed of 45 rpm. The result was a slow, lethargic dirge that conveyed apathy and disaffectedness, essentially turning a menacing EBM track into a melancholy Gothy track.</p><br>
-		  <p>Unlike the aggressive military motifs of EBM, New Beat was sleazier, with pornographic samples and erotic live shows culled from the kink-fetish scene (and I'm not just talking about Lords of Acid). It rarely had any uplifting melodies, choruses or lyrics. The dark sexiness, prolific sampling, and thundering percussion gave it the nickname: Death Disco. No builds, no breakdowns, no anthems. Just raw rhythms at a danceable pace.</p><br>
-		  <p>In the 2010´s there was a great revival of all things 80s, sometimes called New Beat but also called Slo-Beat, Nu Disco, Chug (as in chug-a-lug, the sound the beat makes. Not a racist term), Dark Disco, Slow Techno and a bevy of other names. </p>
+		  <p data-lang="es">Algunos géneros de música electrónica pueden rastrear su origen hasta un solo sello, artista o incluso un álbum. El New Beat belga (o simplemente New Beat) es uno de esos géneros que puede rastrear su origen hasta una sola canción. Y el momento y lugar exactos en que sucedió.</p>
+		  <p data-lang="en">Some electronic music genres can trace their origin to a single label, artist or even album. Belgian New Beat (or just New Beat) is one of those genres that can trace its origins to a single song. And the exact time and place it happened.</p><br>
+		  <p data-lang="es">Según cuenta la leyenda, en 1986 el DJ Fat Ronnie —residente del legendario club Ancienne Belgique de Amberes— puso por accidente el hit de EBM <a  class="linkshisto" href="https://www.youtube.com/watch?v=kcZ5XST6xbg&list=RDkcZ5XST6xbg&start_radio=1" >A Split Second - Flesh</a> a 33 rpm, en vez de su velocidad prevista de 45 rpm. El resultado fue un lamento lento y letárgico que transmitía apatía e indiferencia, convirtiendo esencialmente un tema amenazante de EBM en un tema melancólico y gótico.</p>
+		  <p data-lang="en">As legend has it, in 1986 DJ Fat Ronnie -- resident in legendary Antwerp club Ancienne Belgique -- accidentally played EBM hit <a  class="linkshisto" href="https://www.youtube.com/watch?v=kcZ5XST6xbg&list=RDkcZ5XST6xbg&start_radio=1" >A Split Second - Flesh</a> at 33 rpm, not its intended speed of 45 rpm. The result was a slow, lethargic dirge that conveyed apathy and disaffectedness, essentially turning a menacing EBM track into a melancholy Gothy track.</p><br>
+		  <p data-lang="es">A diferencia de los motivos militares agresivos del EBM, el New Beat era más sórdido, con samples pornográficos y shows en vivo eróticos sacados de la escena kink-fetish (y no me refiero solo a Lords of Acid). Rara vez tenía melodías, estribillos o letras optimistas. Su sensualidad oscura, el sampleo prolífico y la percusión atronadora le dieron el apodo de: Death Disco. Sin builds, sin breakdowns, sin himnos. Solo ritmos crudos a un tempo bailable.</p>
+		  <p data-lang="en">Unlike the aggressive military motifs of EBM, New Beat was sleazier, with pornographic samples and erotic live shows culled from the kink-fetish scene (and I'm not just talking about Lords of Acid). It rarely had any uplifting melodies, choruses or lyrics. The dark sexiness, prolific sampling, and thundering percussion gave it the nickname: Death Disco. No builds, no breakdowns, no anthems. Just raw rhythms at a danceable pace.</p><br>
+		  <p data-lang="es">En la década de 2010 hubo un gran resurgimiento de todo lo relacionado con los 80, a veces llamado New Beat pero también llamado Slo-Beat, Nu Disco, Chug (como en chug-a-lug, el sonido que hace el beat; no es un término racista), Dark Disco, Slow Techno y un montón de otros nombres. </p>
+		  <p data-lang="en">In the 2010´s there was a great revival of all things 80s, sometimes called New Beat but also called Slo-Beat, Nu Disco, Chug (as in chug-a-lug, the sound the beat makes. Not a racist term), Dark Disco, Slow Techno and a bevy of other names. </p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
