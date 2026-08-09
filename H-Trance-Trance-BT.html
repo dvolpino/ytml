@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="Trance.html" class="Genre" >Trance</a>&nbsp;&nbsp;<a class="SubGenre">/</a><a href="Trance.html" class="scene" >&nbsp;&nbsp;Trance</a></li>
      <li><a href="Trance-Trance-BT.html" class="SubGenre" >Balearic Trance</a></li>
-	<li class="aka-item"><a class="aka">AKA: Belearic House, Balearic Beat, Ibiza Trance  // Inicios 90´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Belearic House, Balearic Beat, Ibiza Trance  // <span data-lang="es">Inicios 90´s</span><span data-lang="en">Early 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,14 +45,18 @@
    
    <div class="history">
 
-		  <p>Balearic Trance (no es un género) proviene de Balearic Beat (tampoco es un género), ya que era simplemente un término para la música que se tocaba en Ibiza a finales de los 80 y principios de los 90 por DJs como <a href="https://www.discogs.com/artist/470196-Jos%C3%A9-Padilla" target="_blank" draggable="false" rel="noopener" class="linkshisto">José Padilla</a> en <a href="http://cafedelmar.com" target="_blank" draggable="false" rel="noopener" class="linkshisto">Café Del Mar</a> y Alfredo Fiorito en <a href="https://www.amnesia.es/inicio/en" target="_blank" draggable="false" rel="noopener" class="linkshisto">Amnesia</a> .</p><br>
-		  <p>Así que, si bien la música balear no tenía un sonido definido, sí tenía una personalidad definida. Conservaba un ambiente relajado y playero. Los DJ seleccionaban deliberadamente canciones tranquilas y ensoñadoras de una amplia gama de géneros existentes para capturar mejor esa atmósfera esquiva, con algunos guiños a la cultura e historia ibéricas para darle sabor.</p><br>
-		  <p>Un rasgo clave de la música balear es la instrumentación orgánica, como guitarras españolas, mandolinas, congas, flautas de pan, pianos, instrumentos de cuerda orquestales, y también los sonidos naturales de las Islas Baleares, como el romper de las olas, el graznido de las gaviotas y la suave brisa marina. Estos instrumentos se pueden incorporar a cualquier sonido (no necesariamente trance), pero los más comunes son el trance, el house, el downtempo y, más recientemente, el tropical house. Mientras tenga esos toques mediterráneos, todo es balear y todo vale.</p>
+		  <p data-lang="es">Balearic Trance (no es un género) proviene de Balearic Beat (tampoco es un género), ya que era simplemente un término para la música que se tocaba en Ibiza a finales de los 80 y principios de los 90 por DJs como <a href="https://www.discogs.com/artist/470196-Jos%C3%A9-Padilla" target="_blank" draggable="false" rel="noopener" class="linkshisto">José Padilla</a> en <a href="http://cafedelmar.com" target="_blank" draggable="false" rel="noopener" class="linkshisto">Café Del Mar</a> y Alfredo Fiorito en <a href="https://www.amnesia.es/inicio/en" target="_blank" draggable="false" rel="noopener" class="linkshisto">Amnesia</a> .</p>
+		  <p data-lang="en">Balearic Trance (not a genre) comes from Balearic Beat (also not a genre), since it was just a term for the music played in Ibiza in the late 80s and early 90s by DJs like <a href="https://www.discogs.com/artist/470196-Jos%C3%A9-Padilla" target="_blank" draggable="false" rel="noopener" class="linkshisto">José Padilla</a> at <a href="http://cafedelmar.com" target="_blank" draggable="false" rel="noopener" class="linkshisto">Café Del Mar</a> and Alfredo Fiorito at <a href="https://www.amnesia.es/inicio/en" target="_blank" draggable="false" rel="noopener" class="linkshisto">Amnesia</a> .</p><br>
+		  <p data-lang="es">Así que, si bien la música balear no tenía un sonido definido, sí tenía una personalidad definida. Conservaba un ambiente relajado y playero. Los DJ seleccionaban deliberadamente canciones tranquilas y ensoñadoras de una amplia gama de géneros existentes para capturar mejor esa atmósfera esquiva, con algunos guiños a la cultura e historia ibéricas para darle sabor.</p>
+		  <p data-lang="en">So while Balearic music didn't have a defined sound, it did have a defined personality. It kept a relaxed, beachy vibe. DJs deliberately handpicked calm, dreamy songs from a wide range of existing genres to better capture that elusive atmosphere, with a few nods to Iberian culture and history thrown in for flavor.</p><br>
+		  <p data-lang="es">Un rasgo clave de la música balear es la instrumentación orgánica, como guitarras españolas, mandolinas, congas, flautas de pan, pianos, instrumentos de cuerda orquestales, y también los sonidos naturales de las Islas Baleares, como el romper de las olas, el graznido de las gaviotas y la suave brisa marina. Estos instrumentos se pueden incorporar a cualquier sonido (no necesariamente trance), pero los más comunes son el trance, el house, el downtempo y, más recientemente, el tropical house. Mientras tenga esos toques mediterráneos, todo es balear y todo vale.</p>
+		  <p data-lang="en">A key trait of Balearic music is its organic instrumentation, like Spanish guitars, mandolins, congas, pan flutes, pianos, orchestral string instruments, and also the natural sounds of the Balearic Islands, like crashing waves, seagull cries, and gentle sea breeze. These elements can get folded into any sound (not necessarily trance), but the most common ones are trance, house, downtempo, and more recently, tropical house. As long as it's got those Mediterranean touches, it's Balearic, and anything goes.</p>
  	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
