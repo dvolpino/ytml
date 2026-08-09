@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="Techno.html" class="Genre" >Techno</a></li>
      <li><a href="Techno-Acid.html" class="SubGenre" >Acid Techno</a></li>
-	<li class="aka-item"><a class="aka">AKA: Acid  // Fines 80´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Acid  // <span data-lang="es">Fines 80s</span><span data-lang="en">Late 80s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,12 +45,14 @@
    
    <div class="history">
 
-		  <p>Evolucionando a partir de la escena Acid House y posiblemente también del Trance Alemán, el acid techno combina elementos de estos géneros con el techno tradicional, tendiendo a ser más enérgico y utilizando instrumentos Roland como el TB-303 y otros sintetizadores para aprovechar sus capas. Esto incluye ajustes poco convencionales entre estos instrumentos para lograr su famoso sonido "acid". Originario del Reino Unido, se cree que este estilo fue fundado por Richie Hawtin en el marco de sus numerosos proyectos paralelos, como F.U.S.E. y Plastikman.</p>
+		  <p data-lang="es"><img src="images/History/House/Acid/tb-303.webp" class=photo1 />Evolucionando a partir de la escena <a class="linkshisto" href="H-House-AH.html">Acid House</a> y posiblemente también del Trance Alemán, el Acid Techno combina elementos de estos géneros con el Techno tradicional, tendiendo a ser más enérgico y utilizando instrumentos Roland como el TB-303 y otros sintetizadores para aprovechar sus capas. Esto incluye ajustes poco convencionales entre estos instrumentos para lograr su famoso sonido "acid". Originario del Reino Unido, se cree que este estilo fue fundado por <a class="linkshisto" href="https://www.discogs.com/artist/835-Richie-Hawtin">Richie Hawtin</a> en el marco de sus numerosos proyectos paralelos, como <a class="linkshisto" href="https://www.discogs.com/artist/834-FUSE">F.U.S.E.</a> y <a class="linkshisto" href="https://www.discogs.com/artist/1030-Plastikman">Plastikman</a>.</p>
+		  <p data-lang="en"><img src="images/History/House/Acid/tb-303.webp" class=photo1 />Evolving out of the <a class="linkshisto" href="H-House-AH.html">Acid House</a> scene, and possibly German Trance as well, Acid Techno combines elements of these genres with traditional Techno, tending to be more energetic and using Roland instruments like the TB-303 and other synthesizers to layer things up. This includes unconventional tweaking between these instruments to achieve its famous "acid" sound. Originating in the UK, this style is believed to have been founded by <a class="linkshisto" href="https://www.discogs.com/artist/835-Richie-Hawtin">Richie Hawtin</a> as part of his numerous side projects, such as <a class="linkshisto" href="https://www.discogs.com/artist/834-FUSE">F.U.S.E.</a> and <a class="linkshisto" href="https://www.discogs.com/artist/1030-Plastikman">Plastikman</a>.</p>
  	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
