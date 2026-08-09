@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="House.html" class="Genre" >House & Garage</a></li>
      <li><a href="House-HH.html" class="SubGenre" >Hip House</a></li>
-	<li class="aka-item"><a class="aka">AKA: Techno Dance  // Fines 80´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Techno Dance  // <span data-lang="es">Fines 80´s</span><span data-lang="en">Late 80s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,19 +45,28 @@
    
    <div class="history">
 
-		  <p>El Hip House es música house con rap. Surgió bastante rápido después de que el house se expandiera por todo el mundo a finales de los ochenta.</p>
-		  <p>El hip house fue el primer género house enormemente popular.</p>
-		  <p>En la música electrónica es habitual que los productores y DJs nunca tengan éxito en sus ciudades natales o que los géneros que crean nunca se popularicen más allá de sus ciudades natales.</p>
-		  <p>El Hip House es uno de esos géneros que, a pesar de haber sido creado, controlado, producido, distribuido y difundido por los mismos expertos del House de Chicago que inventaron toda la escena... nunca recibió el reconocimiento que se merecía.</p><br>
-		  <p>En cambio, como todo lo que surgió en Detroit y Chicago a finales de los 80, el Hip House encontró un público cautivo en el extranjero (específicamente en Bélgica) que decidió crear su propia marca casera de Hip House, y cuando eso sucedió, todo se acabó. Chicago quedó completamente aislada de toda regalías y reconocimiento.</p>
-		  <p>Para agravar aún más la injusticia, muchos artistas europeos de música electrónica eran &quot;falsos&quot;, ya que los artistas y los intérpretes eran personas distintas. Por ejemplo, Technotronic utilizó originalmente a la modelo Felly Kalingi como líder en videos musicales y material promocional, a pesar de que no tenía nada que ver con la música. Tras el incidente <a href="https://www.discogs.com/artist/22193-Milli-Vanilli" target="_blank" draggable="false" rel="noopener" class="linkshisto">de Milli Vanilli</a> , la descartaron y utilizaron al artista original de la grabación, <a href="https://www.discogs.com/artist/14473-Ya-Kid-K" target="_blank" draggable="false" rel="noopener" class="linkshisto">Ya Kid K,</a> quien era igual de atractivo, lo que convirtió la decisión de marketing de usar una modelo en una decisión de alto riesgo y cero beneficio.</p><br>
-		  <p>Es por eso que hoy en día todo el mundo todavía recuerda a<a href="https://www.discogs.com/Snap-The-Power/master/70506" target="_blank" draggable="false" rel="noopener" class="linkshisto"> Snap!,</a><a href="https://www.discogs.com/Technotronic-Featuring-Felly-Pump-Up-The-Jam/master/64933" target="_blank" draggable="false" rel="noopener" class="linkshisto">Technotronic</a> y <a href="https://www.discogs.com/C-C-Music-Factory-Gonna-Make-You-Sweat/master/78062" target="_blank" draggable="false" rel="noopener" class="linkshisto">C &amp; C Music Factory</a> (y no sólo porque todavía suenan regularmente en los partidos de baloncesto de la NBA) y nadie recuerda a <a href="https://www.discogs.com/artist/2967-Tyree-Cooper" target="_blank" draggable="false" rel="noopener" class="linkshisto">Tyree</a> o <a href="https://www.discogs.com/artist/7028-Doug-Lazy" target="_blank" draggable="false" rel="noopener" class="linkshisto">Doug Lazy</a> (a menos que en aquella época fueras fan del underground de Chicago).</p><br>
-		  <p>El hip house no duró mucho, principalmente porque para 1992 la fórmula se volvió un poco obsoleta y los interminables videos musicales y montajes deportivos contribuyeron a la sobresaturación. Para entonces, el género apenas se parecía al sonido original de Chicago, y era producido casi exclusivamente por europeos. Armados con himnos rave y nuevos y vibrantes bombos, evolucionaron el sonido hacia algo aún más cursi: el eurodance.</p>
+		  <p data-lang="es">El Hip House es música house con rap. Surgió bastante rápido después de que el house se expandiera por todo el mundo a finales de los ochenta.</p>
+		  <p data-lang="en">Hip House is house music with rap. It emerged pretty quickly after house spread around the world in the late eighties.</p>
+		  <p data-lang="es">El hip house fue el primer género house enormemente popular.</p>
+		  <p data-lang="en">Hip house was the first massively popular house genre.</p>
+		  <p data-lang="es">En la música electrónica es habitual que los productores y DJs nunca tengan éxito en sus ciudades natales o que los géneros que crean nunca se popularicen más allá de sus ciudades natales.</p>
+		  <p data-lang="en">In electronic music, it's common for producers and DJs to never find success in their hometowns, or for the genres they create to never become popular beyond their hometowns.</p>
+		  <p data-lang="es">El Hip House es uno de esos géneros que, a pesar de haber sido creado, controlado, producido, distribuido y difundido por los mismos expertos del House de Chicago que inventaron toda la escena... nunca recibió el reconocimiento que se merecía.</p>
+		  <p data-lang="en">Hip House is one of those genres that, despite being created, controlled, produced, distributed, and promoted by the same Chicago House experts who invented the whole scene... never got the recognition it deserved.</p><br>
+		  <p data-lang="es">En cambio, como todo lo que surgió en Detroit y Chicago a finales de los 80, el Hip House encontró un público cautivo en el extranjero (específicamente en Bélgica) que decidió crear su propia marca casera de Hip House, y cuando eso sucedió, todo se acabó. Chicago quedó completamente aislada de toda regalías y reconocimiento.</p>
+		  <p data-lang="en">Instead, like everything that came out of Detroit and Chicago in the late 80s, Hip House found a captive audience overseas (specifically in Belgium) that decided to make its own homegrown brand of Hip House, and once that happened, it was all over. Chicago got completely locked out of any royalties or recognition.</p>
+		  <p data-lang="es">Para agravar aún más la injusticia, muchos artistas europeos de música electrónica eran &quot;falsos&quot;, ya que los artistas y los intérpretes eran personas distintas. Por ejemplo, Technotronic utilizó originalmente a la modelo Felly Kalingi como líder en videos musicales y material promocional, a pesar de que no tenía nada que ver con la música. Tras el incidente <a href="https://www.discogs.com/artist/22193-Milli-Vanilli" target="_blank" draggable="false" rel="noopener" class="linkshisto">de Milli Vanilli</a> , la descartaron y utilizaron al artista original de la grabación, <a href="https://www.discogs.com/artist/14473-Ya-Kid-K" target="_blank" draggable="false" rel="noopener" class="linkshisto">Ya Kid K,</a> quien era igual de atractivo, lo que convirtió la decisión de marketing de usar una modelo en una decisión de alto riesgo y cero beneficio.</p>
+		  <p data-lang="en">Adding insult to injury, a lot of European electronic acts were &quot;fake,&quot; in that the artists and performers were different people entirely. For example, Technotronic originally used model Felly Kalingi as the frontwoman in music videos and promotional material, even though she had nothing to do with the music. After the <a href="https://www.discogs.com/artist/22193-Milli-Vanilli" target="_blank" draggable="false" rel="noopener" class="linkshisto">Milli Vanilli</a> incident, they dropped her and used the actual recording artist, <a href="https://www.discogs.com/artist/14473-Ya-Kid-K" target="_blank" draggable="false" rel="noopener" class="linkshisto">Ya Kid K,</a> who was just as good-looking — which turned the marketing decision to use a model into an all-risk, zero-benefit move.</p><br>
+		  <p data-lang="es">Es por eso que hoy en día todo el mundo todavía recuerda a<a href="https://www.discogs.com/Snap-The-Power/master/70506" target="_blank" draggable="false" rel="noopener" class="linkshisto"> Snap!,</a><a href="https://www.discogs.com/Technotronic-Featuring-Felly-Pump-Up-The-Jam/master/64933" target="_blank" draggable="false" rel="noopener" class="linkshisto">Technotronic</a> y <a href="https://www.discogs.com/C-C-Music-Factory-Gonna-Make-You-Sweat/master/78062" target="_blank" draggable="false" rel="noopener" class="linkshisto">C &amp; C Music Factory</a> (y no sólo porque todavía suenan regularmente en los partidos de baloncesto de la NBA) y nadie recuerda a <a href="https://www.discogs.com/artist/2967-Tyree-Cooper" target="_blank" draggable="false" rel="noopener" class="linkshisto">Tyree</a> o <a href="https://www.discogs.com/artist/7028-Doug-Lazy" target="_blank" draggable="false" rel="noopener" class="linkshisto">Doug Lazy</a> (a menos que en aquella época fueras fan del underground de Chicago).</p>
+		  <p data-lang="en">That's why everyone still remembers<a href="https://www.discogs.com/Snap-The-Power/master/70506" target="_blank" draggable="false" rel="noopener" class="linkshisto"> Snap!,</a><a href="https://www.discogs.com/Technotronic-Featuring-Felly-Pump-Up-The-Jam/master/64933" target="_blank" draggable="false" rel="noopener" class="linkshisto">Technotronic</a> and <a href="https://www.discogs.com/C-C-Music-Factory-Gonna-Make-You-Sweat/master/78062" target="_blank" draggable="false" rel="noopener" class="linkshisto">C &amp; C Music Factory</a> today (and not just because they still get regular airplay at NBA basketball games) and nobody remembers <a href="https://www.discogs.com/artist/2967-Tyree-Cooper" target="_blank" draggable="false" rel="noopener" class="linkshisto">Tyree</a> or <a href="https://www.discogs.com/artist/7028-Doug-Lazy" target="_blank" draggable="false" rel="noopener" class="linkshisto">Doug Lazy</a> (unless you were into the Chicago underground back in the day).</p><br>
+		  <p data-lang="es">El hip house no duró mucho, principalmente porque para 1992 la fórmula se volvió un poco obsoleta y los interminables videos musicales y montajes deportivos contribuyeron a la sobresaturación. Para entonces, el género apenas se parecía al sonido original de Chicago, y era producido casi exclusivamente por europeos. Armados con himnos rave y nuevos y vibrantes bombos, evolucionaron el sonido hacia algo aún más cursi: el eurodance.</p>
+		  <p data-lang="en">Hip house didn't last long, mostly because by 1992 the formula had gotten a bit stale, and the endless music videos and sports montages contributed to the oversaturation. By that point, the genre barely resembled the original Chicago sound, and it was being produced almost exclusively by Europeans. Armed with rave anthems and punchy new kick drums, they evolved the sound into something even cheesier: eurodance.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
