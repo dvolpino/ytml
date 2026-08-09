@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +25,12 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
@@ -33,17 +46,21 @@
    
    <div class="history">
 
-	  <p>Twinkle Prog is a pejorative. You will not find this name on any official mixes or CD compilations. But it was used a lot in Prog circles in the early 00s to refer to bad Prog music, which is the exact opposite of what marketers want you to think of it. </p><br>
+	  <p data-lang="es">Twinkle Prog es un término peyorativo. No vas a encontrar este nombre en ninguna mezcla oficial ni compilación en CD. Pero se usaba mucho en los círculos del Prog a principios de los 2000 para referirse al mal Prog, que es exactamente lo opuesto de lo que los publicistas quieren que pienses de él. </p>
+	  <p data-lang="en">Twinkle Prog is a pejorative. You will not find this name on any official mixes or CD compilations. But it was used a lot in Prog circles in the early 00s to refer to bad Prog music, which is the exact opposite of what marketers want you to think of it. </p><br>
 		  
-		<p>Twinkle Prog can trace its origins to one track and that track is Sasha - Xpander. </p><br>
+		<p data-lang="es">El Twinkle Prog puede rastrear su origen hasta un solo tema, y ese tema es Sasha - Xpander. </p>
+		<p data-lang="en">Twinkle Prog can trace its origins to one track and that track is Sasha - Xpander. </p><br>
 			
-		<p>With the exception of McProg and its fromage-based derivatives, Sasha & Digweed control the narrative of this entire scene. Twinkle Prog was still Prog, it was just Prog that took the slightly monotonous dubby Bedrock sound and added some twinkly melodies to it (hence the name).</p><br>
+		<p data-lang="es">Con la excepción del <a class="linkshisto" href="H-Progressive-McP.html">McProg</a> y sus derivados a base de fromage, <a class="linkshisto" href="https://www.discogs.com/artist/3365-Sasha">Sasha</a> y <a class="linkshisto" href="https://www.discogs.com/artist/10435-John-Digweed">Digweed</a> controlan la narrativa de toda esta escena. El Twinkle Prog seguía siendo Prog, solo que era el Prog que tomó el sonido ligeramente monótono y dubby de <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a> y le añadió unas melodías centelleantes (de ahí el nombre).</p>
+		<p data-lang="en">With the exception of  <a class="linkshisto" href="H-Progressive-McP.html">McProg</a> and its fromage-based derivatives, <a class="linkshisto" href="https://www.discogs.com/artist/3365-Sasha">Sasha</a> and <a class="linkshisto" href="https://www.discogs.com/artist/10435-John-Digweed">Digweed</a> control the narrative of this entire scene. Twinkle Prog was still Prog, it was just Prog that took the slightly monotonous dubby <a href="https://music.youtube.com/watch?v=H57bluuPTIg"  class="linkshisto" >Bedrock</a> sound and added some twinkly melodies to it (hence the name).</p><br>
 		
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
