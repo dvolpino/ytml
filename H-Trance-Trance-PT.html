@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +25,19 @@
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="Trance.html" class="Genre" >Trance</a>&nbsp;&nbsp;<a class="SubGenre">/</a><a href="Trance.html" class="scene" >&nbsp;&nbsp;Trance</a></li>
      <li><a href="Trance-Trance-PT.html" class="SubGenre3" >Progressive Trance</a></li>
-	<li class="aka-item"><a class="aka">Progressive House // Mediados 90´s</a></li>
+	<li class="aka-item"><a class="aka">Progressive House // <span data-lang="es">Med 90s</span><span data-lang="en">Mid 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,18 +45,24 @@
    
    <div class="history">
 	  
-	  <p>Progressive trance o trance progresivo es el subgénero más elegante y complejo del género. Sus melodías transmiten sentimiento, se acerca al progressive house, por lo que algunas producciones generan ambigüedad entre sí se trata de progressive house o progressive trance. Como su nombre lo indica, es un género musical que a medida que el tiempo transcurre, se añaden más elementos progresivamente.</p>
+	  <p data-lang="es">Progressive trance o trance progresivo es el subgénero más elegante y complejo del género. Sus melodías transmiten sentimiento, se acerca al progressive house, por lo que algunas producciones generan ambigüedad entre sí se trata de progressive house o progressive trance. Como su nombre lo indica, es un género musical que a medida que el tiempo transcurre, se añaden más elementos progresivamente.</p>
+	  <p data-lang="en">Progressive trance is the most elegant and complex subgenre of trance. Its melodies convey feeling, and it edges close to progressive house, which is why some productions create ambiguity over whether they're progressive house or progressive trance. As the name suggests, it's a musical genre where more elements get added progressively as the track goes on.</p><br>
 			
-      <p>El tempo suele estar entre 128 pulsaciones por minuto y 145 las producciones mas aceleradas. Las progresiones y entradillas son más largas y suele ser algo más pesado que el trance melódico o el trance vocal.
+      <p data-lang="es">El tempo suele estar entre 128 pulsaciones por minuto y 145 las producciones mas aceleradas. Las progresiones y entradillas son más largas y suele ser algo más pesado que el trance melódico o el trance vocal.
 
-Esta música también es más marcada y con un swing más lineal que el trance normal.
+Esta música también es más marcada y con un swing más lineal que el trance normal.</p>
+      <p data-lang="en">Tempo usually falls between 128 beats per minute and 145 for the faster productions. Progressions and intros run longer, and it tends to be a bit heavier than melodic trance or vocal trance.
 
-			  Vivió su época de esplendor entorno a la década de1995 a 2005.</p>
+This music is also more pronounced and has a more linear swing than regular trance.</p> <br>
+
+			 <p data-lang="es"> Vivió su época de esplendor entorno a la década de 1995 a 2005.</p>
+			 <p data-lang="en"> It had its golden era roughly from 1995 to 2005.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
