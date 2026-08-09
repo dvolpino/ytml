@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>YTML | History</title>
+<!-- Aplica el idioma guardado ANTES de pintar la pagina, para evitar el
+     flash del idioma equivocado. Default: 'es'. -->
+<script>
+  (function () {
+    var lang = localStorage.getItem('ytml-lang') || 'es';
+    document.documentElement.classList.add('lang-' + lang);
+  })();
+</script>
 <!-- Google Fonts: Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,20 +19,25 @@
 
 <link rel="stylesheet" href="styles.css" />
 <link rel="icon" href="images/icons/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">mage/x-icon">
+<link rel="shortcut icon" href="images/icons/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
 <div class="page-wrapper">
 <!--/// LOGO ///-->
-<header class="site-header"><a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a></header>
+<header class="site-header">
+  <a href="index.html" class="logo-link"><img src="images/logo.webp" alt="Logo" class="logo-img" /></a>
+  <button id="lang-toggle" class="lang-toggle-btn" onclick="ytToggleLang()" title="Switch language / Cambiar idioma">
+    <span data-lang="es">EN</span><span data-lang="en">ES</span>
+  </button>
+</header>
 
 <!--/// NAVIGATION ///-->
  <nav class="site-nav">
    <ul class="nav-list">
      <li><a href="Trance.html" class="Genre" >Trance</a>&nbsp;&nbsp;<a class="SubGenre">/</a><a href="Trance.html" class="scene" >&nbsp;&nbsp;Trance</a></li>
      <li><a href="Trance-Trance-TT.html" class="SubGenre" >Tech Trance</a></li>
-	<li class="aka-item"><a class="aka">AKA: Techtrance, Techno-trance  // Fines 90´s</a></li>
+	<li class="aka-item"><a class="aka">AKA: Techtrance, Techno-trance  // <span data-lang="es">Fines 90´s</span><span data-lang="en">Late 90s</span></a></li>
    </ul>   
  </nav>
 <!-- MAIN CONTENT -->
@@ -32,15 +45,20 @@
    
    <div class="history">
 	  
-		  <p>Tech trance estuvo iniciado por, entre otros, Oliver Lieb hacia 1994. Otros ejemplos tempranos de tech trance son Humate, Chris Cowie y Marmion. Durante varios años permaneció a la sombra del <a href="https://es.wikipedia.org/wiki/Hard_trance" target="_blank" draggable="false" rel="noopener" class="linkshisto">Hard trance</a>, una fusión del tech trance con el Hard Acid trance. El Tech trance evolucionó en una dirección nueva durante los inicios de los 2000s, algunos Dj pioneros en San Francisco fueron Keith Edwards, Owen Vallis y DJ Amber.</p><br>
-		  <p>Hacia 2006, la variante más extendida del trance era el tech trance, con productores como Dave Schiemann, <a href="https://es.wikipedia.org/wiki/Simon_Patterson" target="_blank" draggable="false" rel="noopener" class="linkshisto">Simon Patterson</a>, Bryan Kearney, Will Atkinson, Sean Tyas, John Askew, Matt Bowdidge, <a href="https://es.wikipedia.org/wiki/Marco_V" target="_blank" draggable="false" rel="noopener" class="linkshisto">Marco V</a>, Tempo Giusto, Mark #Jerez.​</p><br>
-		  <p>Definir las características de tech trance es complejo, ritmos electrónicos fuertes y normalmente marcados por un kick drum fuerte, y hi-hat filtrado o ligeramente distorsionado. Los sonidos synth más duros con mucha resonancia o retardo; bases mínimas a menudo enlazadas para aumentar el volumen del golpe.</p><br>
-		  <p>Mientras las variantes más tempranas del classic trance a menudo presentaban pianos, cuerdas o guitarra acústica, el tech trance casi exclusivamente presenta sonido sintetizado, aun así ocasionalmente hay samples de guitarra eléctrica.</p>
+		  <p data-lang="es">Tech Trance estuvo iniciado por, entre otros, <a href="https://www.discogs.com/artist/4235-Oliver-Lieb" class="linkshisto">Oliver Lieb</a> hacia 1994. Otros ejemplos tempranos de Tech trance son <a href="https://www.discogs.com/artist/1612-Humate" class="linkshisto">Humate</a>, <a href="https://www.discogs.com/artist/2341-Chris-Cowie" class="linkshisto">Chris Cowie</a> y <a href="https://www.discogs.com/artist/3117-Marmion" class="linkshisto">Marmion</a>. Durante varios años permaneció a la sombra del Hard Trance, una fusión del Tech Trance con el Hard Acid trance. El Tech Trance evolucionó en una dirección nueva durante los inicios de los 2000s, algunos Dj pioneros en San Francisco fueron Keith Edwards, Owen Vallis y DJ Amber.</p>
+		  <p data-lang="en">Tech Trance was kicked off by, among others, <a href="https://www.discogs.com/artist/4235-Oliver-Lieb" class="linkshisto">Oliver Lieb</a> around 1994. Other early examples of Tech trance include <a href="https://www.discogs.com/artist/1612-Humate" class="linkshisto">Humate</a>, <a href="https://www.discogs.com/artist/2341-Chris-Cowie" class="linkshisto">Chris Cowie</a>, and <a href="https://www.discogs.com/artist/3117-Marmion" class="linkshisto">Marmion</a>. For several years it stayed in the shadow of Hard Trance, a fusion of Tech Trance with Hard Acid trance. Tech Trance evolved in a new direction in the early 2000s, with pioneering DJs in San Francisco including Keith Edwards, Owen Vallis, and DJ Amber.</p><br>
+		  <p data-lang="es">Hacia 2006, la variante más extendida del Trance era el Tech Trance, con productores como Dave Schiemann, <a href="https://www.discogs.com/artist/125802-Simon-Patterson"  class="linkshisto">Simon Patterson</a>, Bryan Kearney, Will Atkinson, Sean Tyas, John Askew, Matt Bowdidge, <a href="https://www.discogs.com/artist/12236-Marco-V"  class="linkshisto">Marco V</a>, Tempo Giusto, Mark #Jerez.</p>
+		  <p data-lang="en">By 2006, the most widespread variant of Trance was Tech Trance, with producers like Dave Schiemann, <a href="https://www.discogs.com/artist/125802-Simon-Patterson"  class="linkshisto">Simon Patterson</a>, Bryan Kearney, Will Atkinson, Sean Tyas, John Askew, Matt Bowdidge, <a href="https://www.discogs.com/artist/12236-Marco-V"  class="linkshisto">Marco V</a>, Tempo Giusto, and Mark #Jerez.</p><br>
+		  <p data-lang="es">Definir las características de Tech Trance es complejo, ritmos electrónicos fuertes y normalmente marcados por un kick drum fuerte, y hi-hat filtrado o ligeramente distorsionado. Los sonidos synth más duros con mucha resonancia o retardo; bases mínimas a menudo enlazadas para aumentar el volumen del golpe.</p>
+		  <p data-lang="en">Defining the characteristics of Tech Trance is tricky: strong electronic rhythms, usually marked by a hard kick drum, and filtered or slightly distorted hi-hats. Harder synth sounds with lots of resonance or delay; minimal basslines often layered to boost the impact of the hit.</p><br>
+		  <p data-lang="es">Mientras las variantes más tempranas del Classic Trance a menudo presentaban pianos, cuerdas o guitarra acústica, el Tech Trance casi exclusivamente presenta sonido sintetizado, aun así ocasionalmente hay samples de guitarra eléctrica.</p>
+		  <p data-lang="en">While earlier variants of Classic Trance often featured pianos, strings, or acoustic guitar, Tech Trance almost exclusively features synthesized sound, though electric guitar samples occasionally show up.</p>
 	
    </div>
 </main>
    
 <script src="background-manager.js"></script>
+<script src="lang.js"></script>
 
 <!-- Makes .history fill the remaining viewport space below it (so the page
      itself never needs a vertical scrollbar) — but ONLY when the text is
