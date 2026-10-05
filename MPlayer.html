@@ -165,6 +165,9 @@
 <script>
   var params      = new URLSearchParams(window.location.search);
   var NAS_MODE    = params.get('source') === 'nas';
+  /* SoundCloud mode: ?source=soundcloud&url=<SoundCloud track or set URL> */
+  var SC_MODE     = params.get('source') === 'soundcloud';
+  var SC_URL      = params.get('url')    || '';
   var YT_LIST_ID  = params.get('list')   || '';
   var YT_NAME     = params.get('name')   || 'Playlist';
   var YT_COLOR    = params.get('color')  || '';
@@ -197,7 +200,7 @@
     if (!NAS_MODE && typeof ytPlayer !== 'undefined' && ytPlayer) {
       ytPlayer.setShuffle(ytShuffleOn);
     }
-    if (NAS_MODE) nasApplyShuffle();
+    if (NAS_MODE || SC_MODE) nasApplyShuffle();
     var btn = document.getElementById('yt-shuffle');
     btn.style.opacity = ytShuffleOn ? '1' : '0.35';
     btn.style.filter  = ytShuffleOn ? 'brightness(2)' : 'brightness(1)';
@@ -407,20 +410,44 @@
     document.getElementById('yt-playlist-count').textContent = countText;
   }
   function nasPlayPause() {
+    if (SC_MODE) {
+      if (!scWidget) return;
+      /* First press: start from our own order (respects shuffle) instead of
+         the widget's default first track */
+      if (!scStarted) scLoadTrack(nasOrderPos);
+      else scWidget.toggle();
+      return;
+    }
     if (!nasAudio) return;
     nasAudio.paused ? nasAudio.play() : nasAudio.pause();
   }
   function nasSeekPreview(bar) {
+    if (SC_MODE) {
+      var scT = ytTracks[ytCurrentIndex];
+      document.getElementById('yt-time-display').textContent =
+        ytFmtTime(parseFloat(bar.value)) + ' / ' + ytFmtTime(scT ? scT.duration : 0);
+      return;
+    }
     if (!nasAudio) return;
     document.getElementById('yt-time-display').textContent =
       ytFmtTime(parseFloat(bar.value)) + ' / ' + ytFmtTime(nasAudio.duration || 0);
   }
   function nasSeekCommit(bar) {
+    if (SC_MODE) {
+      /* The widget works in milliseconds; the progress bar is in seconds */
+      if (scWidget) scWidget.seekTo(parseFloat(bar.value) * 1000);
+      nasSeeking = false;
+      return;
+    }
     if (!nasAudio) return;
     nasAudio.currentTime = parseFloat(bar.value);
     nasSeeking = false;
   }
   function nasPrev() {
+    if (SC_MODE) {
+      scLoadTrack(nasOrderPos > 0 ? nasOrderPos - 1 : nasOrder.length - 1);
+      return;
+    }
     if (nasOrderPos > 0) {
       nasLoadTrack(nasOrderPos - 1, !nasAudio.paused);
     } else {
@@ -428,6 +455,7 @@
     }
   }
   function nasNext() {
+    if (SC_MODE) { scSkipToNext(); return; }
     nasSkipToNext(true);
   }
   function nasSkipToNext(autoPlay) {
@@ -443,6 +471,200 @@
     icon.innerHTML = playing
       ? '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'
       : '<polygon points="5 3 19 12 5 21 5 3"/>';
+  }
+  /* ── SoundCloud mode ─────────────────────────────────────────────
+     Enabled with ?source=soundcloud&url=<SoundCloud track or set URL>
+     Reuses the NAS-mode UI (album art, progress bar, prev/play/next
+     buttons, track list, nasOrder/nasApplyShuffle for shuffle), but the
+     audio is played by the SoundCloud Widget API inside an invisible iframe.
+     Watch out: the widget works in MILLISECONDS; everything on the UI side
+     (ytTracks[].duration, progress bar, ytFmtTime) stays in SECONDS, as in
+     NAS mode. */
+  var scWidget = null;
+  var scStarted = false;
+  var scConsecutiveErrors = 0;
+  if (SC_MODE) {
+    document.getElementById('yt-player').style.display     = 'none';
+    document.getElementById('nas-player').style.display    = 'block';
+    document.getElementById('nas-prev').style.display      = 'inline-flex';
+    document.getElementById('nas-playpause').style.display = 'inline-flex';
+    document.getElementById('nas-next').style.display      = 'inline-flex';
+    if (!SC_URL) {
+      document.getElementById('yt-playlist-loading').textContent = 'No SoundCloud URL provided.';
+    } else {
+      document.getElementById('yt-playlist-loading').textContent = 'Loading SoundCloud…';
+      var scIframe = document.createElement('iframe');
+      scIframe.id = 'sc-iframe';
+      scIframe.allow = 'autoplay; encrypted-media';
+      /* NOT display:none — some browsers won't load or play audio in a
+         display:none iframe. 1px + opacity:0 keeps it invisible but alive. */
+      scIframe.style.cssText = 'position:absolute; top:0; left:0; width:1px; height:1px; opacity:0; pointer-events:none; border:0;';
+      scIframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(SC_URL) +
+        '&auto_play=false&visual=false&show_comments=false&hide_related=true&show_teaser=false';
+      document.getElementById('nas-player').appendChild(scIframe);
+      /* The Widget API script is only loaded in SoundCloud mode */
+      var scApi = document.createElement('script');
+      scApi.src = 'https://w.soundcloud.com/player/api.js';
+      scApi.onload = scInit;
+      scApi.onerror = function() {
+        document.getElementById('yt-playlist-loading').textContent = 'Could not load the SoundCloud player.';
+      };
+      document.head.appendChild(scApi);
+    }
+  }
+  /* SoundCloud gives artwork as ...-large.jpg (100x100); swap the size suffix
+     for a bigger/smaller version. Falls back to the uploader's avatar. */
+  function scArtwork(sound, size) {
+    var art = sound.artwork_url || (sound.user && sound.user.avatar_url) || '';
+    return art ? art.replace('-large.', '-' + size + '.') : '';
+  }
+  function scTrackFromSound(sound, i) {
+    sound = sound || {};
+    return {
+      title:    sound.title || ('Track ' + (i + 1)),
+      artist:   (sound.user && sound.user.username) || '',
+      duration: sound.duration ? sound.duration / 1000 : 0,
+      thumb:    scArtwork(sound, 't67x67'),
+      art:      scArtwork(sound, 't500x500'),
+      url:      sound.permalink_url || ''
+    };
+  }
+  function scInit() {
+    scWidget = SC.Widget(document.getElementById('sc-iframe'));
+    var E = SC.Widget.Events;
+    scWidget.bind(E.READY, function() {
+      scWidget.getSounds(function(sounds) {
+        if (sounds && sounds.length) { scSetTracks(sounds); return; }
+        scWidget.getCurrentSound(function(s) { scSetTracks(s ? [s] : []); });
+      });
+    });
+    scWidget.bind(E.PLAY, function() {
+      scStarted = true;
+      scConsecutiveErrors = 0;
+      nasSetIcon(true);
+      /* Sync UI with whatever the widget is actually playing — also covers
+         the widget auto-advancing inside a set by itself */
+      scWidget.getCurrentSoundIndex(function(idx) {
+        if (idx == null || idx < 0 || !ytTracks[idx]) return;
+        var pos = nasOrder.indexOf(idx);
+        if (pos !== -1) nasOrderPos = pos;
+        var row = document.getElementById('yt-row-' + idx);
+        if (row) row.classList.remove('unavailable');
+        /* Sets load track details lazily — refresh this track's info now
+           that it's surely loaded */
+        scWidget.getCurrentSound(function(s) {
+          if (s && s.title) { ytTracks[idx] = scTrackFromSound(s, idx); scUpdateRow(idx); nasUpdateCount(); }
+          scShowTrack(idx);
+        });
+      });
+    });
+    scWidget.bind(E.PAUSE, function() { nasSetIcon(false); });
+    scWidget.bind(E.PLAY_PROGRESS, function(e) {
+      var t = ytTracks[ytCurrentIndex];
+      var cur = e.currentPosition / 1000;
+      if (t && t.duration > 0) {
+        document.getElementById('yt-time-display').textContent =
+          ytFmtTime(cur) + ' / ' + ytFmtTime(t.duration);
+      }
+      if (!nasSeeking) {
+        var bar = document.getElementById('nas-progress');
+        if (bar) bar.value = cur;
+      }
+    });
+    scWidget.bind(E.FINISH, function() {
+      nasSetIcon(false);
+      if (!ytShuffleOn && nasOrderPos >= nasOrder.length - 1) return;
+      scSkipToNext();
+    });
+    scWidget.bind(E.ERROR, function() {
+      console.warn('SoundCloud track unavailable, skipping:', ytTracks[ytCurrentIndex] && ytTracks[ytCurrentIndex].url);
+      if (ytTracks.length === 0) {
+        document.getElementById('yt-playlist-loading').textContent = 'Could not load this SoundCloud URL.';
+        return;
+      }
+      var deadRow = document.getElementById('yt-row-' + ytCurrentIndex);
+      if (deadRow) deadRow.classList.add('unavailable');
+      scConsecutiveErrors++;
+      if (scConsecutiveErrors >= ytTracks.length) return;
+      scSkipToNext();
+    });
+  }
+  function scSetTracks(sounds) {
+    ytTracks = sounds.map(function(s, i) { return scTrackFromSound(s, i); });
+    if (ytTracks.length === 0) {
+      document.getElementById('yt-playlist-loading').textContent = 'No playable tracks found at this SoundCloud URL.';
+      return;
+    }
+    nasApplyShuffle();
+    scRenderPlaylist();
+    nasUpdateCount();
+    scShowTrack(nasOrder[nasOrderPos]);
+  }
+  function scRenderPlaylist() {
+    var list = document.getElementById('yt-playlist-list');
+    list.innerHTML = '';
+    ytTracks.forEach(function(track, i) {
+      var row = document.createElement('div');
+      row.className = 'yt-track-row' + (i === ytCurrentIndex ? ' active' : '');
+      row.id = 'yt-row-' + i;
+      row.onclick = (function(idx) {
+        return function() {
+          nasOrderPos = nasOrder.indexOf(idx);
+          if (nasOrderPos === -1) { nasOrder.unshift(idx); nasOrderPos = 0; }
+          scLoadTrack(nasOrderPos);
+        };
+      })(i);
+      row.innerHTML =
+        '<span class="yt-track-num">' + (i + 1) + '</span>' +
+        '<img class="yt-track-thumb" id="yt-thumb-' + i + '" loading="lazy" alt="" ' +
+             'onerror="this.style.visibility=\'hidden\'"/>' +
+        '<div class="yt-track-meta">' +
+          '<div class="yt-track-name" id="yt-name-' + i + '"></div>' +
+          '<div class="yt-track-ch"  id="yt-ch-'   + i + '"></div>' +
+        '</div>' +
+        '<span class="yt-track-duration" id="yt-dur-' + i + '"></span>';
+      list.appendChild(row);
+      scUpdateRow(i);
+    });
+  }
+  /* textContent (not innerHTML) for title/artist: this text comes from
+     SoundCloud, not from our own files */
+  function scUpdateRow(i) {
+    var t = ytTracks[i];
+    if (!t) return;
+    var n = document.getElementById('yt-name-' + i);
+    var c = document.getElementById('yt-ch-' + i);
+    var d = document.getElementById('yt-dur-' + i);
+    var img = document.getElementById('yt-thumb-' + i);
+    if (n) n.textContent = t.title;
+    if (c) c.textContent = t.artist;
+    if (d) d.textContent = t.duration ? ytFmtTime(t.duration) : '';
+    if (img && t.thumb) { img.src = t.thumb; img.style.visibility = ''; }
+  }
+  function scShowTrack(idx) {
+    var t = ytTracks[idx];
+    if (!t) return;
+    ytCurrentIndex = idx;
+    if (t.art) document.getElementById('nas-album-art').src = t.art;
+    var bar = document.getElementById('nas-progress');
+    if (bar) bar.max = t.duration || 0;
+    document.getElementById('yt-track-title').textContent =
+      (t.artist ? t.artist + ' | ' : '') + t.title;
+    ytHighlightActive();
+  }
+  function scLoadTrack(orderPos) {
+    if (!scWidget) return;
+    var idx = nasOrder[orderPos];
+    if (!ytTracks[idx]) return;
+    nasOrderPos = orderPos;
+    var bar = document.getElementById('nas-progress');
+    if (bar) bar.value = 0;
+    scShowTrack(idx);
+    scWidget.skip(idx);
+    scWidget.play();
+  }
+  function scSkipToNext() {
+    scLoadTrack(nasOrderPos < nasOrder.length - 1 ? nasOrderPos + 1 : 0);
   }
   var ytPlayer, ytReady = false;
   var ytConsecutiveErrors = 0;
