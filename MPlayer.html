@@ -1267,6 +1267,29 @@
       e.preventDefault();
       changeVolume(e.deltaY < 0 ? VOL_STEP : -VOL_STEP);
     }, { passive: false });
+
+    /* ---------- 3b. YouTube wheel shield (YouTube mode only) ----------
+       The YouTube iframe swallows every mouse event over the video, so the
+       page never sees the wheel there. This transparent layer sits on top of
+       the video so the wheel reaches section 3 above. Trade-offs:
+       - A click on the layer is forwarded as play/pause.
+       - The bottom strip is left uncovered so YouTube's own progress bar and
+         buttons keep working (change SHIELD_BOTTOM_PX to adjust it).
+       - YouTube's hover UI at the top and its right-click menu are not
+         reachable over the covered area.
+       To disable: delete this whole 3b block. */
+    if (!NAS_MODE && !SC_MODE) {
+      var SHIELD_BOTTOM_PX = 56;
+      var vw = document.querySelector('.yt-video-wrapper');
+      if (vw) {
+        var shield = document.createElement('div');
+        shield.id = 'yt-wheel-shield';
+        /* z-index 5: above the iframe, below #yt-cover-wrap (z-index 10) so the start cover still works */
+        shield.style.cssText = 'position:absolute; left:0; right:0; top:0; bottom:' + SHIELD_BOTTOM_PX + 'px; z-index:5; background:transparent; cursor:pointer;';
+        shield.addEventListener('click', function () { doPlayPause(); });
+        vw.appendChild(shield);
+      }
+    }
   }
 
   /* ---------- 4. MEDIA SESSION (optional - delete from here to remove) ----------
