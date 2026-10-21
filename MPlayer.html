@@ -1279,7 +1279,7 @@
          reachable over the covered area.
        To disable: delete this whole 3b block. */
     if (!NAS_MODE && !SC_MODE) {
-      var SHIELD_BOTTOM_PX = 56;
+      var SHIELD_BOTTOM_PX = 96;  /* raised from 56: YouTube's progress bar grows upward when hovered and needs more room */
       var SHIELD_TOP_PX    = 56;  /* top strip left uncovered so YouTube's title / share controls stay usable (wheel does nothing there) */
       var vw = document.querySelector('.yt-video-wrapper');
       if (vw) {
