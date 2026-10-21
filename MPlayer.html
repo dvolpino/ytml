@@ -230,7 +230,9 @@
       var deadRow = document.getElementById('yt-row-' + ytCurrentIndex);
       if (deadRow) deadRow.classList.add('unavailable');
       if (nasConsecutiveErrors >= Math.max(ytTracks.length, 1)) {
-        document.getElementById('yt-playlist-loading').textContent = 'No tracks could be loaded.';
+        /* The loading element is removed once the playlist is rendered, so it can be null here; guard it to avoid a TypeError */
+        var loadingEl = document.getElementById('yt-playlist-loading');
+        if (loadingEl) loadingEl.textContent = 'No tracks could be loaded.';
         return;
       }
       nasSkipToNext(nasAutoPlayIntent);
