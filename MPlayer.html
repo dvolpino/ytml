@@ -1286,7 +1286,7 @@
         var shield = document.createElement('div');
         shield.id = 'yt-wheel-shield';
         /* z-index 5: above the iframe, below #yt-cover-wrap (z-index 10) so the start cover still works */
-        shield.style.cssText = 'position:absolute; left:0; right:0; top:' + SHIELD_TOP_PX + 'px; bottom:' + SHIELD_BOTTOM_PX + 'px; z-index:5; background:transparent; cursor:pointer;';
+        shield.style.cssText = 'position:absolute; left:0; right:0; top:min(' + SHIELD_TOP_PX + 'px, 15%); bottom:min(' + SHIELD_BOTTOM_PX + 'px, 25%); z-index:5; background:transparent; cursor:pointer;';
         shield.addEventListener('click', function () { doPlayPause(); });
         vw.appendChild(shield);
       }
