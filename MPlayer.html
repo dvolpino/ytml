@@ -1142,6 +1142,164 @@
     });
   })();
 </script>
+
+<!-- ============================================================
+     DESKTOP CONTROLS (mouse wheel volume + keyboard shortcuts)
+     Added for hardware dials (Ulanzi D100H, Surface Dial, etc.) and
+     regular keyboards. Everything in sections 1-3 only runs on
+     devices with a precise pointer (mouse/trackpad), so phones and
+     tablets are not affected.
+     Keys: Space = play/pause, Up/Down = volume, M = mute,
+           N or PageDown = next, P or PageUp = previous, S = shuffle.
+     Wheel: scroll over the cover / control bar to change volume.
+            Wheel with Ctrl/Alt/Shift/Meta held is IGNORED on purpose,
+            so it never clashes with the system-volume shortcut
+            (Ctrl+Shift+wheel, AutoHotkey).
+     Section 4 (Media Session) is separate: delete from its marker
+     comment to the end of this script to remove it.
+     ============================================================ -->
+<style>
+  /* Volume indicator (bottom-center pill that fades out) */
+  #yt-vol-indicator {
+    position: fixed; left: 50%; bottom: 6%; transform: translateX(-50%);
+    padding: 0.5rem 1rem; border-radius: 999px;
+    background: rgba(0, 0, 0, 0.75); color: #fff;
+    font-size: 1rem; font-weight: 600; line-height: 1;
+    pointer-events: none; opacity: 0; transition: opacity 0.25s ease;
+    z-index: 9999;
+  }
+  #yt-vol-indicator.show { opacity: 1; }
+</style>
+<div id="yt-vol-indicator" aria-hidden="true"></div>
+<script>
+(function () {
+  /* ---------- 1. Volume helpers (work in NAS, SoundCloud and YouTube modes) ---------- */
+  var VOL_STEP = 5;                 /* percent per wheel notch / arrow key press */
+  var volLevel = 100;               /* our own 0-100 copy (SoundCloud has no sync getter) */
+  var volBeforeMute = 100;
+  var volHideTimer = null;
+
+  function applyVolume(v) {
+    volLevel = Math.max(0, Math.min(100, Math.round(v)));
+    if (NAS_MODE) {
+      if (nasAudio) nasAudio.volume = volLevel / 100;
+    } else if (SC_MODE) {
+      if (typeof scWidget !== 'undefined' && scWidget) scWidget.setVolume(volLevel);
+    } else {
+      if (typeof ytPlayer !== 'undefined' && ytPlayer && ytPlayer.setVolume) {
+        ytPlayer.setVolume(volLevel);
+        if (volLevel > 0 && ytPlayer.isMuted && ytPlayer.isMuted()) ytPlayer.unMute();
+      }
+    }
+    showVolume(volLevel === 0 ? 'Muted' : 'Volume ' + volLevel + '%');
+  }
+  function currentVolume() {
+    if (NAS_MODE && nasAudio) return Math.round(nasAudio.volume * 100);
+    if (!NAS_MODE && !SC_MODE && typeof ytPlayer !== 'undefined' && ytPlayer && ytPlayer.getVolume) {
+      var g = ytPlayer.getVolume();
+      if (typeof g === 'number') return g;
+    }
+    return volLevel;
+  }
+  function changeVolume(delta) { applyVolume(currentVolume() + delta); }
+  function toggleMute() {
+    var cur = currentVolume();
+    if (cur > 0) { volBeforeMute = cur; applyVolume(0); }
+    else applyVolume(volBeforeMute || 50);
+  }
+  function showVolume(text) {
+    var el = document.getElementById('yt-vol-indicator');
+    if (!el) return;
+    el.textContent = text;
+    el.classList.add('show');
+    clearTimeout(volHideTimer);
+    volHideTimer = setTimeout(function () { el.classList.remove('show'); }, 1000);
+  }
+
+  /* ---------- 2. Transport helpers ---------- */
+  function doPlayPause() {
+    if (NAS_MODE || SC_MODE) { nasPlayPause(); return; }
+    if (typeof ytPlayer === 'undefined' || !ytPlayer || !ytPlayer.getPlayerState) return;
+    ytPlayer.getPlayerState() === 1 ? ytPlayer.pauseVideo() : ytPlayer.playVideo();
+  }
+  function doNext() {
+    if (NAS_MODE || SC_MODE) { nasNext(); return; }
+    if (typeof ytPlayer !== 'undefined' && ytPlayer && ytPlayer.nextVideo) ytPlayer.nextVideo();
+  }
+  function doPrev() {
+    if (NAS_MODE || SC_MODE) { nasPrev(); return; }
+    if (typeof ytPlayer !== 'undefined' && ytPlayer && ytPlayer.previousVideo) ytPlayer.previousVideo();
+  }
+
+  /* Everything below in 2b and 3 is desktop-only (mouse / trackpad present) */
+  var isFinePointer = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  if (isFinePointer) {
+
+    /* ---------- 2b. Keyboard shortcuts ---------- */
+    document.addEventListener('keydown', function (e) {
+      if (e.ctrlKey || e.altKey || e.metaKey) return;          /* leave browser shortcuts alone */
+      var t = e.target, tag = t && t.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (t && t.isContentEditable)) return; /* typing / progress bar (uses arrows) */
+      if (tag === 'BUTTON' && (e.key === ' ' || e.key === 'Enter')) return; /* focused button handles its own press */
+      switch (e.key) {
+        case ' ':          doPlayPause();      break;
+        case 'ArrowUp':    changeVolume(VOL_STEP);  break;
+        case 'ArrowDown':  changeVolume(-VOL_STEP); break;
+        case 'm': case 'M': toggleMute();      break;
+        case 'n': case 'N': case 'PageDown': doNext(); break;
+        case 'p': case 'P': case 'PageUp':   doPrev(); break;
+        case 's': case 'S': ytToggleShuffle(); break;
+        default: return;
+      }
+      e.preventDefault();
+    });
+
+    /* ---------- 3. Mouse wheel volume (player area only) ----------
+       Only over the cover art / control bar / video area. The playlist
+       keeps its normal scrolling. In YouTube mode the iframe captures
+       wheel events itself, so it works over the control bar and cover. */
+    document.addEventListener('wheel', function (e) {
+      if (e.ctrlKey || e.altKey || e.shiftKey || e.metaKey) return; /* never clash with Ctrl+Shift+wheel system volume */
+      var el = e.target;
+      if (!el || !el.closest) return;
+      if (el.closest('.yt-playlist')) return;                      /* playlist scrolls normally */
+      if (!el.closest('.yt-video-wrapper, .yt-controls, #nas-player, #yt-cover-wrap')) return;
+      e.preventDefault();
+      changeVolume(e.deltaY < 0 ? VOL_STEP : -VOL_STEP);
+    }, { passive: false });
+  }
+
+  /* ---------- 4. MEDIA SESSION (optional - delete from here to remove) ----------
+     Makes Windows media keys / headset buttons / phone lock screen call
+     play, pause, next and previous. Does not change the layout. */
+  if ('mediaSession' in navigator) {
+    try {
+      navigator.mediaSession.setActionHandler('play',          function () { doPlayPause(); });
+      navigator.mediaSession.setActionHandler('pause',         function () { doPlayPause(); });
+      navigator.mediaSession.setActionHandler('nexttrack',     function () { doNext(); });
+      navigator.mediaSession.setActionHandler('previoustrack', function () { doPrev(); });
+    } catch (err) { /* some browsers don't support every action */ }
+    /* Keep the title shown on lock screen / media overlay in sync */
+    var msTitle = document.getElementById('yt-track-title');
+    if (msTitle) {
+      var msSync = function () {
+        var txt = msTitle.textContent || '';
+        if (!txt) return;
+        var parts = txt.split(' | ');
+        try {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title:  parts.length > 1 ? parts.slice(1).join(' | ') : txt,
+            artist: parts.length > 1 ? parts[0] : '',
+            album:  (typeof YT_NAME !== 'undefined' && YT_NAME) ? decodeURIComponent(YT_NAME) : ''
+          });
+        } catch (err) {}
+      };
+      new MutationObserver(msSync).observe(msTitle, { childList: true, characterData: true, subtree: true });
+      msSync();
+    }
+  }
+})();
+</script>
 <script src="https://www.youtube.com/iframe_api"></script>
 <!-- background-manager.js is already loaded near the top of this page; loading it a second time re-declared BASE_URL and threw a SyntaxError -->
 </body>
